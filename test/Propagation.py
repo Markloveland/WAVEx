@@ -34,7 +34,7 @@ ny = 16
 #set initial time
 t = 0
 #set final time
-t_f = 5/1000
+t_f = 5
 #set time step
 #dt = 1.0
 dt = 0.005
@@ -56,6 +56,27 @@ V1 = fem.FunctionSpace(domain1, ("CG", 1))
 u1 = ufl.TrialFunction(V1)
 v1 = ufl.TestFunction(V1)
 ####################################################################
+###################################################################
+#Special section for wetting/drying
+elementwise = fem.FunctionSpace(domain1,("DG",0))
+is_wet = fem.Function(elementwise)
+depth_func = fem.Function(V1)
+#from the function spaces and ownership ranges, generate global degrees of freedom
+#this gives ghost and owned dof coords
+dof_coords1 = V1.tabulate_dof_coordinates()
+#suggested in forum, gives index of dofs I want
+local_range1 = V1.dofmap.index_map.local_range
+#vector of indexes that we want
+dofs1 = np.arange(*local_range1,dtype=np.int32)
+#gets number of dofs owned
+N_dof_1 = V1.dofmap.index_map.size_local
+#hopefully the dof coordinates owned by the process
+local_dof_coords1 = dof_coords1[0:N_dof_1,:domain1.topology.dim]
+#for now lets set depth as x coordinate itself
+depth_func.x.array[:] = L + dof_coords1[:,0]
+#need to include a wetting/drying variable in domain 1
+CFx.wave.calculate_wetdry(domain1, V1, depth_func,is_wet,min_depth=0.05)
+####################################################################
 ####################################################################
 #Subdomain 2
 #now we want entire second subdomain on EACH processor, so this will always be the smaller mesh
@@ -68,7 +89,7 @@ v2 = ufl.TestFunction(V2)
 ###################################################################
 #need local mass matrices to build global mass matrix
 #mass of subdomain 1
-m1 = u1*v1*ufl.dx
+m1 = is_wet*u1*v1*ufl.dx
 m1_form = fem.form(m1)
 M1 = fem.petsc.assemble_matrix(m1_form)
 M1.assemble()
@@ -102,7 +123,6 @@ M=CFx.assemble.create_cartesian_mass_matrix(local_rows,global_rows,local_cols,gl
 A = M.duplicate()
 #Adjust RHS for SUPG
 M_SUPG = M.duplicate()
-
 #get ownership range
 local_range = M.getOwnershipRange()
 #vector of row numbers
@@ -111,19 +131,14 @@ rows = np.arange(local_range[0],local_range[1],dtype=np.int32)
 ####################################################################
 #from the function spaces and ownership ranges, generate global degrees of freedom
 #this gives ghost and owned dof coords
-dof_coords1 = V1.tabulate_dof_coordinates()
 dof_coords2 = V2.tabulate_dof_coordinates()
 #suggested in forum, gives index of dofs I want
-local_range1 = V1.dofmap.index_map.local_range
 local_range2 = V2.dofmap.index_map.local_range
 #vector of indexes that we want
-dofs1 = np.arange(*local_range1,dtype=np.int32)
 dofs2 = np.arange(*local_range2,dtype=np.int32)
 #gets number of dofs owned
-N_dof_1 = V1.dofmap.index_map.size_local
 N_dof_2 = V2.dofmap.index_map.size_local
 #hopefully the dof coordinates owned by the process
-local_dof_coords1 = dof_coords1[0:N_dof_1,:domain1.topology.dim]
 local_dof_coords2 = dof_coords2[0:N_dof_2,:domain2.topology.dim]
 
 local_dof=CFx.transforms.cartesian_product_coords(local_dof_coords1,local_dof_coords2)
@@ -146,13 +161,13 @@ dum2 = local_boundary_dofs[y[local_boundary_dofs]<=(y_min+1e-14)]
 dum3 = local_boundary_dofs[sigma[local_boundary_dofs]<=(sigma_min+1e-14)]
 dum4 = local_boundary_dofs[theta[local_boundary_dofs]<=(theta_min+1e-14)]
 local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4),0))
-#local_boundary_dofs = dum2
+#local_boundary_dofs = dum1
 global_boundary_dofs = local_boundary_dofs + local_range[0]
 ####################################################################
 ####################################################################
 #generate any coefficients that depend on the degrees of freedom
 c = 2*np.ones(local_dof.shape)
-#c[:,2:] = 0
+#c[:,1:] = 0
 #c[:,1] = 1
 #exact solution and dirichlet boundary
 def u_func(x,y,sigma,theta,c,t):
@@ -167,16 +182,20 @@ M_SUPG.setPreallocationNNZ(M_NNZ)
 ##################################################################
 ##################################################################
 #Loading A matrix routine
-CFx.assemble.build_action_balance_stiffness(domain1,domain2,V1,V2,c,dt,A,method=method)
 if method == 'SUPG' or method == 'SUPG_strong':
-    CFx.assemble.build_RHS(domain1,domain2,V1,V2,c,M_SUPG)
-
+    tau_vals = CFx.wave.compute_tau(domain1,domain2,c,N_dof_1,N_dof_2)
+    tau_old = CFx.wave.compute_tau_old(domain1,domain2,c,subdomain=0) 
+    #print('old tau',tau_old[0:10])
+    #print('new tau',tau_vals[0:10])
+    #print('Tau vals',tau_vals.shape)
+    #print('c vals',c.shape)
+    CFx.assemble.build_action_balance_stiffness(domain1,domain2,V1,V2,c,dt,A,method=method,is_wet=is_wet,tau_vals=tau_vals)
+    CFx.assemble.build_RHS(domain1,domain2,V1,V2,c,M_SUPG,is_wet=is_wet,tau_vals=tau_vals)
+if method == 'CG' or method == 'CG_strong':
+    CFx.assemble.build_action_balance_stiffness(domain1,domain2,V1,V2,c,dt,A,method=method,is_wet=is_wet)
 
 time_2 = time.time()
 
-#if rank==0:
-#    print(local_dof_coords1)
-#    print(A.getValues(30,30))
 if method == 'SUPG' or method == 'SUPG_strong':
     M_SUPG = M+M_SUPG
     A=A+M_SUPG
@@ -184,67 +203,61 @@ if method == 'CG' or method == 'CG_strong':
     M_SUPG = M
     A = A + M_SUPG
 
+dry_dofs = CFx.utils.fix_diag(A,local_range[0],rank)
 
-#A.zeroRowsLocal(local_boundary_dofs,diag=1)
-#just want to test answer
-#A.zeroRows(rows,diag=1)
-#correction to RHS for SUPG
-
-
+A.zeroRows(dry_dofs,diag=1)
 ##################################################################
 ##################################################################
-##################################################################
-#assmble RHS
-#now evaluate RHS at all d.o.f and set that as the F vector	
-F_dof = PETSc.Vec()
-F_dof.create(comm=comm)
-F_dof.setSizes((local_rows,global_rows),bsize=1)
-F_dof.setFromOptions()
+#initialize vectors
+#holds dirichlet boundary values
+u_D = PETSc.Vec()
+u_D.create(comm=comm)
+u_D.setSizes((local_rows,global_rows),bsize=1)
+u_D.setFromOptions()
+
+#holds temporary values to contribute to RHS
+Temp = u_D.duplicate()
+#RHS of linear system of equations
+B = u_D.duplicate()
+#Post Processiong
+E = u_D.duplicate()
+L2_E = u_D.duplicate()
+u_exact = u_D.duplicate()
+#solution vector
+u_cart = u_D.duplicate()
 
 
-B = F_dof.duplicate()
-E = F_dof.duplicate()
-L2_E = F_dof.duplicate()
-u_cart = F_dof.duplicate()
-u_exact = F_dof.duplicate()
-
+Temp.setFromOptions()
 E.setFromOptions()
 B.setFromOptions()
 L2_E.setFromOptions()
 u_cart.setFromOptions()
 u_exact.setFromOptions()
-
-#if rank==0:
-#    print('dof # ',str(30))
-#    print(M.getValues(30,range(81)))
-#    print(global_boundary_dofs)
-#    print(local_dof[30,:])
-#calculate pointwise values of RHS and put them in F_dof
-#temp = u_true
-#F_dof.setValues(rows,u_true)
-
-#multiply F by Mass matrix to get B
-#M.mult(F_dof,B)
-#set Dirichlet boundary conditions
-#B.setValues(global_boundary_dofs,u_d)
-#print('local range')
-#print(local_range)
-#print('global boundary #')
-#print(global_boundary_dofs)
-#just want to test answer
-#B.setValues(rows,u_2)
+###################################################################
+###################################################################
+#Set initial condition and set solution for dirichlet
+#u_cart will hold solution in time loop, this is also the initial condition
+u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
+u_cart.assemble()
+#this matrix will help apply b.c. efficiently
+C = A.duplicate(copy=True)
+#need C to be A but 0 when columns are not dirichlet
+C.transpose()
+mask = np.ones(rows.size, dtype=bool)
+mask[local_boundary_dofs] = False
+global_non_boundary = rows[mask]
+C.zeroRows(global_non_boundary,diag=0)
+C.transpose()
+#now zero out rows/cols containing boundary
+#set solution as the boundary condition, helps initial guess
+A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_exact,b=u_exact)
+#all_global_boundary_dofs = np.concatenate(MPI.COMM_WORLD.allgather(global_boundary_dofs))
+#all_u_d = np.concatenate(MPI.COMM_WORLD.allgather(u_d))
 ###################################################################
 ###################################################################
 #Time step
 #u_cart will hold solution
-u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
-#u_cart.ghostUpdate()
-u_cart.assemble()
-
-
-#set Dirichlet boundary as global boundary
-A.zeroRows(global_boundary_dofs,diag=1,x=u_cart,b=u_cart)
-
+u_dry = np.ones(dry_dofs.shape)
 #create a direct linear solver
 #pc2 = PETSc.PC().create()
 #this is a direct solve with lu
@@ -260,23 +273,29 @@ ksp2.setType('gmres')
 
 ksp2.setInitialGuessNonzero(True)
 
-fname = 'ActionBalance_Propagation_CG/solution'
+fname = 'Propagation/solution'
 xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
-
+#B.setValues(dry_dofs,np.ones(dry_dofs.shape))
 
 u = fem.Function(V1)
 for i in range(nt):
     t+=dt
-    u_2 = u_func(x,y,sigma,theta,c,t)
-    u_d = u_2[local_boundary_dofs]
-    #B = F_dof.duplicate()
-    #B.setFromOptions()
+
+    #B will hold RHS of system of equations
     M_SUPG.mult(u_cart,B)
-    B.setValues(global_boundary_dofs,u_d)
+
+    #setting dirichlet BC
+    u_2 = u_func(x,y,sigma,theta,c,t)
+    u_d_vals = u_2[local_boundary_dofs]
+    u_D.setValues(global_boundary_dofs,u_d_vals)
+    C.mult(u_D,Temp)
+    B = B - Temp
+    B.setValues(dry_dofs,u_dry)
+    B.setValues(global_boundary_dofs,u_d_vals)
     B.assemble()
+    #solve for time t
     ksp2.solve(B, u_cart)
-    #B.destroy()
     B.zeroEntries()
     # Save solution to file in VTK format
     if (i%nplot==0):

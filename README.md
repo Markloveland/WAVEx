@@ -1,7 +1,7 @@
 # WAVEx
 ## Spectral Wave Model Built on dolfinx
 
-##Install instructions
+## Install instructions
 
 
 ## tests
