@@ -79,7 +79,7 @@ def compute_tau_old(mesh1,mesh2,c_vals,subdomain=0):
 
 
 #computation of any wave params/sources will take place here
-def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0.0,g=9.81):
+def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0.0,dudx=0,dudy=0,dvdx=0,dvdy=0,g=9.81):
     #need a function to calculate wave speed (phase and group) and wavenumber
     #takes in degrees of freedom and computes wave speeds pointwise
     N_dof = len(sigma)
@@ -127,15 +127,15 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
     #need to use FEniCS to calculate this!
     dHdt=0.0
     #dHdy = 0#-1.0/200#0.0
-    dudy = 0.0
-    dvdx = 0.0  #might not have to be 0, well see
-    dvdy = 0.0
+    #dudy = 0.0
+    #dvdx = 0.0  #might not have to be 0, well see
+    #dvdy = 0.0
 
     #calc gradient of H w.r.t. x
     #this is just forward euler but only works for fixed geometry
     #instead we'll hard code for this case
     #dHdx=-1.0/200.0#0
-    dudx=0.0
+    #dudx=0.0
 
     #now calculate velocity vectors
     #c_sigma
@@ -152,6 +152,11 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
 def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81, min_depth = 0.05):
     dHdx_func = interpolate_L2(depth_func.dx(0),depth_func._V)
     dHdy_func = interpolate_L2(depth_func.dx(1),depth_func._V)
+    dudx_func = interpolate_L2(u_func.dx(0),u_func._V)
+    dudy_func = interpolate_L2(u_func.dx(1),u_func._V)
+    dvdx_func = interpolate_L2(v_func.dx(0),v_func._V)
+    dvdy_func = interpolate_L2(v_func.dx(1),v_func._V)
+
     
     #dHdx_func,dHdy_func = interpolate_gradients(depth_func)    
 
@@ -161,6 +166,10 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     v = np.kron(v_func.vector.getArray(),np.ones(N_dof_2))
     dHdx = np.kron(dHdx_func.vector.getArray(),np.ones(N_dof_2))
     dHdy = np.kron(dHdy_func.vector.getArray(),np.ones(N_dof_2))
+    dudx = np.kron(dudx_func.vector.getArray(),np.ones(N_dof_2))
+    dudy = np.kron(dudy_func.vector.getArray(),np.ones(N_dof_2))
+    dvdx = np.kron(dvdx_func.vector.getArray(),np.ones(N_dof_2))
+    dvdy = np.kron(dvdy_func.vector.getArray(),np.ones(N_dof_2))
 
     #need a function to calculate wave speed (phase and group) and wavenumber
     #takes in degrees of freedom and computes wave speeds pointwise
@@ -178,7 +187,8 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
 
 
     c_out[wet_dofs_local,:] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],
-            u[wet_dofs_local],v[wet_dofs_local],dHdx=dHdx[wet_dofs_local],dHdy=dHdy[wet_dofs_local])
+            u[wet_dofs_local],v[wet_dofs_local],dHdx=dHdx[wet_dofs_local],dHdy=dHdy[wet_dofs_local],dudx=dudx[wet_dofs_local],dudy=dudy[wet_dofs_local],dvdx=dvdx[wet_dofs_local],
+            dvdy=dvdy[wet_dofs_local])
     '''
     #employ 3 different approximations depending on water depth
     WGD=np.sqrt(depth_wet/g)*g
