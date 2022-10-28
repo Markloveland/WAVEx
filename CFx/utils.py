@@ -113,8 +113,12 @@ def ADCIRC_mesh_gen(comm,file_path):
     gdim, shape, degree = 2, "triangle", 1
     cell = ufl.Cell(shape, geometric_dimension=gdim)
     element = ufl.VectorElement("Lagrange", cell, degree)
-    domain = ufl.Mesh(element)
+    #domain = ufl.Mesh(element)
     coords = np.array(list(zip(LONS,LATS)))
+    domain = ufl.Mesh(ufl.VectorElement("Lagrange", cell, degree)) 
+    #print(NM)
+    #print(coords)
+    #print(domain)
     
     domain1 = mesh.create_mesh(comm, NM, coords, domain)
     return domain1

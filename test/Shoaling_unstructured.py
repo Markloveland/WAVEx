@@ -56,18 +56,24 @@ PETSc.Sys.Print('nt',nt)
 nplot = 500
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
-
+output_dir = 'Outputs/'
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
 # this is set up ideally for subdomain 1 > subdomain 2
 #domain1 = mesh.create_rectangle(comm, [np.array([x_min, y_min]), np.array([x_max, y_max])], [nx, ny], mesh.CellType.triangle)
-filename = 'meshes/shoaling_unstructured.xdmf'
+
+
+filename = 'meshes/shoaling_grid.xdmf'
 encoding= io.XDMFFile.Encoding.HDF5
 with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
     domain1 = file.read_mesh()
 
-
+'''
+#read mesh directly from ADCIRC file
+file_path = 'meshes/depth2.grd'
+domain1 = CFx.utils.ADCIRC_mesh_gen(comm,file_path)
+'''
 V1 = fem.FunctionSpace(domain1, ("CG", 1))
 u1 = ufl.TrialFunction(V1)
 v1 = ufl.TestFunction(V1)
@@ -196,7 +202,7 @@ c,dry_dofs_local = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_fun
 #exact solution and dirichlet boundary
 dry_dofs = dry_dofs_local+local_range[0]
 
-print('global rows with 0 in diagonal',dry_dofs)
+#print('global rows with 0 in diagonal',dry_dofs)
 
 def u_func(x,y,sigma,theta,c,t):
     #takes in dof and paramters
@@ -333,8 +339,8 @@ ksp2.setType('gmres')
 #ksp2.setPC(pc2)
 ksp2.setInitialGuessNonzero(True)
 
-fname = 'ActionBalance_Shoaling_wetdry/solution'
-xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
+fname = 'Shoaling_unstructured/solution'
+xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
 #########################################################
 #######################################################
@@ -409,8 +415,8 @@ HS = fem.Function(V1)
 HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
 HS.vector.setValues(dofs1,np.array(HS_vec))
 HS.vector.ghostUpdate()
-fname = 'Shoaling_HS_unstructured/solution'
-xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
+fname = 'Shoaling_unstructured_HS/solution'
+xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
 xdmf.write_function(HS)
 xdmf.close()
@@ -434,4 +440,11 @@ if rank ==0:
     #PETSc.Sys.Print('Station vals:')
     #PETSc.Sys.Print(vals)
     #PETSc.Sys.Print(vals.shape)
-    np.savetxt("HS_stations_SUPG_unstructured.csv", np.append(stats, vals, axis=1), delimiter=",")
+    #print(stats)
+    #print(stats.shape)
+    #print(vals)
+    #print(vals.shape)
+    #recast as column vector
+    vals_out = np.zeros((vals.shape[0],1))
+    vals_out[:,0] = vals[:]
+    np.savetxt(output_dir+'Stations/HS_stations_SUPG_unstructured.csv', np.append(stats, vals_out, axis=1), delimiter=",")
