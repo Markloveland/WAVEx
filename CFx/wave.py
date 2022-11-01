@@ -141,18 +141,25 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
     #c_sigma
     #should be 0 for deep water
     #hard code for just this time
-    c_out[deep_range,2] = 0.0
-    c_out[deep_range,3]=0.0
+
+    c_out[deep_range,2] = - temp[deep_range]*k[deep_range]*(dudx[deep_range]*(np.cos(theta[deep_range])**2) + dudy[deep_range]*np.cos(theta[deep_range])*np.sin(theta[deep_range]) + \
+            dvdx[deep_range]*np.sin(theta[deep_range])*np.cos(theta[deep_range]) + dvdy[deep_range]*(np.sin(theta[deep_range])**2)    )
+    
+    c_out[deep_range,3]= dudx[deep_range]*np.cos(theta[deep_range])*np.sin(theta[deep_range]) - dudy[deep_range]*(np.cos(theta[deep_range])**2) + dvdx[deep_range]*(np.sin(theta[deep_range])**2) \
+            -dvdy[deep_range]*np.cos(theta[deep_range])*np.sin(theta[deep_range]) 
 
 
-    c_out[mid_range,2] = k[mid_range]*sigma[mid_range]/(np.sinh(2*k[mid_range]*depth[mid_range])) *(dHdt + u[mid_range]*dHdx[mid_range] + v[mid_range]*dHdy[mid_range]) - temp[mid_range]*k[mid_range]*(dudx[mid_range])
+    c_out[mid_range,2] = k[mid_range]*sigma[mid_range]/(np.sinh(2*k[mid_range]*depth[mid_range])) *(dHdt + u[mid_range]*dHdx[mid_range] + v[mid_range]*dHdy[mid_range])\
+            - temp[mid_range]*k[mid_range]*(dudx[mid_range]*(np.cos(theta[mid_range])**2) + dudy[mid_range]*np.cos(theta[mid_range])*np.sin(theta[mid_range]) + \
+            dvdx[mid_range]*np.sin(theta[mid_range])*np.cos(theta[mid_range]) + dvdy[mid_range]*(np.sin(theta[mid_range])**2)    )
     #c theta
     c_out[mid_range,3] = sigma[mid_range]/(np.sinh(2*k[mid_range]*depth[mid_range]))*(dHdx[mid_range]*np.sin(theta[mid_range])- dHdy[mid_range]*np.cos(theta[mid_range])) + \
         dudx[mid_range]*np.cos(theta[mid_range])*np.sin(theta[mid_range]) - dudy[mid_range]*(np.cos(theta[mid_range])**2) + dvdx[mid_range]*(np.sin(theta[mid_range])**2) \
         -dvdy[mid_range]*np.cos(theta[mid_range])*np.sin(theta[mid_range])
     
-    c_out[shallow_range,2] = k[shallow_range]*sigma[shallow_range]/(np.sinh(2*k[shallow_range]*depth[shallow_range])) *(dHdt + u[shallow_range]*dHdx[shallow_range] + v[shallow_range]*dHdy[shallow_range]) - \
-            temp[shallow_range]*k[shallow_range]*(dudx[shallow_range])
+    c_out[shallow_range,2] = k[shallow_range]*sigma[shallow_range]/(np.sinh(2*k[shallow_range]*depth[shallow_range])) *(dHdt + u[shallow_range]*dHdx[shallow_range] + v[shallow_range]*dHdy[shallow_range]) \
+            - temp[shallow_range]*k[shallow_range]*(dudx[shallow_range]*(np.cos(theta[shallow_range])**2) + dudy[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range]) + \
+            dvdx[shallow_range]*np.sin(theta[shallow_range])*np.cos(theta[shallow_range]) + dvdy[shallow_range]*(np.sin(theta[shallow_range])**2)    )
     #c theta
     c_out[shallow_range,3] = sigma[shallow_range]/(np.sinh(2*k[shallow_range]*depth[shallow_range]))*(dHdx[shallow_range]*np.sin(theta[shallow_range])- dHdy[shallow_range]*np.cos(theta[shallow_range])) + \
         dudx[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range]) - dudy[shallow_range]*(np.cos(theta)[shallow_range]**2) + dvdx[shallow_range]*(np.sin(theta[shallow_range])**2) \
