@@ -45,7 +45,7 @@ PETSc.Sys.Print('nt',nt)
 #nplot = 1
 nplot = 100
 
-method = 'CG_strong'
+method = 'SUPG_strong'
 PETSc.Sys.Print('Method chosen:', method)
 ####################################################################
 #Subdomain 1

@@ -107,6 +107,7 @@ CFx.wave.calculate_wetdry(domain1, V1, depth_func,is_wet,min_depth=0.05)
 #now we want entire second subdomain on EACH processor, so this will always be the smaller mesh
 #MPI.COMM_SELF to not partition mesh
 domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.triangle)
+#domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.quadrilateral)
 V2 = fem.FunctionSpace(domain2, ("CG", 1))
 u2 = ufl.TrialFunction(V2)
 v2 = ufl.TestFunction(V2)

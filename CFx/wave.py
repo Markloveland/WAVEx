@@ -113,8 +113,8 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
     temp[mid_range],k[mid_range]=cg_mid(SND[mid_range],g,depth[mid_range],sigma[mid_range])
     temp[deep_range]=cg_deep(g,sigma[deep_range])
     #save these values in c_out and multiply by appropriate angles
-    c_out[:,0] = temp*np.cos(theta)
-    c_out[:,1] = temp*np.sin(theta)
+    c_out[:,0] = temp*np.cos(theta) + u
+    c_out[:,1] = temp*np.sin(theta) + v
 
 
     #now calculate wavenumber k and store temporarily
@@ -139,11 +139,25 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
 
     #now calculate velocity vectors
     #c_sigma
-    c_out[:,2] = k*sigma/(np.sinh(2*k*depth)) *(dHdt + u*dHdx + v*dHdy) - temp*k*(dudx)
+    #should be 0 for deep water
+    #hard code for just this time
+    c_out[deep_range,2] = 0.0
+    c_out[deep_range,3]=0.0
+
+
+    c_out[mid_range,2] = k[mid_range]*sigma[mid_range]/(np.sinh(2*k[mid_range]*depth[mid_range])) *(dHdt + u[mid_range]*dHdx[mid_range] + v[mid_range]*dHdy[mid_range]) - temp[mid_range]*k[mid_range]*(dudx[mid_range])
     #c theta
-    c_out[:,3] = sigma/(np.sinh(2*k*depth))*(dHdx*np.sin(theta)- dHdy*np.cos(theta)) + \
-        dudx*np.cos(theta)*np.sin(theta) - dudy*(np.cos(theta)**2) + dvdx*(np.sin(theta)**2) \
-        -dvdy*np.cos(theta)*np.sin(theta)
+    c_out[mid_range,3] = sigma[mid_range]/(np.sinh(2*k[mid_range]*depth[mid_range]))*(dHdx[mid_range]*np.sin(theta[mid_range])- dHdy[mid_range]*np.cos(theta[mid_range])) + \
+        dudx[mid_range]*np.cos(theta[mid_range])*np.sin(theta[mid_range]) - dudy[mid_range]*(np.cos(theta[mid_range])**2) + dvdx[mid_range]*(np.sin(theta[mid_range])**2) \
+        -dvdy[mid_range]*np.cos(theta[mid_range])*np.sin(theta[mid_range])
+    
+    c_out[shallow_range,2] = k[shallow_range]*sigma[shallow_range]/(np.sinh(2*k[shallow_range]*depth[shallow_range])) *(dHdt + u[shallow_range]*dHdx[shallow_range] + v[shallow_range]*dHdy[shallow_range]) - \
+            temp[shallow_range]*k[shallow_range]*(dudx[shallow_range])
+    #c theta
+    c_out[shallow_range,3] = sigma[shallow_range]/(np.sinh(2*k[shallow_range]*depth[shallow_range]))*(dHdx[shallow_range]*np.sin(theta[shallow_range])- dHdy[shallow_range]*np.cos(theta[shallow_range])) + \
+        dudx[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range]) - dudy[shallow_range]*(np.cos(theta)[shallow_range]**2) + dvdx[shallow_range]*(np.sin(theta[shallow_range])**2) \
+        -dvdy[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range])
+    
     return c_out
 
 
@@ -156,7 +170,6 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     dudy_func = interpolate_L2(u_func.dx(1),u_func._V)
     dvdx_func = interpolate_L2(v_func.dx(0),v_func._V)
     dvdy_func = interpolate_L2(v_func.dx(1),v_func._V)
-
     
     #dHdx_func,dHdy_func = interpolate_gradients(depth_func)    
 
@@ -252,12 +265,36 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     return c_out,dry_dofs_local
 
 
-
 def calculate_HS(u_cart,V2,local_size1,local_size2,local_range2):
     HS_vec = np.zeros(local_size1)
     dum = fem.Function(V2)
 
     intf = fem.form(dum*ufl.dx)
+    
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        local_intf = fem.assemble_scalar(intf)
+        HS_vec[i] = 4*np.sqrt(abs(local_intf))
+
+    return HS_vec
+
+def calculate_HS_actionbalance(u_cart,V2,local_size1,local_size2,local_range2):
+    HS_vec = np.zeros(local_size1)
+    dum = fem.Function(V2)
+    sigma = fem.Function(V2)
+    sigma.interpolate(lambda x: x[0])
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+        "cffi_libraries": ["m"], "timeout":900}
+    intf = fem.form(sigma*dum*ufl.dx,jit_params=jit_parameters)
     
     #vector of global indexes that we want
     dofs = np.arange(*local_range2,dtype=np.int32)

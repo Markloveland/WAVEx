@@ -86,7 +86,7 @@ def build_cartesian_mass_matrix(M1_pet,M2_pet,M1_sizes,M1_global_size,M2_sizes,M
     return M_NNZ
 
 def init_dat(domain1,K1,jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
-    "cffi_libraries": ["m"]}):
+    "cffi_libraries": ["m"], "timeout":900}):
     #give a ufl form, generate a sparsity pattern
 
     form_K1 = fem.form(K1, jit_params=jit_parameters)
