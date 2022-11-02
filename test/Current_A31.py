@@ -38,8 +38,8 @@ ny = 100
 # define spectral domain
 omega_min = np.pi*2*0.05 
 omega_max = .25*np.pi*2
-theta_min = np.pi/2 - 12/180*np.pi
-theta_max = np.pi/2 + 12/180*np.pi
+theta_min = np.pi/2 - 10/180*np.pi
+theta_max = np.pi/2 + 10/180*np.pi
 n_sigma = 40
 n_theta = 24
 #set initial time
