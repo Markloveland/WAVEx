@@ -206,7 +206,7 @@ dry_dofs = dry_dofs_local+local_range[0]
 def u_func(x,y,sigma,theta,c,t):
     #takes in dof and paramters
     HS = 1
-    F_std = 0.01
+    F_std = 0.04
     F_peak = 0.1
     Dir_mean = 90.0 #mean direction in degrees
     Dir_rad = Dir_mean*np.pi/(180)
@@ -220,6 +220,7 @@ def u_func(x,y,sigma,theta,c,t):
     CTOT = np.sqrt(0.5*Dir_exp/np.pi)/(1.0 - 0.25/Dir_exp)
     A_COS = np.cos(theta - Dir_rad)
     CDIR = (A_COS>0)*CTOT*np.maximum(A_COS**Dir_exp, 1.0e-10)
+
     return E*CDIR
 ####################################################################
 ####################################################################
