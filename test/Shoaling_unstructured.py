@@ -36,12 +36,20 @@ y_max = 4000
 nx = 100
 ny = 100
 # define spectral domain
+omega_min = np.pi*2*0.05
+omega_max = .25*np.pi*2
+theta_min = np.pi/2 - 10/180*np.pi
+theta_max = np.pi/2 + 10/180*np.pi
+n_sigma = 40
+n_theta = 24
+'''
 omega_min = 0.25
 omega_max = 2.0
 theta_min = np.pi/2 - 10/180*np.pi
 theta_max = np.pi/2 + 10/180*np.pi
 n_sigma = 30
 n_theta = 24
+'''
 #set initial time
 t = 0
 #set final time
@@ -208,7 +216,7 @@ dry_dofs = dry_dofs_local+local_range[0]
 def u_func(x,y,sigma,theta,c,t):
     #takes in dof and paramters
     HS = 1
-    F_std = 0.1
+    F_std = 0.04#0.1
     F_peak = 0.1
     Dir_mean = 90.0 #mean direction in degrees
     Dir_rad = Dir_mean*np.pi/(180)
