@@ -35,6 +35,14 @@ y_max = 4000
 # Create cartesian mesh of two 2D and define function spaces
 nx = 100
 ny = 100
+#define spectral domain
+omega_min = np.pi*2*0.05
+omega_max = .25*np.pi*2
+theta_min = np.pi/2 - 10/180*np.pi
+theta_max = np.pi/2 + 10/180*np.pi
+n_sigma = 40
+n_theta = 24
+'''
 # define spectral domain
 omega_min = 0.25
 omega_max = 2.0
@@ -42,6 +50,7 @@ theta_min = np.pi/2 - 10/180*np.pi
 theta_max = np.pi/2 + 10/180*np.pi
 n_sigma = 30
 n_theta = 24
+'''
 #set initial time
 t = 0
 #set final time
@@ -56,7 +65,7 @@ PETSc.Sys.Print('nt',nt)
 nplot = 500
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
-
+out_dir = 'Outputs/A21/'
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
@@ -203,7 +212,7 @@ dry_dofs = dry_dofs_local+local_range[0]
 def u_func(x,y,sigma,theta,c,t):
     #takes in dof and paramters
     HS = 1
-    F_std = 0.1
+    F_std = 0.04
     F_peak = 0.1
     Dir_mean = 90.0 #mean direction in degrees
     Dir_rad = Dir_mean*np.pi/(180)
@@ -321,9 +330,17 @@ ksp2.setType('gmres')
 ksp2.setPC(pc2)
 ksp2.setInitialGuessNonzero(True)
 
-fname = 'ActionBalance_Shoaling_wetdry/solution'
-xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
+HS = fem.Function(V1)
+#try to fix units maybe is issue?
+#Temp.setValues(rows,sigma)
+#PETSc.Vec.pointwiseMult(u_exact,Temp,u_cart)
+HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+fname = 'Shoaling_HS_structured/solution'
+xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
+xdmf.write_function(HS,t)
 #########################################################
 #######################################################
 #Time Step
@@ -346,8 +363,15 @@ for i in range(nt):
     B.zeroEntries()
     # Save solution to file in VTK format
     if (i%nplot==0):
-        u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
-        xdmf.write_function(u, t)
+        #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
+        #xdmf.write_function(u, t)
+        HS = fem.Function(V1)
+        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+        HS.vector.setValues(dofs1,np.array(HS_vec))
+        HS.vector.ghostUpdate()
+        xdmf.write_function(HS,t)
+
+
         #hdf5_file.write(u,"solution",t)
 #print final iterations
 ksp2.view()
@@ -391,7 +415,7 @@ PETSc.Sys.Print(f'The build time is {buildTime} seconds')
 PETSc.Sys.Print(f'The solve time is {solveTime} seconds')
 PETSc.Sys.Print('Final solution on boundary')
 #print(u_cart.getValues(global_boundary_dofs))
-
+'''
 #compute significant wave height
 HS = fem.Function(V1)
 HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
@@ -402,7 +426,7 @@ xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
 xdmf.write_function(HS)
 xdmf.close()
-
+'''
 #try to extract HS at stations
 numpoints = 150
 y_stats = np.linspace(y_min,y_max-41,numpoints)
@@ -422,5 +446,5 @@ if rank ==0:
     #PETSc.Sys.Print('Station vals:')
     #PETSc.Sys.Print(vals)
     #PETSc.Sys.Print(vals.shape)
-    np.savetxt("HS_stations_SUPG_structured.csv", np.append(stats, vals, axis=1), delimiter=",")
+    np.savetxt(out_dir+"Stations/HS_stations_structured.csv", np.append(stats, vals, axis=1), delimiter=",")
 

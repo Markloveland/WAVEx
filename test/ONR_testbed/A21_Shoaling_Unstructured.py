@@ -61,10 +61,10 @@ nt = int(np.ceil(t_f/dt))
 PETSc.Sys.Print('nt',nt)
 #plot every n time steps
 #nplot = 1
-nplot = 500
+nplot = 50
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
-output_dir = 'Outputs/'
+out_dir = 'Outputs/A21/'
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
@@ -348,9 +348,22 @@ ksp2.setType('gmres')
 #ksp2.setPC(pc2)
 ksp2.setInitialGuessNonzero(True)
 
-fname = 'Shoaling_unstructured/solution'
-xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
+#fname = 'Shoaling_unstructured/solution'
+#xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
+#xdmf.write_mesh(domain1)
+
+HS = fem.Function(V1)
+#try to fix units maybe is issue?
+#Temp.setValues(rows,sigma)
+#PETSc.Vec.pointwiseMult(u_exact,Temp,u_cart)
+HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+fname = 'Shoaling_HS_unstructured/solution'
+xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
+xdmf.write_function(HS,t)
+
 #########################################################
 #######################################################
 #Time Step
@@ -373,8 +386,13 @@ for i in range(nt):
     B.zeroEntries()
     # Save solution to file in VTK format
     if (i%nplot==0):
-        u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
-        xdmf.write_function(u, t)
+        #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
+        #xdmf.write_function(u, t)
+        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+        HS.vector.setValues(dofs1,np.array(HS_vec))
+        HS.vector.ghostUpdate()
+        xdmf.write_function(HS,t)
+        
         #hdf5_file.write(u,"solution",t)
 #print final iterations
 ksp2.view()
@@ -420,6 +438,7 @@ PETSc.Sys.Print('Final solution on boundary')
 #print(u_cart.getValues(global_boundary_dofs))
 
 #compute significant wave height
+'''
 HS = fem.Function(V1)
 HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
 HS.vector.setValues(dofs1,np.array(HS_vec))
@@ -429,7 +448,7 @@ xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
 xdmf.write_function(HS)
 xdmf.close()
-
+'''
 #try to extract HS at stations
 numpoints = 150
 y_stats = np.linspace(y_min,y_max-41,numpoints)
@@ -456,4 +475,4 @@ if rank ==0:
     #recast as column vector
     vals_out = np.zeros((vals.shape[0],1))
     vals_out[:,0] = vals[:]
-    np.savetxt(output_dir+'Stations/HS_stations_SUPG_unstructured.csv', np.append(stats, vals_out, axis=1), delimiter=",")
+    np.savetxt(out_dir+'Stations/HS_stations_unstructured.csv', np.append(stats, vals_out, axis=1), delimiter=",")
