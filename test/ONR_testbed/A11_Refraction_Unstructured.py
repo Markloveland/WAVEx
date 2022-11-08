@@ -388,7 +388,7 @@ for i in range(nt):
     if (i%nplot==0):
         #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
         #xdmf.write_function(u, t)
-        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+        HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
         HS.vector.setValues(dofs1,np.array(HS_vec))
         HS.vector.ghostUpdate()
         xdmf.write_function(HS,t)
@@ -398,7 +398,10 @@ for i in range(nt):
 ksp2.view()
 PETSc.Sys.Print('Niter',ksp2.getIterationNumber())
 PETSc.Sys.Print('convergence code',ksp2.getConvergedReason())
-
+HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+xdmf.write_function(HS,t)
 xdmf.close()
 time_end = time.time()
 ############################################################################

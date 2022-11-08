@@ -388,7 +388,7 @@ for i in range(nt):
     if (i%nplot==0):
         #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
         #xdmf.write_function(u, t)
-        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+        HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
         HS.vector.setValues(dofs1,np.array(HS_vec))
         HS.vector.ghostUpdate()
         xdmf.write_function(HS,t)
@@ -399,6 +399,12 @@ ksp2.view()
 PETSc.Sys.Print('Niter',ksp2.getIterationNumber())
 PETSc.Sys.Print('convergence code',ksp2.getConvergedReason())
 
+
+
+HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+xdmf.write_function(HS,t)
 xdmf.close()
 time_end = time.time()
 ############################################################################
@@ -437,18 +443,14 @@ PETSc.Sys.Print(f'The solve time is {solveTime} seconds')
 PETSc.Sys.Print('Final solution on boundary')
 #print(u_cart.getValues(global_boundary_dofs))
 
-#compute significant wave height
-'''
-HS = fem.Function(V1)
-HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
-HS.vector.setValues(dofs1,np.array(HS_vec))
-HS.vector.ghostUpdate()
-fname = 'Shoaling_unstructured_HS/solution'
-xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
-xdmf.write_mesh(domain1)
-xdmf.write_function(HS)
-xdmf.close()
-'''
+#compute significant wave height at final time strep
+
+#fname = 'Shoaling_unstructured_HS/solution'
+#xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
+#xdmf.write_mesh(domain1)
+#xdmf.write_function(HS)
+#xdmf.close()
+
 #try to extract HS at stations
 numpoints = 150
 y_stats = np.linspace(y_min,y_max-41,numpoints)

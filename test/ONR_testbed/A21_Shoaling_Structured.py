@@ -54,7 +54,7 @@ n_theta = 24
 #set initial time
 t = 0
 #set final time
-t_f = 2000/4000
+t_f = 2000/2
 #set time step
 dt = 0.5
 #calculate nt
@@ -62,7 +62,7 @@ nt = int(np.ceil(t_f/dt))
 PETSc.Sys.Print('nt',nt)
 #plot every n time steps
 #nplot = 1
-nplot = 500
+nplot = 50
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
 out_dir = 'Outputs/A21/'
@@ -220,7 +220,7 @@ def u_func(x,y,sigma,theta,c,t):
     #returns vector with initial condition values at global DOF
     aux1 = HS**2/(16*np.sqrt(2*np.pi)*F_std)
     aux3 = 2*F_std**2
-    tol=1e-14
+    tol=1e-11
     aux2 = (sigma - ( np.pi*2*F_peak ) )**2
     E = (y<tol)*aux1*np.exp(-aux2/aux3)
     CTOT = np.sqrt(0.5*Dir_exp/np.pi)/(1.0 - 0.25/Dir_exp)
@@ -366,18 +366,24 @@ for i in range(nt):
         #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
         #xdmf.write_function(u, t)
         HS = fem.Function(V1)
-        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+        HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
         HS.vector.setValues(dofs1,np.array(HS_vec))
         HS.vector.ghostUpdate()
         xdmf.write_function(HS,t)
-
-
         #hdf5_file.write(u,"solution",t)
+
+
 #print final iterations
 ksp2.view()
 PETSc.Sys.Print('Niter',ksp2.getIterationNumber())
 PETSc.Sys.Print('convergence code',ksp2.getConvergedReason())
 
+
+#compute and plot HS at end of simulation
+HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+xdmf.write_function(HS,t)
 xdmf.close()
 time_end = time.time()
 ############################################################################

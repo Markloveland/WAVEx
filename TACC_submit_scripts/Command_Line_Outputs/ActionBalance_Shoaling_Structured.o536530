@@ -1,0 +1,326 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 536530 
+TACC:  Starting parallel tasks... 
+nt 2000
+KSP Object: 250 MPI processes
+  type: gmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=10000, nonzero initial guess
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using PRECONDITIONED norm type for convergence test
+PC Object: 250 MPI processes
+  type: none
+  linear system matrix = precond matrix:
+  Mat Object: 250 MPI processes
+    type: mpiaij
+    rows=10456025, cols=10456025
+    total: nonzeros=488064713, allocated nonzeros=488064713
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node (on process 0) routines
+Niter 0
+convergence code 2
+Final t 1000.0
+L2 error 10103.74318397903
+L inf error 236.45492367747931
+min in error (10034482, -5.798863490052426)
+max error (2826684, 236.45492367747931)
+h 0.01
+dof 104060401
+The build time is 1811.2505056858063 seconds
+The solve time is 3526.393857240677 seconds
+Final solution on boundary
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [2647575 2647576 2647577 ... 2657822 2657823 2657824]
+global rows with 0 in diagonal [2810550 2810551 2810552 ... 2841297 2841298 2841299]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [8258425 8258426 8258427 ... 8296347 8296348 8296349]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [8376300 8376301 8376302 ... 8383472 8383473 8383474]
+global rows with 0 in diagonal [8431650 8431651 8431652 ... 8470597 8470598 8470599]
+global rows with 0 in diagonal [8482900 8482901 8482902 ... 8496222 8496223 8496224]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [8550550 8550551 8550552 ... 8551572 8551573 8551574]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [8799625 8799626 8799627 ... 8833447 8833448 8833449]
+global rows with 0 in diagonal [8848825 8848826 8848827 ... 8857022 8857023 8857024]
+global rows with 0 in diagonal [8901100 8901101 8901102 ... 8939022 8939023 8939024]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [ 9982475  9982476  9982477 ... 10007072 10007073 10007074]
+global rows with 0 in diagonal [10027575 10027576 10027577 ... 10063447 10063448 10063449]
+global rows with 0 in diagonal [10078825 10078826 10078827 ... 10089072 10089073 10089074]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [10197725 10197726 10197727 ... 10201822 10201823 10201824]
+global rows with 0 in diagonal [10238725 10238726 10238727 ... 10267422 10267423 10267424]
+global rows with 0 in diagonal [10284850 10284851 10284852 ... 10317647 10317648 10317649]
+global rows with 0 in diagonal [10370950 10370951 10370952 ... 10371972 10371973 10371974]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal [2727525 2727526 2727527 ... 2730597 2730598 2730599]
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+global rows with 0 in diagonal []
+TACC:  Shutdown complete. Exiting. 
