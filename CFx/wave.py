@@ -340,3 +340,31 @@ def calculate_wetdry(domain, V, depth_func,is_wet, min_depth=0.05):
 
     return 0
 
+def calculate_mean_dir(u_cart,V2,local_size1,local_size2,local_range2):
+    Mean_dir = np.zeros(local_size1)
+    sin_theta = fem.Function(V2)
+    cos_theta = fem.Function(V2)
+    dum = fem.Function(V2)
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+            "cffi_libraries": ["m"], "timeout":900}
+    sin_theta.interpolate(lambda x: np.sin(x[1]))
+    cos_theta.interpolate(lambda x: np.cos(x[1]))
+
+    int1 = fem.form(dum*sin_theta*ufl.dx,jit_params=jit_parameters)
+    int2 = fem.form(dum*cos_theta*ufl.dx,jit_params=jit_parameters)
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        val1 = fem.assemble_scalar(int1)
+        val2 = fem.assemble_scalar(int2)
+
+        Mean_dir[i] = np.arctan2(val1,val2)
+    return Mean_dir
+ 

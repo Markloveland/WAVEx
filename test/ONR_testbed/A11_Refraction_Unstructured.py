@@ -464,6 +464,15 @@ stations[:,1] = y_stats
 points_on_proc, vals_on_proc = CFx.utils.station_data(stations,domain1,HS)
 stats,vals = CFx.utils.gather_station(comm,0,points_on_proc,vals_on_proc)
 
+Dir = fem.Function(V1)
+Dir_vec = CFx.wave.calculate_mean_dir(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+Dir.vector.setValues(dofs1,np.array(Dir_vec))
+Dir.vector.ghostUpdate()
+
+
+_, Dirs_on_proc = CFx.utils.station_data(stations,domain1,Dir)
+_,Dir_vals = CFx.utils.gather_station(comm,0,points_on_proc,Dirs_on_proc)
+
 if rank ==0:
     #PETSc.Sys.Print('Station locs:')
     #PETSc.Sys.Print(stats)
@@ -476,6 +485,7 @@ if rank ==0:
     #print(vals)
     #print(vals.shape)
     #recast as column vector
-    vals_out = np.zeros((vals.shape[0],1))
+    vals_out = np.zeros((vals.shape[0],2))
     vals_out[:,0] = vals[:]
+    vals_out[:,1] = Dir_vals[:]
     np.savetxt(out_dir+'Stations/HS_stations_unstructured.csv', np.append(stats, vals_out, axis=1), delimiter=",")
