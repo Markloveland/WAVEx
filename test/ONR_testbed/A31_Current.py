@@ -56,7 +56,7 @@ PETSc.Sys.Print('nt',nt)
 nplot = 10
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
-out_dir = 'Outputs/'
+out_dir = 'Outputs/A31/'
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
@@ -377,6 +377,10 @@ ksp2.view()
 PETSc.Sys.Print('Niter',ksp2.getIterationNumber())
 PETSc.Sys.Print('convergence code',ksp2.getConvergedReason())
 
+HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS.vector.setValues(dofs1,np.array(HS_vec))
+HS.vector.ghostUpdate()
+xdmf.write_function(HS, t)
 xdmf.close()
 time_end = time.time()
 ############################################################################

@@ -19,6 +19,6 @@ eval "$(/home1/04637/mdl2665/anaconda3/bin/conda shell.bash hook)"
 conda init
 conda activate fenicsx-env
 conda info
-ibrun python3 test/Current_A31.py
+ibrun python3 test/ONR_testbed/A31_Current.py
 date >> run.timing
 
