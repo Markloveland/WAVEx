@@ -45,7 +45,7 @@ n_theta = 24
 #set initial time
 t = 0
 #set final time
-t_f =750
+t_f =1500
 #set time step
 dt = 2.0
 #calculate nt
@@ -53,7 +53,7 @@ nt = int(np.ceil(t_f/dt))
 PETSc.Sys.Print('nt',nt)
 #plot every n time steps
 #nplot = 1
-nplot = 10
+nplot = 20
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
 out_dir = 'Outputs/A32/'
