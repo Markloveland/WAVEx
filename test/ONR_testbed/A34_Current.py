@@ -45,7 +45,7 @@ n_theta = 25
 #set initial time
 t = 0
 #set final time
-t_f =750
+t_f =2000
 #set time step
 dt = 2.0
 #calculate nt
@@ -53,10 +53,10 @@ nt = int(np.ceil(t_f/dt))
 PETSc.Sys.Print('nt',nt)
 #plot every n time steps
 #nplot = 1
-nplot = 10
+nplot = 50
 #note, wetting/drying only works with "strong" forms
 method = 'SUPG_strong'
-out_dir = 'Outputs/A33/'
+out_dir = 'Outputs/A34/'
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
@@ -87,7 +87,7 @@ local_dof_coords1 = dof_coords1[0:N_dof_1,:domain1.topology.dim]
 #for now lets set depth as x coordinate itself
 #eventually this maybe read in from txt file or shallow water model
 depth_func.x.array[:] = 10000*np.ones(dof_coords1[:,0].shape)# + dof_coords1[:,1]*1.8/4000
-v_func.x.array[:] = dof_coords1[:,1]/2000
+u_func.x.array[:] = dof_coords1[:,1]/2000
 #need to include a wetting/drying variable in domain 1
 CFx.wave.calculate_wetdry(domain1, V1, depth_func,is_wet,min_depth=0.05)
 ####################################################################
