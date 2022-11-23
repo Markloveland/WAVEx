@@ -61,6 +61,5 @@ def read_input_file(filename):
     string_convert(Model_Parameters,"Station Params","int list") 
     string_convert(Model_Parameters,"QoI","str list") 
 
-    print(Model_Parameters)
-    return 0
+    return Model_Parameters
     

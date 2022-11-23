@@ -18,7 +18,16 @@ import CFx.assemble
 import CFx.transforms
 import CFx.boundary
 import CFx.wave
+import CFx.io
+import sys
+
+
 time_start = time.time()
+
+
+#read in i/o
+#input text file path should be added in the 1st command line argument 
+Model_Params = CFx.io.read_input_file(sys.argv[1])
 
 
 
@@ -27,61 +36,50 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 nprocs = comm.Get_size()
 
-#specify bouns in geographic mesh
-x_min = 0.0
-x_max = 20000
-y_min = 0.0
-y_max = 4000
-# Create cartesian mesh of two 2D and define function spaces
-nx = 100
-ny = 100
-# define spectral domain
-omega_min = np.pi*2*0.05
-omega_max = .25*np.pi*2
-theta_min = np.pi/2 - 10/180*np.pi
-theta_max = np.pi/2 + 40/180*np.pi
-n_sigma = 40
-n_theta = 25
-'''
-omega_min = 0.25
-omega_max = 2.0
-theta_min = np.pi/2 - 10/180*np.pi
-theta_max = np.pi/2 + 10/180*np.pi
-n_sigma = 30
-n_theta = 24
-'''
+#unpack input params and set up problem
+
 #set initial time
-t = 0
+t = Model_Params["Start Time"]
 #set final time
-t_f = 2000
+t_f = Model_Params["End Time"]
 #set time step
-dt = 0.5
+dt = Model_Params["DT"]
 #calculate nt
 nt = int(np.ceil(t_f/dt))
-PETSc.Sys.Print('nt',nt)
 #plot every n time steps
-#nplot = 1
-nplot = 50
-#note, wetting/drying only works with "strong" forms
-method = 'SUPG_strong'
-out_dir = 'Outputs/A11/'
+nplot = Model_Params["Plot Every"]
+#weak form (note if wet/dry is on, only strong form works for now)
+method = Model_Params["Weak Form"]
+#time stepping param (0 for explicit 1 for implicit, 0.5 for trapezoid)
+theta_param = Model_Param["Theta Param"]
+out_dir = Model_Params["Output Folder"]
+fname = Model_Params["Run Name"]
 ####################################################################
 #Subdomain 1
 #the first subdomain will be split amongst processors
 # this is set up ideally for subdomain 1 > subdomain 2
-#domain1 = mesh.create_rectangle(comm, [np.array([x_min, y_min]), np.array([x_max, y_max])], [nx, ny], mesh.CellType.triangle)
 
+#either the mesh will be structured or unstructured:
+if Model_Params["Mesh Type"] == "Structured":
 
-filename = 'meshes/shoaling_grid.xdmf'
-encoding= io.XDMFFile.Encoding.HDF5
-with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
-    domain1 = file.read_mesh()
+    #specify bouns in geographic mesh
+    x_min = Model_Params["Geographic Bounds"][0]
+    x_max = Model_Params["Geographic Bounds"][1]
+    y_min = Model_Params["Geographic Bounds"][2]
+    y_max = Model_Params["Geographic Bounds"][3]
+    # Create cartesian mesh of two 2D and define function spaces
+    nx = Model_Params["Geographic Cells"][0]
+    ny = Model_Params["Geographic Cells"][1]
 
-'''
-#read mesh directly from ADCIRC file
-file_path = 'meshes/depth2.grd'
-domain1 = CFx.utils.ADCIRC_mesh_gen(comm,file_path)
-'''
+    domain1 = mesh.create_rectangle(comm, [np.array([x_min, y_min]), np.array([x_max, y_max])], [nx, ny], mesh.CellType.triangle)
+elif Model_Params["Mesh Type"] == "Unstructured":
+    filename = Model_Params["Mesh Address"]
+    encoding= io.XDMFFile.Encoding.HDF5
+    with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
+        domain1 = file.read_mesh()
+else:
+    raise Exception("Mesh not properly defined")
+
 V1 = fem.FunctionSpace(domain1, ("CG", 1))
 u1 = ufl.TrialFunction(V1)
 v1 = ufl.TestFunction(V1)
@@ -104,15 +102,43 @@ dofs1 = np.arange(*local_range1,dtype=np.int32)
 N_dof_1 = V1.dofmap.index_map.size_local
 #hopefully the dof coordinates owned by the process
 local_dof_coords1 = dof_coords1[0:N_dof_1,:domain1.topology.dim]
-#for now lets set depth as x coordinate itself
-#eventually this maybe read in from txt file or shallow water model
-depth_func.x.array[:] = 20 - dof_coords1[:,1]/200
+
+#setting depth,u,v
+#here are some presets built in for some test cases
+if Model_Params["Bathymetry"] == "Uniform Slope":
+    depth_func.x.array[:] = 20 - dof_coords1[:,1]/200
+elif Model_Params["Bathymetry"] == "Deep":
+    depth_func.x.array[:] = 10000*np.ones(dof_coords1[:,0].shape)
+else:
+    raise Exception("Bathymetry not defined")
+
+
+#here are some presets for u,v
+#setting none will default to 0
+if Model_Params["Currents"] == "A31":
+    v_func.x.array[:] = dof_coords1[:,1]/2000
+elif Model_Params["Currents"] == "A32":
+    v_func.x.array[:] = -dof_coords1[:,1]/2000
+elif Model_Params["Currents"] == "A33":
+    u_func.x.array[:] = dof_coords1[:,1]/2000
+elif Model_Params["Currents"] == "A34":
+    u_func.x.array[:] = dof_coords1[:,1]/2000
+
 #need to include a wetting/drying variable in domain 1
 CFx.wave.calculate_wetdry(domain1, V1, depth_func,is_wet,min_depth=0.05)
 ####################################################################
 ####################################################################
 #Subdomain 2
 #now we want entire second subdomain on EACH processor, so this will always be the smaller mesh
+# define spectral domain
+#specify bounds in spectral mesh
+omega_min = Model_Params["Spectral Bounds"][0]*2*np.pi
+omega_max = Model_Params["Spectral Bounds"][1]*2*np.pi
+theta_min = Model_Params["Spectral Bounds"][2]*np.pi/180
+theta_max = Model_Params["Spectral Bounds"][3]*np.pi/180
+n_sigma = Model_Params["Spectral Cells"][0]
+n_theta = Model_Params["Spectral Cells"][1]
+
 #MPI.COMM_SELF to not partition mesh
 domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.triangle)
 #domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.quadrilateral)
@@ -187,7 +213,11 @@ theta = local_dof[:,3]
 #get global equation number of any node on entire global boundary
 local_boundary_dofs = CFx.boundary.fetch_boundary_dofs(domain1,domain2,V1,V2,N_dof_1,N_dof_2)
 tol= 1e-11
+
+
+##############################################################################################################
 #now only want subset that is the inflow, need to automate later
+#this is assuming a rectangular shaped mesh with waves coming in from bottom side
 dum1 = local_boundary_dofs[y[local_boundary_dofs]<=(y_min+tol)]
 dum2 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]>=(x_max-tol),theta[local_boundary_dofs]>np.pi/2)]
 dum3 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]<=(x_min+tol),theta[local_boundary_dofs]<np.pi/2)]
@@ -199,38 +229,32 @@ local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 global_boundary_dofs = local_boundary_dofs + local_range[0]
 ####################################################################
 ####################################################################
-
-#u = np.zeros(local_dof.shape[0])
-#v = np.zeros(local_dof.shape[0])
-#c1 = np.ones(local_dof.shape)
-#c2 = np.ones(local_dof.shape)
-#c1[wet_dofs_local,:] = CFx.wave.compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],u[wet_dofs_local],v[wet_dofs_local])
 c,dry_dofs_local = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2)
-#print('difference in velocities at rank',rank,np.sum(np.absolute(c-c1)))
-
 #exact solution and dirichlet boundary
 dry_dofs = dry_dofs_local+local_range[0]
 
-#print('global rows with 0 in diagonal',dry_dofs)
 
-def u_func(x,y,sigma,theta,c,t):
-    #takes in dof and paramters
-    HS = 1
-    F_std = 0.04#0.1
-    F_peak = 0.1
-    Dir_mean = 120.0 #mean direction in degrees
-    Dir_rad = Dir_mean*np.pi/(180)
-    Dir_exp = 500
-    #returns vector with initial condition values at global DOF
-    aux1 = HS**2/(16*np.sqrt(2*np.pi)*F_std)
-    aux3 = 2*F_std**2
-    tol=1e-11
-    aux2 = (sigma - ( np.pi*2*F_peak ) )**2
-    E = (y<tol)*aux1*np.exp(-aux2/aux3)
-    CTOT = np.sqrt(0.5*Dir_exp/np.pi)/(1.0 - 0.25/Dir_exp)
-    A_COS = np.cos(theta - Dir_rad)
-    CDIR = (A_COS>0)*CTOT*np.maximum(A_COS**Dir_exp, 1.0e-10)
-    return E*CDIR
+if Model_Params["Boundary Type"] == "Gaussian": 
+    #also warning, hard coded for inflow boundary of y=0
+    #will change later
+    def u_func(x,y,sigma,theta,c,t):
+        #takes in dof and paramters
+        HS = Model_Params["Gaussian Params"][0]
+        F_std = Model_Params["Gaussian Params"][1]
+        F_peak = Model_Params["Gaussian Params"][2]
+        Dir_mean = Model_Params["Gaussian Params"][3]
+        Dir_rad = Dir_mean*np.pi/(180)
+        Dir_exp = 500
+        #returns vector with initial condition values at global DOF
+        aux1 = HS**2/(16*np.sqrt(2*np.pi)*F_std)
+        aux3 = 2*F_std**2
+        tol=1e-11
+        aux2 = (sigma - ( np.pi*2*F_peak ) )**2
+        E = (y<tol)*aux1*np.exp(-aux2/aux3)/sigma
+        CTOT = np.sqrt(0.5*Dir_exp/np.pi)/(1.0 - 0.25/Dir_exp)
+        A_COS = np.cos(theta - Dir_rad)
+        CDIR = (A_COS>0)*CTOT*np.maximum(A_COS**Dir_exp, 1.0e-10)
+        return E*CDIR
 ####################################################################
 ####################################################################
 
@@ -256,19 +280,15 @@ if method == 'CG' or method == 'CG_strong':
 
 time_2 = time.time()
 
-#if rank==0:
-#    print(local_dof_coords1)
-#    print(A.getValues(30,30))
 if method == 'SUPG' or method == 'SUPG_strong':
-    M_SUPG = M+M_SUPG-0.5*A
+    M_SUPG = M+M_SUPG-(1-theta_param)*A
     A=A+M_SUPG
 if method == 'CG' or method == 'CG_strong':
-    M_SUPG = M
+    M_SUPG = M-(1-theta_param)*A
     A = A + M_SUPG
 
-
+#fixing 0 on diagonal due to wetting drying
 dry_dofs = CFx.utils.fix_diag(A,local_range[0],rank)
-#A.zeroRows(dry_dofs,diag=1)
 A.zeroRowsColumns(dry_dofs,diag=1)
 
 ##################################################################
@@ -305,19 +325,6 @@ u_exact.setFromOptions()
 u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
 u_cart.assemble()
 
-'''
-u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
-u_cart.assemble()
-HS = fem.Function(V1)
-HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
-HS.vector.setValues(dofs1,np.array(HS_vec))
-HS.vector.ghostUpdate()
-fname = 'Shoaling_HS_unstructured_IC/solution'
-xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
-xdmf.write_mesh(domain1)
-xdmf.write_function(HS)
-xdmf.close()
-'''
 #this matrix will help apply b.c. efficiently
 C = A.duplicate(copy=True)
 #need C to be A but 0 when columns are not dirichlet
@@ -330,7 +337,6 @@ C.transpose()
 #now zero out rows/cols containing boundary
 #set solution as the boundary condition, helps initial guess
 #all_global_boundary_dofs = np.concatenate(MPI.COMM_WORLD.allgather(global_boundary_dofs))
-#all_u_d = np.concatenate(MPI.COMM_WORLD.allgather(u_d))
 
 A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart,b=u_cart)
 ###################################################################
@@ -348,9 +354,6 @@ ksp2.setType('gmres')
 #ksp2.setPC(pc2)
 ksp2.setInitialGuessNonzero(True)
 
-#fname = 'Shoaling_unstructured/solution'
-#xdmf = io.XDMFFile(domain1.comm, output_dir+'Paraview/'+fname+".xdmf", "w")
-#xdmf.write_mesh(domain1)
 
 HS = fem.Function(V1)
 #try to fix units maybe is issue?
@@ -359,8 +362,8 @@ HS = fem.Function(V1)
 HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
 HS.vector.setValues(dofs1,np.array(HS_vec))
 HS.vector.ghostUpdate()
-fname = 'Refraction_HS_unstructured_trap/solution'
-xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/'+fname+".xdmf", "w")
+
+xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/'+fname+"/solution.xdmf", "w")
 xdmf.write_mesh(domain1)
 xdmf.write_function(HS,t)
 
