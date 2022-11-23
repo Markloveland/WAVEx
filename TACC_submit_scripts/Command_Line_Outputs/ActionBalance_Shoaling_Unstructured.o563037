@@ -1,0 +1,1298 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 563037 
+TACC:  Starting parallel tasks... 
+nt 4000
+125
+129
+132
+134
+138
+139
+147
+150
+157
+158
+159
+161
+168
+171
+174
+175
+176
+177
+178
+179
+191
+192
+195
+202
+209
+210
+211
+212
+215
+218
+222
+223
+230
+232
+233
+236
+239
+244
+249
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+13
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+15
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+16
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+17
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+18
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+19
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+20
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+21
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+22
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+28
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+29
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+31
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+39
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+40
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+44
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+47
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+48
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+50
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+57
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+59
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+60
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+61
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+64
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+66
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+70
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+74
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+79
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+80
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+81
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+82
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+83
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+84
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+85
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+90
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+91
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+92
+94
+96
+100
+101
+104
+105
+106
+111
+113
+114
+119
+126
+121
+130
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+133
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+140
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+160
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+163
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+164
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+165
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+184
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+198
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+203
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+219
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+220
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+240
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+248
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+95
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+117
+Traceback (most recent call last):
+36
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+65
+3
+25
+26
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+32
+42
+52
+62
+72
+76
+86
+103
+116
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+4
+7
+8
+33
+35
+37
+41
+43
+45
+46
+49
+51
+53
+58
+68
+69
+93
+97
+107
+108
+112
+118
+120
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+127
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+135
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+141
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+144
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+166
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+167
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+182
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+185
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+196
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+200
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+204
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+205
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+206
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+224
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+227
+0
+229
+1
+231
+2
+234
+5
+235
+238
+242
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+6
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+9
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+10
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+11
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+12
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+14
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+23
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+24
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+27
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+30
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+34
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+38
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+54
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+55
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+56
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+63
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+67
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+71
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+73
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+75
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+77
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+87
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+88
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+98
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+99
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+102
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+110
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+115
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+122
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+123
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+124
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+131
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+137
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+143
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+146
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+148
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+149
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+152
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+153
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+154
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+155
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+156
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+162
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+169
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+170
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+173
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+180
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+181
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+183
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+186
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+187
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+188
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+189
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+193
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+197
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+199
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+201
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+208
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+213
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+214
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+216
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+217
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+221
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+225
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+226
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+237
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+241
+245
+246
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+78
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+89
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+109
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+128
+136
+142
+145
+172
+194
+207
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+190
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+228
+247
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+243
+    print(np.minimum(u_cart.getValues(rows)))
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+151
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/test/ONR_testbed/A21_Shoaling_Unstructured.py", line 310, in <module>
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+    print(np.minimum(u_cart.getValues(rows)))
+TypeError: minimum() takes from 2 to 3 positional arguments but 1 were given
+TACC:  MPI job exited with code: 1 
+TACC:  Shutdown complete. Exiting. 

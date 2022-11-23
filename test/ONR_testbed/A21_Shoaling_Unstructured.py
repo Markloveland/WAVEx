@@ -163,7 +163,7 @@ M_SUPG = M.duplicate()
 local_range = M.getOwnershipRange()
 #vector of row numbers
 rows = np.arange(local_range[0],local_range[1],dtype=np.int32)
-####################################################################
+###i#################################################################
 ####################################################################
 #from the function spaces and ownership ranges, generate global degrees of freedom
 #this gives ghost and owned dof coords
@@ -183,6 +183,7 @@ x = local_dof[:,0]
 y = local_dof[:,1]
 sigma = local_dof[:,2]
 theta = local_dof[:,3]
+
 
 #get global equation number of any node on entire global boundary
 local_boundary_dofs = CFx.boundary.fetch_boundary_dofs(domain1,domain2,V1,V2,N_dof_1,N_dof_2)
@@ -213,7 +214,7 @@ dry_dofs = dry_dofs_local+local_range[0]
 
 #print('global rows with 0 in diagonal',dry_dofs)
 
-def u_func(x,y,sigma,theta,c,t):
+def u_func(x,y,sigma,theta,t):
     #takes in dof and paramters
     HS = 1
     F_std = 0.04#0.1
@@ -233,7 +234,6 @@ def u_func(x,y,sigma,theta,c,t):
     return E*CDIR
 ####################################################################
 ####################################################################
-
 
 #####################################################################
 #####################################################################
@@ -300,24 +300,12 @@ u_cart.setFromOptions()
 u_exact.setFromOptions()
 ###################################################################
 ###################################################################
+
 #Set initial condition and set solution for dirichlet
 #u_cart will hold solution in time loop, this is also the initial condition
-u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
+u_cart.setValues(rows,u_func(x,y,sigma,theta,t))
 u_cart.assemble()
 
-'''
-u_cart.setValues(rows,u_func(x,y,sigma,theta,c,t))
-u_cart.assemble()
-HS = fem.Function(V1)
-HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
-HS.vector.setValues(dofs1,np.array(HS_vec))
-HS.vector.ghostUpdate()
-fname = 'Shoaling_HS_unstructured_IC/solution'
-xdmf = io.XDMFFile(domain1.comm, fname+".xdmf", "w")
-xdmf.write_mesh(domain1)
-xdmf.write_function(HS)
-xdmf.close()
-'''
 #this matrix will help apply b.c. efficiently
 C = A.duplicate(copy=True)
 #need C to be A but 0 when columns are not dirichlet
@@ -332,7 +320,8 @@ C.transpose()
 #all_global_boundary_dofs = np.concatenate(MPI.COMM_WORLD.allgather(global_boundary_dofs))
 #all_u_d = np.concatenate(MPI.COMM_WORLD.allgather(u_d))
 
-A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart,b=u_cart)
+#A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart,b=u_cart)
+A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart)
 ###################################################################
 ###################################################################
 #Define solver/preconditioner
@@ -356,13 +345,15 @@ HS = fem.Function(V1)
 #try to fix units maybe is issue?
 #Temp.setValues(rows,sigma)
 #PETSc.Vec.pointwiseMult(u_exact,Temp,u_cart)
-HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+HS_vec = CFx.wave.calculate_HS(u_cart,V2,N_dof_1,N_dof_2,local_range2)
 HS.vector.setValues(dofs1,np.array(HS_vec))
 HS.vector.ghostUpdate()
-fname = 'Shoaling_HS_unstructured/solution'
+fname = 'Shoaling_HS_unstructured_IC/solution'
 xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/'+fname+".xdmf", "w")
 xdmf.write_mesh(domain1)
 xdmf.write_function(HS,t)
+
+
 
 #########################################################
 #######################################################
@@ -374,7 +365,7 @@ for i in range(nt):
     M_SUPG.mult(u_cart,B)
 
     #setting dirichlet BC
-    u_2 = u_func(x,y,sigma,theta,c,t)
+    u_2 = u_func(x,y,sigma,theta,t)
     u_d_vals = u_2[local_boundary_dofs]
     u_D.setValues(global_boundary_dofs,u_d_vals)
     C.mult(u_D,Temp)
@@ -417,7 +408,7 @@ time_end = time.time()
 #print('Exact')
 #print(u_true[:])
 
-u_true = u_func(x,y,sigma,theta,c,t)
+u_true = u_func(x,y,sigma,theta,t)
 u_exact.setValues(rows,u_true)
 
 PETSc.Sys.Print("Final t",t)
@@ -477,4 +468,5 @@ if rank ==0:
     #recast as column vector
     vals_out = np.zeros((vals.shape[0],1))
     vals_out[:,0] = vals[:]
-    np.savetxt(out_dir+'Stations/HS_stations_unstructured.csv', np.append(stats, vals_out, axis=1), delimiter=",")
+    np.savetxt(out_dir+'Stations/HS_stations_unstructured_IC.csv', np.append(stats, vals_out, axis=1), delimiter=",")
+
