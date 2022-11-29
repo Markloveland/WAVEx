@@ -455,8 +455,14 @@ if rank ==0:
     a=0
     for QOI in Model_Params["QoI"]:
         if QOI == "HS":
-            vals_out[:,a] = HS_vals[:]
+            if Model_Params["Mesh Type"] == "Unstructured":
+                vals_out[:,a] = HS_vals[:]
+            else:
+                vals_out[:,a] = HS_vals[:,0]
         if QOI == "Mean Dir":
-            vals_out[:,a] = Dir_vals[:]
+            if Model_Params["Mesh Type"] == "Unstructured":
+                vals_out[:,a] = Dir_vals[:]
+            else:
+                vals_out[:,a] = Dir_vals[:,0]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
