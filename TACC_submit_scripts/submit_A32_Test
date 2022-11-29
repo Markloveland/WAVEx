@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH -J ActionBalance_Currents_A32
+#SBATCH -A ADCIRC
+#SBATCH -o TACC_submit_scripts/Command_Line_Outputs/ActionBalance_Currents_A32.o%j
+#SBATCH -e TACC_submit_scripts/Command_Line_Outputs/ActionBalance_Currents_A32.o%j
+#SBATCH -p normal
+#SBATCH -N 2
+#SBATCH -n 250
+#SBATCH -t 01:15:00
+
+#SBATCH --mail-user=markloveland@utexas.edu
+#SBATCH --mail-type=begin        # email me when the job starts
+#SBATCH --mail-type=end          # email me when the job finishes
+
+
+date > TACC_submit_scripts/Command_Line_Outputs/run.timing
+PYTHONPATH=/home1/04637/mdl2665/anaconda3
+PYTHONPATH=$PYTHONPATH:/home1/04637/mdl2665/WAVEx
+eval "$(/home1/04637/mdl2665/anaconda3/bin/conda shell.bash hook)" 
+conda init
+conda activate fenicsx-env
+conda info
+ibrun python3 /home1/04637/mdl2665/WAVEx/main.py /home1/04637/mdl2665/WAVEx/test/ONR_testbed/Input_Files/A32_Current.txt 
+date >> TACC_submit_scripts/Command_Line_Outputs/run.timing
+

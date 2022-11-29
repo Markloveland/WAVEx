@@ -227,8 +227,12 @@ dum3 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]<=(x_min+tol),th
 dum4 = local_boundary_dofs[theta[local_boundary_dofs]<=(theta_min+tol)]
 dum5 = local_boundary_dofs[theta[local_boundary_dofs]>=(theta_max-tol)]
 
-local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
-#local_boundary_dofs = dum2
+if Model_Params["Currents"]=="A31" or Model_Params["Currents"]=="A32" or Model_Params["Currents"]=="A34":
+    local_boundary_dofs = dum1
+elif Model_Params["Currents"]=="A33":
+    local_boundary_dofs=np.unique(np.concatenate((dum1,dum4,dum5),0))
+else:
+    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 global_boundary_dofs = local_boundary_dofs + local_range[0]
 ####################################################################
 ####################################################################
