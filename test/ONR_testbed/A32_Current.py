@@ -309,7 +309,7 @@ C.transpose()
 #all_global_boundary_dofs = np.concatenate(MPI.COMM_WORLD.allgather(global_boundary_dofs))
 #all_u_d = np.concatenate(MPI.COMM_WORLD.allgather(u_d))
 
-A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart,b=u_cart)
+A.zeroRowsColumns(global_boundary_dofs,diag=1,x=u_cart)#,b=u_cart)
 ###################################################################
 ###################################################################
 #Define solver/preconditioner
