@@ -316,19 +316,19 @@ Temp = u_D.duplicate()
 #RHS of linear system of equations
 B = u_D.duplicate()
 #Post Processiong
-E = u_D.duplicate()
-L2_E = u_D.duplicate()
-u_exact = u_D.duplicate()
+#E = u_D.duplicate()
+#L2_E = u_D.duplicate()
+#u_exact = u_D.duplicate()
 #solution vector
 u_cart = u_D.duplicate()
 
 
 Temp.setFromOptions()
-E.setFromOptions()
+#E.setFromOptions()
 B.setFromOptions()
-L2_E.setFromOptions()
+#L2_E.setFromOptions()
 u_cart.setFromOptions()
-u_exact.setFromOptions()
+#u_exact.setFromOptions()
 ###################################################################
 ###################################################################
 #Set initial condition and set solution for dirichlet
