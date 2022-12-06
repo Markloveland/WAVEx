@@ -2,6 +2,7 @@ Run Name=Sideways_current                            ! Name of run, will be appe
 Comment=Comment Line                        ! description over here describing the test case
 Weak Form=SUPG_strong                         ! method: SUPG_strong, CG_strong, SUPG, CG (note only strong is currently available if wetting/drying is on)
 Theta Param=0.5                                 ! theta paramter between 0 to 1 for time stepping. 0 is explicit euler, 0.5 trapezoid, 1 is implicit euler
+Source Terms=off                              ! on or off
 Mesh Type=Structured                        ! geographic mesh: Structured or Unstructured
 Mesh Address=meshes/shoaling_grid.xdmf         ! location of unstructured geographic xdmf mesh (ignored if Structured)
 Geographic Bounds=0,10000,0,4000                                    ! bounds for geographic mesh (ignored if unstructured option is turned on)

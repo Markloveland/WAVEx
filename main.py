@@ -19,6 +19,7 @@ import CFx.transforms
 import CFx.boundary
 import CFx.wave
 import CFx.io
+import CFx.timestep
 import sys
 
 
@@ -306,28 +307,28 @@ A.zeroRowsColumns(dry_dofs,diag=1)
 ##################################################################
 #initialize vectors
 #holds dirichlet boundary values
-u_D = PETSc.Vec()
-u_D.create(comm=comm)
-u_D.setSizes((local_rows,global_rows),bsize=1)
-u_D.setFromOptions()
+u_cart = PETSc.Vec()
+u_cart.create(comm=comm)
+u_cart.setSizes((local_rows,global_rows),bsize=1)
+u_cart.setFromOptions()
 
 #holds temporary values to contribute to RHS
-Temp = u_D.duplicate()
+Temp = u_cart.duplicate()
 #RHS of linear system of equations
-B = u_D.duplicate()
+B = u_cart.duplicate()
 #Post Processiong
 #E = u_D.duplicate()
 #L2_E = u_D.duplicate()
 #u_exact = u_D.duplicate()
 #solution vector
-u_cart = u_D.duplicate()
+u_D = u_cart.duplicate()
 
 
 Temp.setFromOptions()
 #E.setFromOptions()
 B.setFromOptions()
 #L2_E.setFromOptions()
-u_cart.setFromOptions()
+u_D.setFromOptions()
 #u_exact.setFromOptions()
 ###################################################################
 ###################################################################
@@ -382,11 +383,14 @@ xdmf.write_function(HS,t)
 #######################################################
 #Time Step
 u = fem.Function(V1)
+
+if Model_Params["Source Terms"]=="off":
+    u_cart,xdmf=CFx.timestep.no_source(t,nt,dt,u_cart,ksp2,M_SUPG,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2)
+'''
 for i in range(nt):
     t+=dt
     #B will hold RHS of system of equations
     M_SUPG.mult(u_cart,B)
-
     #setting dirichlet BC
     u_2 = u_func(x,y,sigma,theta,c,t)
     u_d_vals = u_2[local_boundary_dofs]
@@ -395,8 +399,12 @@ for i in range(nt):
     B = B - Temp
     B.setValues(global_boundary_dofs,u_d_vals)
     B.assemble()
+    
+    
     #solve for time t
     ksp2.solve(B, u_cart)
+
+    #is this necessary?
     B.zeroEntries()
     # Save solution to file in VTK format
     if (i%nplot==0):
@@ -408,12 +416,13 @@ for i in range(nt):
         xdmf.write_function(HS,t)
         
         #hdf5_file.write(u,"solution",t)
+'''
 #print final iterations
-HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
-HS.vector.setValues(dofs1,np.array(HS_vec))
-HS.vector.ghostUpdate()
-xdmf.write_function(HS,t)
-xdmf.close()
+#HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
+#HS.vector.setValues(dofs1,np.array(HS_vec))
+#HS.vector.ghostUpdate()
+#xdmf.write_function(HS,t)
+#xdmf.close()
 time_end = time.time()
 ############################################################################
 ###########################################################################
