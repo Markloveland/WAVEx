@@ -186,6 +186,8 @@ M=CFx.assemble.create_cartesian_mass_matrix(local_rows,global_rows,local_cols,gl
 A = M.duplicate()
 #Adjust RHS for SUPG
 M_SUPG = M.duplicate()
+#RHS for implicit time step that multiplies a vector (RHSb = b)
+RHS = M.duplicate()
 #get ownership range
 local_range = M.getOwnershipRange()
 #vector of row numbers
@@ -278,6 +280,7 @@ if Model_Params["Boundary Type"] == "Gaussian":
 M_NNZ = CFx.assemble.build_cartesian_mass_matrix(M1,M2,M1_sizes,M1_global_size,M2_sizes,M)
 A.setPreallocationNNZ(M_NNZ)
 M_SUPG.setPreallocationNNZ(M_NNZ)
+RHS.setPreallocationNNZ(M_NNZ)
 ##################################################################
 ##################################################################
 #Loading A matrix routine
@@ -293,11 +296,13 @@ if method == 'CG' or method == 'CG_strong':
 time_2 = time.time()
 
 if method == 'SUPG' or method == 'SUPG_strong':
-    M_SUPG = M+M_SUPG-(1-theta_param)*A
-    A=A+M_SUPG
+    #mass matrix for SUPG
+    M_SUPG = M+M_SUPG
+    RHS = M_SUPG-(1-theta_param)*A
+    A=A+RHS
 if method == 'CG' or method == 'CG_strong':
-    M_SUPG = M-(1-theta_param)*A
-    A = A + M_SUPG
+    RHS = M-(1-theta_param)*A
+    A = A + RHS
 
 #fixing 0 on diagonal due to wetting drying
 dry_dofs = CFx.utils.fix_diag(A,local_range[0],rank)
@@ -385,7 +390,7 @@ xdmf.write_function(HS,t)
 u = fem.Function(V1)
 
 if Model_Params["Source Terms"]=="off":
-    u_cart,xdmf=CFx.timestep.no_source(t,nt,dt,u_cart,ksp2,M_SUPG,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2)
+    u_cart,xdmf=CFx.timestep.no_source(t,nt,dt,u_cart,ksp2,RHS,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2)
 '''
 for i in range(nt):
     t+=dt
