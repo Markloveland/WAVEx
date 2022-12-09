@@ -54,14 +54,14 @@ def no_source(t,nt,dt,u,ksp,M,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,glo
 
     return u,xdmf
 
-def Euler_Step(N,L,dt,sigmas,thetas,U_mag,theta_wind,c):
-    return  N+dt*L(sigmas,thetas,N,U_mag,theta_wind,c)
+def Euler_Step(N,L,dt,sigmas,thetas,U_mag,theta_wind,c,S):
+    return  N+dt*L(S,sigmas,thetas,N,U_mag,theta_wind,c)
     
 
-def SSP_RK2(N,A,dt,sigmas,thetas,U_mag,theta_wind,c):
+def SSP_RK2(N,A,dt,sigmas,thetas,U_mag,theta_wind,c,S):
     #takes state N, operator A and time step dt and advances the state using SSP_RK2
-    N1 = Euler_Step(N,A,dt,sigmas,thetas,U_mag,theta_wind,c)
-    N2 = 0.5*N + 0.5*Euler_Step(N1,A,dt,sigmas,thetas,U_mag,theta_wind,c)
+    N1 = Euler_Step(N,A,dt,sigmas,thetas,U_mag,theta_wind,c,S)
+    N2 = 0.5*N + 0.5*Euler_Step(N1,A,dt,sigmas,thetas,U_mag,theta_wind,c,S)
     return N2
 
 
@@ -78,18 +78,21 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,u_func,local_boun
     b = u.duplicate()
     #pointwise value of dirichlet boundary vector
     u_D = u.duplicate()
-
+    #pointwise value for source term contribution
+    S_D = u.duplicate()
+    
 
     d.setFromOptions()
     b.setFromOptions()
     u_D.setFromOptions()
+    S_D.setFromOptions()
 
     for i in range(nt):
         t+=dt
 
 
         #substep 1
-        u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph)
+        u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D)
 
 
 
@@ -116,7 +119,7 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,u_func,local_boun
 
 
         #substep3
-        u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph)
+        u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D)
 
         # Save solution to file in VTK format
         if (i%nplot==0):

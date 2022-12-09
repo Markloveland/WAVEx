@@ -30,7 +30,7 @@ def S_in(sigma,theta,E,U10,theta_wind,cg):
 #Gen3 source terms as in default options from SWAN
 
 
-def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
+def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #exponential wave growth from Komen 1984
     #sigmas - vector np.array of sigma at each computational point (rn it is radian freq)
     #thetas - in radians
@@ -43,8 +43,6 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     rho_a=1.225 #denisty of air at STP (could make this more sophisticated later on)
     rho_w=1000 #density of water
 
-    S= N.duplicate()
-    S.setFromOptions()
     #in an ideal world, do all these calculations in PETSc but I need to get this done quick so sorry:(
     E = N.getArray()
 
