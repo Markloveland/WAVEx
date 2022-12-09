@@ -30,7 +30,7 @@ def S_in(sigma,theta,E,U10,theta_wind,cg):
 #Gen3 source terms as in default options from SWAN
 
 
-def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
+def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,rows,g=9.81):
     #exponential wave growth from Komen 1984
     #sigmas - vector np.array of sigma at each computational point (rn it is radian freq)
     #thetas - in radians
@@ -48,8 +48,8 @@ def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
 
     C_d=1.2875*(10**(-3)) if U_mag < 7.5 else (0.8+0.065*U_mag)*(10**(-3))
     U_fric = np.sqrt(C_d*(U_mag**2))
-    sigmapm=0.13*g*2*np.pi/(28*U_fric)
-    H=np.exp(-(sigmas/sigmapm)**4)
+    #sigmapm=0.13*g*2*np.pi/(28*U_fric)
+    #H=np.exp(-(sigmas/sigmapm)**4)
     #Expression version for FENICS
     #A = Expression('1.5*pow(10,-3)/(2*pi*pow(g,2))*pow(U_fric,4)*exp(-pow(x[0]/(2*pi*0.13*g/(28*U_fric)),-4))'
     #               ,degree=p_degree, U_fric=U_fric, g=g)
@@ -57,7 +57,7 @@ def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #               degree=p_degree,rho_a=rho_a,rho_w=rho_w,U_fric=U_fric,c_ph=c)
     #A = 1.5*10**(-3)/(2*np.pi*g**2)*(U_fric*np.maximum(0,np.cos(thetas-theta_wind)))**4*H
     B= np.maximum(np.zeros(c.shape),0.25*rho_a/rho_w*(28*U_fric/c*np.cos(thetas-theta_wind)-1))*sigmas
-    S.setValuesLocal(np.arange(len(E),dtype=np.int32),B*E)
+    S.setValues(rows,B*E)
     #note that even though it is E, I left it as action balance N
     S.assemble()
     return S

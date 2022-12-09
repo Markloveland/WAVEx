@@ -397,7 +397,7 @@ if Model_Params["Source Terms"]=="off":
 elif Model_Params["Source Terms"]=="Wind":
     U10 = Model_Params["U10"]
     theta_wind = Model_Params["Wind Direction"]*np.pi/180
-    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.S_in,x,y,sigma,theta,c,cph,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind)
+    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.S_in,x,y,sigma,theta,c,cph,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
 '''
 for i in range(nt):
     t+=dt
