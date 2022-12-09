@@ -20,6 +20,7 @@ import CFx.boundary
 import CFx.wave
 import CFx.io
 import CFx.timestep
+import CFx.source
 import sys
 
 
@@ -110,6 +111,8 @@ if Model_Params["Bathymetry"] == "Uniform Slope":
     depth_func.x.array[:] = 20 - dof_coords1[:,1]/200
 elif Model_Params["Bathymetry"] == "Deep":
     depth_func.x.array[:] = 10000*np.ones(dof_coords1[:,0].shape)
+elif Model_Params["Bathymetry"] == "Uniform Constant":
+    depth_func.x.array[:] = np.ones(dof_coords1[:,0].shape)
 else:
     raise Exception("Bathymetry not defined")
 
@@ -243,7 +246,7 @@ else:
 global_boundary_dofs = local_boundary_dofs + local_range[0]
 ####################################################################
 ####################################################################
-c,dry_dofs_local = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2)
+c,dry_dofs_local,cph = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2)
 #exact solution and dirichlet boundary
 dry_dofs = dry_dofs_local+local_range[0]
 
@@ -391,6 +394,10 @@ u = fem.Function(V1)
 
 if Model_Params["Source Terms"]=="off":
     u_cart,xdmf=CFx.timestep.no_source(t,nt,dt,u_cart,ksp2,RHS,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2)
+elif Model_Params["Source Terms"]=="Wind":
+    U10 = Model_Params["U10"]
+    theta_wind = Model_Params["Wind Direction"]*np.pi/180
+    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.S_in,x,y,sigma,theta,c,cph,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind)
 '''
 for i in range(nt):
     t+=dt

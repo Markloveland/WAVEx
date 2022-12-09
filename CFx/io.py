@@ -39,7 +39,10 @@ def read_input_file(filename):
                         "Boundary Type": None,
                         "Gaussian Params": None,
                         "QoI": None,
-                        "Station Params": None}
+                        "Station Params": None,
+                        "Source Terms": None,
+                        "U10": None,
+                        "Wind Direction": None}
 
     F_in = open(filename,"r")
     for line in F_in:
@@ -60,6 +63,8 @@ def read_input_file(filename):
     string_convert(Model_Parameters,"Gaussian Params","float list") 
     string_convert(Model_Parameters,"Station Params","int list") 
     string_convert(Model_Parameters,"QoI","str list") 
+    string_convert(Model_Parameters,"U10","float")
+    string_convert(Model_Parameters,"Wind Direction","float")
 
     return Model_Parameters
     

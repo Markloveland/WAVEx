@@ -30,7 +30,7 @@ def S_in(sigma,theta,E,U10,theta_wind,cg):
 #Gen3 source terms as in default options from SWAN
 
 
-def S_in(sigmas,thetas,E,U_mag,theta_wind,c,g=9.81):
+def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #exponential wave growth from Komen 1984
     #sigmas - vector np.array of sigma at each computational point (rn it is radian freq)
     #thetas - in radians
@@ -43,6 +43,11 @@ def S_in(sigmas,thetas,E,U_mag,theta_wind,c,g=9.81):
     rho_a=1.225 #denisty of air at STP (could make this more sophisticated later on)
     rho_w=1000 #density of water
 
+    S= N.duplicate()
+    S.setFromOptions()
+    #in an ideal world, do all these calculations in PETSc but I need to get this done quick so sorry:(
+    E = N.getArray()
+
     C_d=1.2875*(10**(-3)) if U_mag < 7.5 else (0.8+0.065*U_mag)*(10**(-3))
     U_fric = np.sqrt(C_d*(U_mag**2))
     sigmapm=0.13*g*2*np.pi/(28*U_fric)
@@ -54,7 +59,9 @@ def S_in(sigmas,thetas,E,U_mag,theta_wind,c,g=9.81):
     #               degree=p_degree,rho_a=rho_a,rho_w=rho_w,U_fric=U_fric,c_ph=c)
     #A = 1.5*10**(-3)/(2*np.pi*g**2)*(U_fric*np.maximum(0,np.cos(thetas-theta_wind)))**4*H
     B= np.maximum(np.zeros(c.shape),0.25*rho_a/rho_w*(28*U_fric/c*np.cos(thetas-theta_wind)-1))*sigmas
-    S= B*E
+    S.setValuesLocal(np.arange(len(E),dtype=np.int32),B*E)
+    #note that even though it is E, I left it as action balance N
+    S.assemble()
     return S
 '''
 def S_wc(sigmas,thetas,k,E):
@@ -84,7 +91,7 @@ def S_wc(sigmas,thetas,k,E):
     S = -gamma*...
     return S
 '''
-def calc_S_bfr(sigmas,k,E,depth,g=g):
+def calc_S_bfr(sigmas,k,E,depth,g=9.81):
     ##########################################################
     #S_bfr (bottom friction)
     #seems only relevant in very shallow water (see swantech manual)

@@ -102,16 +102,21 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
 
         FAC1=2*KND/np.sinh(2*KND)
         N=0.5*(1+FAC1)
-        return N*C,sigmas/C
+        return N*C,sigmas/C,C
     def cg_deep(g,sigmas):
         return 0.5*g/sigmas
     def cg_shallow(WGD):
         return WGD
 
+    cph = np.zeros(N_dof)
     #store the c_g (group velocity) as temporary variables
     temp[shallow_range]=cg_shallow(WGD[shallow_range])
-    temp[mid_range],k[mid_range]=cg_mid(SND[mid_range],g,depth[mid_range],sigma[mid_range])
+    temp[mid_range],k[mid_range],cph[mid_range]=cg_mid(SND[mid_range],g,depth[mid_range],sigma[mid_range])
     temp[deep_range]=cg_deep(g,sigma[deep_range])
+    #compute cph as phase velocity
+    cph[shallow_range] = temp[shallow_range]
+    cph[deep_range] = 2*temp[deep_range]
+
     #save these values in c_out and multiply by appropriate angles
     c_out[:,0] = temp*np.cos(theta) + u
     c_out[:,1] = temp*np.sin(theta) + v
@@ -165,7 +170,7 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
         dudx[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range]) - dudy[shallow_range]*(np.cos(theta)[shallow_range]**2) + dvdx[shallow_range]*(np.sin(theta[shallow_range])**2) \
         -dvdy[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range])
     
-    return c_out
+    return c_out,cph
 
 
 
@@ -195,7 +200,7 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     #takes in degrees of freedom and computes wave speeds pointwise
     N_dof = len(sigma)
     c_out = np.ones((N_dof,4))
-    
+    cph = np.ones(N_dof)
 
     dry_dofs_local = np.array(np.where(depth<min_depth)[0],dtype=np.int32)
     ##dry_dofs = dry_dofs_local + local_range[0]
@@ -206,7 +211,7 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     k = np.zeros(wet_dofs_local.shape)
 
 
-    c_out[wet_dofs_local,:] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],
+    c_out[wet_dofs_local,:],cph[wet_dofs_local] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],
             u[wet_dofs_local],v[wet_dofs_local],dHdx=dHdx[wet_dofs_local],dHdy=dHdy[wet_dofs_local],dudx=dudx[wet_dofs_local],dudy=dudy[wet_dofs_local],dvdx=dvdx[wet_dofs_local],
             dvdy=dvdy[wet_dofs_local])
     '''
@@ -269,7 +274,7 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
         dudx*np.cos(theta_wet)*np.sin(theta_wet) - dudy*(np.cos(theta_wet)**2) + dvdx*(np.sin(theta_wet)**2) \
         -dvdy*np.cos(theta_wet)*np.sin(theta_wet)
     '''
-    return c_out,dry_dofs_local
+    return c_out,dry_dofs_local,cph
 
 
 def calculate_HS(u_cart,V2,local_size1,local_size2,local_range2):
