@@ -4,6 +4,7 @@ Weak Form=SUPG_strong                         ! method: SUPG_strong, CG_strong, 
 Theta Param=0.5                                 ! theta paramter between 0 to 1 for time stepping. 0 is explicit euler, 0.5 trapezoid, 1 is implicit euler
 Source Terms=off                              ! on or off
 Mesh Type=Structured                        ! geographic mesh: Structured or Unstructured
+Spectral Mesh Type=logarithmic                ! logarthmic changes frequency bins from uniform to logarithmic
 Mesh Address=meshes/shoaling_grid.xdmf         ! location of unstructured geographic xdmf mesh (ignored if Structured)
 Geographic Bounds=0,10000,0,4000                                    ! bounds for geographic mesh (ignored if unstructured option is turned on)
 Geographic Cells=100,100                             ! number of cells in x and in y (ignored if unstructured)

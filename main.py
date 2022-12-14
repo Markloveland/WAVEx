@@ -144,7 +144,17 @@ n_sigma = Model_Params["Spectral Cells"][0]
 n_theta = Model_Params["Spectral Cells"][1]
 
 #MPI.COMM_SELF to not partition mesh
+
 domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.triangle)
+
+if Model_Params["Spectral Mesh Type"] == "logarithmic":
+    PETSc.Sys.Print("Switching to logarithmic spacing in frequency")
+    old_coords,inverted = np.unique(domain2.geometry.x[:,0],return_inverse=True)
+    #modify x coords to be logarithmic
+    gamma_space = (omega_max/omega_min)**(1/n_sigma)
+    new_coords = gamma_space**(np.arange(n_sigma+1))*omega_min
+    domain2.geometry.x[:,0] = new_coords[inverted]
+
 #domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.quadrilateral)
 V2 = fem.FunctionSpace(domain2, ("CG", 1))
 u2 = ufl.TrialFunction(V2)

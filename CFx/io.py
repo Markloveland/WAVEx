@@ -41,8 +41,9 @@ def read_input_file(filename):
                         "QoI": None,
                         "Station Params": None,
                         "Source Terms": None,
-                        "U10": None,
-                        "Wind Direction": None}
+                        "U10": 0,
+                        "Wind Direction": 0,
+                        "Spectral Mesh Type": None}
 
     F_in = open(filename,"r")
     for line in F_in:
