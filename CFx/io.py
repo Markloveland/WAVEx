@@ -43,7 +43,9 @@ def read_input_file(filename):
                         "Source Terms": None,
                         "U10": 0,
                         "Wind Direction": 0,
-                        "Spectral Mesh Type": None}
+                        "Spectral Mesh Type": None,
+                        "JONSWAP Params": "3.5,10,90,100",
+                        "Gaussian Params": "1.0,0.04,0.1,90"}
 
     F_in = open(filename,"r")
     for line in F_in:
@@ -62,6 +64,7 @@ def read_input_file(filename):
     string_convert(Model_Parameters,"DT","float") 
     string_convert(Model_Parameters,"Plot Every","int") 
     string_convert(Model_Parameters,"Gaussian Params","float list") 
+    string_convert(Model_Parameters,"JONSWAP Params","float list") 
     string_convert(Model_Parameters,"Station Params","int list") 
     string_convert(Model_Parameters,"QoI","str list") 
     string_convert(Model_Parameters,"U10","float")

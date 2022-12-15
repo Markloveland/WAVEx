@@ -282,6 +282,43 @@ if Model_Params["Boundary Type"] == "Gaussian":
         A_COS = np.cos(theta - Dir_rad)
         CDIR = (A_COS>0)*CTOT*np.maximum(A_COS**Dir_exp, 1.0e-10)
         return E*CDIR
+
+elif Model_Params["Boundary Type"] == "JONSWAP":
+    def u_func(x,y,sigma,theta,c,t,JONgamma=3.3):
+        HS = Model_Params["JONSWAP Params"][0]
+        PKPER = Model_Params["JONSWAP Params"][1]
+        MDIR = Model_Params["JONSWAP Params"][2]
+        MSINPUT = Model_Params["JONSWAP Params"][3]
+        
+        S_alpha = HS**2*((1/PKPER)**4)/((0.06533*(JONgamma**0.8015)+0.13467)*16)
+        CPSHAP = 1.25*((1/PKPER)**4)/((sigma/(2*np.pi))**4)
+        RA = np.zeros(CPSHAP.shape)
+        RA[CPSHAP<=10.0] = (S_alpha/(sigma[CPSHAP<=10.0]/(2*np.pi)**5))*np.exp(-CPSHAP[CPSHAP<=10.0])
+        
+        coeff = 0.07*np.ones(CPSHAP.shape)
+        coeff[sigma>=(1/PKPER*2*np.pi)] = 0.09
+
+        APSHAP = 0.5*((sigma/(2*np.pi)-1/PKPER)/(coeff*(1/PKPER)))**2
+        
+        SYF = np.ones(CPSHAP.shape)
+        SYF[APSHAP<=10.0] = 3.3**(np.exp(-APSHAP[APSHAP<=10.0]))
+
+        N = SYF*RA/(sigma*2*np.pi)
+
+        if MSINPUT <12:
+            CTOT = 2**MSINPUT/(2*np.pi)
+        else:
+            CTOT = np.sqrt(0.5*MSINPUT/np.pi)/(1-0.25/MSINPUT)
+
+        A_COS = np.cos(theta-MDIR*np.pi/180)
+
+        CDIR = np.zeros(A_COS.shape)
+
+        CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,0.1)
+
+        return CDIR*N
+
+
 ####################################################################
 ####################################################################
 
