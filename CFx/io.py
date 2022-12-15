@@ -44,7 +44,7 @@ def read_input_file(filename):
                         "U10": 0,
                         "Wind Direction": 0,
                         "Spectral Mesh Type": None,
-                        "JONSWAP Params": "3.5,10,90,100",
+                        "JONSWAP Params": "3.5,10,90,500",
                         "Gaussian Params": "1.0,0.04,0.1,90"}
 
     F_in = open(filename,"r")
