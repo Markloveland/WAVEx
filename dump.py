@@ -14,9 +14,12 @@ def u_func(x,y,sigma,theta,c,t,JONgamma=3.3):
 
     S_alpha = HS**2*((1/PKPER)**4)/((0.06533*(JONgamma**0.8015)+0.13467)*16)
     CPSHAP = 1.25*((1/PKPER)**4)/((sigma/(2*np.pi))**4)
+    
     RA = np.zeros(CPSHAP.shape)
-    RA[CPSHAP<=10.0] = (S_alpha/(sigma[CPSHAP<=10.0]/(2*np.pi)**5))*np.exp(-CPSHAP[CPSHAP<=10.0])
-
+    SF5 = (sigma/(2*np.pi))**5
+    RA[CPSHAP<=10.0] = (S_alpha/SF5[CPSHAP<=10.0])*np.exp(-CPSHAP[CPSHAP<=10.0])
+    
+    
     coeff = 0.07*np.ones(CPSHAP.shape)
     coeff[sigma>=(1/PKPER*2*np.pi)] = 0.09
 
@@ -26,7 +29,7 @@ def u_func(x,y,sigma,theta,c,t,JONgamma=3.3):
     SYF[APSHAP<=10.0] = 3.3**(np.exp(-APSHAP[APSHAP<=10.0]))
 
     N = SYF*RA/(sigma*2*np.pi)
-
+    print('Sum Ef',np.sum(N)/25)
     if MSINPUT <12:
         CTOT = 2**MSINPUT/(2*np.pi)
     else:
@@ -36,7 +39,7 @@ def u_func(x,y,sigma,theta,c,t,JONgamma=3.3):
 
     CDIR = np.zeros(A_COS.shape)
 
-    CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,0.1)
+    CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,1e-10)
     tol =1e-11
     return (y<tol)*CDIR*N
 
@@ -62,6 +65,7 @@ n_theta = 24
 domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.triangle)
 
 PETSc.Sys.Print("Switching to logarithmic spacing in frequency")
+#print(np.unique(domain2.geometry.x[:,0]))
 old_coords,inverted = np.unique(domain2.geometry.x[:,0],return_inverse=True)
 #modify x coords to be logarithmic
 gamma_space = (omega_max/omega_min)**(1/n_sigma)
@@ -86,7 +90,8 @@ local_dof_coords2 = dof_coords2[0:N_dof_2,:domain2.topology.dim]
 
 
 #attempt computing u and then HS to see if I get same result
-N_bc_pointwise = u_func(x,y,local_dof_coords2[:,0],local_dof_coords2[:,1],0,0)
+N_bc_pointwise = u_func(x,y,domain2.geometry.x[:,0],domain2.geometry.x[:,1],0,0)
+print('Sum of N',np.sum(N_bc_pointwise))
 
 dum = fem.Function(V2)
 sigma = fem.Function(V2)
@@ -101,11 +106,14 @@ intf = fem.form(sigma*dum*ufl.dx,jit_params=jit_parameters)
 dofs = np.arange(*local_range2,dtype=np.int32)
 
 
-dum.vector.setValues(dofs,N_bc_pointwise)
+dum.x.array[:] =N_bc_pointwise
 local_intf = fem.assemble_scalar(intf)
 HS = 4*np.sqrt(abs(local_intf))
 
 print("HS = ",HS)
+#print("Coords",np.unique(local_dof_coords2[:,0]),np.unique(local_dof_coords2[:,1]))
+print(np.amax(dum.vector.getValues(dofs)))
+
 
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")

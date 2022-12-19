@@ -293,7 +293,7 @@ elif Model_Params["Boundary Type"] == "JONSWAP":
         S_alpha = HS**2*((1/PKPER)**4)/((0.06533*(JONgamma**0.8015)+0.13467)*16)
         CPSHAP = 1.25*((1/PKPER)**4)/((sigma/(2*np.pi))**4)
         RA = np.zeros(CPSHAP.shape)
-        RA[CPSHAP<=10.0] = (S_alpha/(sigma[CPSHAP<=10.0]/(2*np.pi)**5))*np.exp(-CPSHAP[CPSHAP<=10.0])
+        RA[CPSHAP<=10.0] = (S_alpha/((sigma[CPSHAP<=10.0]/(2*np.pi))**5))*np.exp(-CPSHAP[CPSHAP<=10.0])
         
         coeff = 0.07*np.ones(CPSHAP.shape)
         coeff[sigma>=(1/PKPER*2*np.pi)] = 0.09
@@ -314,7 +314,7 @@ elif Model_Params["Boundary Type"] == "JONSWAP":
 
         CDIR = np.zeros(A_COS.shape)
 
-        CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,0.1)
+        CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,1e-10)
         tol =1e-11
         return (y<tol)*CDIR*N
 
