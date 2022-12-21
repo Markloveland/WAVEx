@@ -140,7 +140,7 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,u_func,local_bo
     HS_vec = CFx.wave.calculate_HS_actionbalance(u,V2,N_dof_1,N_dof_2,local_range2)
     HS.vector.setValues(dofs1,np.array(HS_vec))
     HS.vector.ghostUpdate()
-    #xdmf.write_function(HS,t)
+    xdmf.write_function(HS,t)
     xdmf.close()
 
     return u,xdmf
