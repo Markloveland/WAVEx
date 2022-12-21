@@ -88,9 +88,9 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     sigma_factor = CFx.wave.calculate_sigma_tilde(N,V2,local_size1,local_size2,local_range2) 
     k_factor=CFx.wave.calculate_k_tilde(k,N,V2,local_size1,local_size2,local_range2)
     
-    print('Max and min of integrated variables')
-    print(np.amax(Etot),np.amax(sigma_factor),np.amax(k_factor))
-    print(np.amin(Etot),np.amin(sigma_factor),np.amin(k_factor))
+    #print('Max and min of integrated variables')
+    #print(np.amax(Etot),np.amax(sigma_factor),np.amax(k_factor))
+    #print(np.amin(Etot),np.amin(sigma_factor),np.amin(k_factor))
     if np.any(np.isnan(Etot)):
         print('Etot contains nans')
     if np.any(np.isnan(sigma_factor)):
@@ -122,7 +122,7 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
 
         s_tilde = k_tilde*np.sqrt(Etot)
 
-        gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*(np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc)*\
+        gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc))*\
                 (np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
 
 
@@ -154,6 +154,8 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,rows,V2,local_size1,local_size2,
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
     Swc = S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2)
     S.setValues(rows,Sin+Swc)
+    print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
+    print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()
     return S
 
