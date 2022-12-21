@@ -1,6 +1,8 @@
-#computes source terms pointwise
 import numpy as np
+import CFx.wave
 
+
+#computes source terms pointwise
 #####################################################################
 #ST6 Package. To be completed later
 #this is from Rogers 2012 (ST6)
@@ -29,8 +31,7 @@ def S_in(sigma,theta,E,U10,theta_wind,cg):
 ######################################################################
 #Gen3 source terms as in default options from SWAN
 
-
-def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,rows,g=9.81):
+def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #exponential wave growth from Komen 1984
     #sigmas - vector np.array of sigma at each computational point (rn it is radian freq)
     #thetas - in radians
@@ -57,12 +58,14 @@ def S_in(S,sigmas,thetas,N,U_mag,theta_wind,c,rows,g=9.81):
     #               degree=p_degree,rho_a=rho_a,rho_w=rho_w,U_fric=U_fric,c_ph=c)
     #A = 1.5*10**(-3)/(2*np.pi*g**2)*(U_fric*np.maximum(0,np.cos(thetas-theta_wind)))**4*H
     B= np.maximum(np.zeros(c.shape),0.25*rho_a/rho_w*(28*U_fric/c*np.cos(thetas-theta_wind)-1))*sigmas
-    S.setValues(rows,B*E)
+    
+    #S.setValues(rows,B*E)
     #note that even though it is E, I left it as action balance N
-    S.assemble()
-    return S
-'''
-def S_wc(sigmas,thetas,k,E):
+    #S.assemble()
+    return B*E
+
+
+def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     #########################################################
     #S_wc - whitecapping
     #follows WAM Cycle III formulation (see swantech manual)
@@ -80,15 +83,52 @@ def S_wc(sigmas,thetas,k,E):
     p_wc=4
     mean_spm=np.sqrt(3.02*(10**(-3)))
 
-    #need to find out how to get a few parameters
-    sigma_tilde
-    k_tilde
-    Etot
+    #need to get a few integral parameters
+    Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
+    sigma_factor = CFx.wave.calculate_sigma_tilde(N,V2,local_size1,local_size2,local_range2) 
+    k_factor=CFx.wave.calculate_k_tilde(k,N,V2,local_size1,local_size2,local_range2)
+    
+    print('Max and min of integrated variables')
+    print(np.amax(Etot),np.amax(sigma_factor),np.amax(k_factor))
+    print(np.amin(Etot),np.amin(sigma_factor),np.amin(k_factor))
+    if np.any(np.isnan(Etot)):
+        print('Etot contains nans')
+    if np.any(np.isnan(sigma_factor)):
+        print('Sigma factor contains nans')
+    if np.any(np.isnan(k_factor)):
+        print('k_factor contains nans')
+    
+    #set a tolerance to prevent division by zero, if Etot is below tolerance then the S_wc =0 there
+    tol = 1e-14
+
+    #mask that lives in domain 1
+    valid_idx = Etot>tol
+   
+    
+    gamma_factor = np.zeros(k.shape)
+    #need check to see if any nonzeros, if valid_idx is all False then np.kron throws an error
+    if np.any(valid_idx):
+        #corresponding mask that lives in knronecker product space
+        big_idx = np.kron(valid_idx,np.ones(local_size2))
+        big_idx=np.array(big_idx, dtype=bool)
+
+        sigma_tilde = np.zeros(Etot.shape)
+        k_tilde = np.zeros(Etot.shape)
+        s_tilde = np.zeros(Etot.shape)
+
+        sigma_tilde[valid_idx] = Etot[valid_idx]/sigma_factor[valid_idx]
+        k_tilde[valid_idx] = Etot[valid_idx]**2/(k_factor[valid_idx]**2)
+    
+
+        s_tilde = k_tilde*np.sqrt(Etot)
+
+        gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*(np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc)*\
+                (np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
 
 
-    S = -gamma*...
+    S = -gamma_factor*N.getArray()
     return S
-'''
+
 def calc_S_bfr(sigmas,k,E,depth,g=9.81):
     ##########################################################
     #S_bfr (bottom friction)
@@ -106,6 +146,17 @@ def calc_S_bfr(sigmas,k,E,depth,g=9.81):
     #S_bfr=project(S_bfr,V)
     S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh(k*depth))**2*E
     return S_bfr
+
+
+
+
+def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,rows,V2,local_size1,local_size2,local_range2,g=9.81):
+    Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
+    Swc = S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2)
+    S.setValues(rows,Sin+Swc)
+    S.assemble()
+    return S
+
 '''
 def calc_S_dsbr(sigmas,thetas,E,depth):
     #########################################################

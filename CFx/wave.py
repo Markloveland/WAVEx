@@ -170,7 +170,7 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
         dudx[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range]) - dudy[shallow_range]*(np.cos(theta)[shallow_range]**2) + dvdx[shallow_range]*(np.sin(theta[shallow_range])**2) \
         -dvdy[shallow_range]*np.cos(theta[shallow_range])*np.sin(theta[shallow_range])
     
-    return c_out,cph
+    return c_out,cph,k
 
 
 
@@ -208,10 +208,10 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     
 
     temp = np.zeros(wet_dofs_local.shape)
-    k = np.zeros(wet_dofs_local.shape)
+    k = np.ones(wet_dofs_local.shape)
 
 
-    c_out[wet_dofs_local,:],cph[wet_dofs_local] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],
+    c_out[wet_dofs_local,:],cph[wet_dofs_local],k[wet_dofs_local] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],
             u[wet_dofs_local],v[wet_dofs_local],dHdx=dHdx[wet_dofs_local],dHdy=dHdy[wet_dofs_local],dudx=dudx[wet_dofs_local],dudy=dudy[wet_dofs_local],dvdx=dvdx[wet_dofs_local],
             dvdy=dvdy[wet_dofs_local])
     '''
@@ -274,7 +274,7 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
         dudx*np.cos(theta_wet)*np.sin(theta_wet) - dudy*(np.cos(theta_wet)**2) + dvdx*(np.sin(theta_wet)**2) \
         -dvdy*np.cos(theta_wet)*np.sin(theta_wet)
     '''
-    return c_out,dry_dofs_local,cph
+    return c_out,dry_dofs_local,cph,k
 
 
 def calculate_HS(u_cart,V2,local_size1,local_size2,local_range2):
@@ -322,6 +322,88 @@ def calculate_HS_actionbalance(u_cart,V2,local_size1,local_size2,local_range2):
         HS_vec[i] = 4*np.sqrt(abs(local_intf))
 
     return HS_vec
+
+
+def calculate_Etot(u_cart,V2,local_size1,local_size2,local_range2):
+    Etot = np.zeros(local_size1)
+    dum = fem.Function(V2)
+    sigma = fem.Function(V2)
+    sigma.interpolate(lambda x: x[0])
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+        "cffi_libraries": ["m"], "timeout":900}
+    intf = fem.form(sigma*dum*ufl.dx,jit_params=jit_parameters)
+    
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        local_intf = fem.assemble_scalar(intf)
+        Etot[i] = abs(local_intf)
+
+    return Etot
+
+
+def calculate_sigma_tilde(u_cart,V2,local_size1,local_size2,local_range2):
+    sigma_tilde_factor = np.zeros(local_size1)
+    dum = fem.Function(V2)
+    #sigma = fem.Function(V2)
+    #sigma.interpolate(lambda x: x[0])
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+        "cffi_libraries": ["m"], "timeout":900}
+    intf = fem.form(dum*ufl.dx,jit_params=jit_parameters)
+    
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        local_intf = fem.assemble_scalar(intf)
+        sigma_tilde_factor[i] = abs(local_intf)
+
+    return sigma_tilde_factor
+
+
+def calculate_k_tilde(k,u_cart,V2,local_size1,local_size2,local_range2):
+    sigma_tilde_factor = np.zeros(local_size1)
+    dum = fem.Function(V2)
+    sigma = fem.Function(V2)
+    k_func = fem.Function(V2)
+    sigma.interpolate(lambda x: x[0])
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+        "cffi_libraries": ["m"], "timeout":900}
+    intf = fem.form(k_func*dum*ufl.dx,jit_params=jit_parameters)
+    
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        k_func.vector.setValues(dofs,np.array(1/np.sqrt(k[indx:indx+local_size2])))
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        local_intf = fem.assemble_scalar(intf)
+        sigma_tilde_factor[i] = abs(local_intf)
+
+    return sigma_tilde_factor
+
+
 
 def calculate_wetdry(domain, V, depth_func,is_wet, min_depth=0.05):
     #loop through elements

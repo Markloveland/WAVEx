@@ -256,7 +256,7 @@ else:
 global_boundary_dofs = local_boundary_dofs + local_range[0]
 ####################################################################
 ####################################################################
-c,dry_dofs_local,cph = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2)
+c,dry_dofs_local,cph,k = CFx.wave.compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2)
 #exact solution and dirichlet boundary
 dry_dofs = dry_dofs_local+local_range[0]
 
@@ -444,7 +444,7 @@ if Model_Params["Source Terms"]=="off":
 elif Model_Params["Source Terms"]=="Wind":
     U10 = Model_Params["U10"]
     theta_wind = Model_Params["Wind Direction"]*np.pi/180
-    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.S_in,x,y,sigma,theta,c,cph,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
+    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
 '''
 for i in range(nt):
     t+=dt
