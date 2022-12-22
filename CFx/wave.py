@@ -384,7 +384,7 @@ def calculate_k_tilde(k,u_cart,V2,local_size1,local_size2,local_range2):
 
     jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
         "cffi_libraries": ["m"], "timeout":900}
-    intf = fem.form(k_func*dum*ufl.dx,jit_params=jit_parameters)
+    intf = fem.form(k_func*dum*sigma*ufl.dx,jit_params=jit_parameters)
     
     #vector of global indexes that we want
     dofs = np.arange(*local_range2,dtype=np.int32)

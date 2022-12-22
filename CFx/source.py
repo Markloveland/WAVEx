@@ -117,7 +117,8 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         s_tilde = np.zeros(Etot.shape)
 
         sigma_tilde[valid_idx] = Etot[valid_idx]/sigma_factor[valid_idx]
-        k_tilde[valid_idx] = Etot[valid_idx]**2/(k_factor[valid_idx]**2)
+        #k_tilde[valid_idx] = Etot[valid_idx]**2/(k_factor[valid_idx]**2)
+        k_tilde[valid_idx] = (k_factor[valid_idx]/Etot[valid_idx])**(-2)
     
 
         s_tilde = k_tilde*np.sqrt(Etot)
@@ -125,7 +126,10 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc))*\
                 (np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
 
-
+    print('Etot',Etot)
+    print('sigma_tilde',sigma_tilde)
+    print('k tilde',k_tilde)
+    print('k factor',k_factor)
     S = -gamma_factor*N.getArray()
     return S
 
