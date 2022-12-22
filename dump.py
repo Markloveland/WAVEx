@@ -135,11 +135,15 @@ depth = np.ones(sigma_vec.shape)
 c,cph,k = CFx.wave.compute_wave_speeds_pointwise(x,y,sigma_vec,theta_vec,depth,u,v,dHdx=dHdx,dHdy=dHdy,dudx=dudx,dudy=dudy,dvdx=dvdx,dvdy=dvdy,g=9.81)
 U_mag = 25
 theta_wind = 90
-Sin = CFx.source.S_in(sigma_vec,theta_vec,N_bc_pointwise,U_mag,theta_wind,cph,g=9.81)
+Sin = CFx.source.S_in(sigma_vec,theta_vec,dum.vector,U_mag,theta_wind,cph,g=9.81)
 print(np.amax(Sin))
 print(np.amin(Sin))
 
-dum.x.array[:] = Sin
+Swc = CFx.source.S_wc(sigma_vec,theta_vec,k,dum.vector,V2,1,len(Sin),local_range2)
+print(np.amax(Swc))
+print(np.amin(Swc))
+
+dum.x.array[:] = Swc
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")
 xdmf.write_mesh(domain2)
