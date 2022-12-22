@@ -127,7 +127,6 @@ def compute_wave_speeds_pointwise(x,y,sigma,theta,depth,u,v,dHdx=-1.0/200,dHdy=0
     k[deep_range]=sigma[deep_range]**2/g
 
     #now calculate c_sigma and c_theta, these are a bit more tricky
-
     #for now assuming H is constant in time but can fix this later
     #need to use FEniCS to calculate this!
     dHdt=0.0

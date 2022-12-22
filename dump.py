@@ -1,4 +1,6 @@
 import CFx.io
+import CFx.wave
+import CFx.source
 import numpy as np
 from mpi4py import MPI
 import ufl
@@ -115,6 +117,29 @@ print("HS = ",HS)
 print(np.amax(dum.vector.getValues(dofs)))
 
 
+print("now computing s_in")
+sigma_vec = dof_coords2[:,0]
+theta_vec = dof_coords2[:,1]
+x = np.zeros(sigma_vec.shape)
+y = np.zeros(sigma_vec.shape)
+u = np.zeros(sigma_vec.shape)
+v = np.zeros(sigma_vec.shape)
+dHdx = np.zeros(sigma_vec.shape)
+dHdy = np.zeros(sigma_vec.shape)
+dudy = np.zeros(sigma_vec.shape)
+dudx = np.zeros(sigma_vec.shape)
+dvdy = np.zeros(sigma_vec.shape)
+dvdx = np.zeros(sigma_vec.shape)
+depth = np.ones(sigma_vec.shape)
+
+c,cph,k = CFx.wave.compute_wave_speeds_pointwise(x,y,sigma_vec,theta_vec,depth,u,v,dHdx=dHdx,dHdy=dHdy,dudx=dudx,dudy=dudy,dvdx=dvdx,dvdy=dvdy,g=9.81)
+U_mag = 25
+theta_wind = 90
+Sin = CFx.source.S_in(sigma_vec,theta_vec,N_bc_pointwise,U_mag,theta_wind,cph,g=9.81)
+print(np.amax(Sin))
+print(np.amin(Sin))
+
+dum.x.array[:] = Sin
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")
 xdmf.write_mesh(domain2)

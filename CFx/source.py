@@ -45,7 +45,7 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     rho_w=1000 #density of water
 
     #in an ideal world, do all these calculations in PETSc but I need to get this done quick so sorry:(
-    E = N.getArray()
+    E = N#.getArray()
 
     C_d=1.2875*(10**(-3)) if U_mag < 7.5 else (0.8+0.065*U_mag)*(10**(-3))
     U_fric = np.sqrt(C_d*(U_mag**2))
