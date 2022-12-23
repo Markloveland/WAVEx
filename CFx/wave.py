@@ -344,8 +344,9 @@ def calculate_Etot(u_cart,V2,local_size1,local_size2,local_range2):
         #try to set proper values
         dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
         local_intf = fem.assemble_scalar(intf)
-        Etot[i] = abs(local_intf)
+        Etot[i] = local_intf
 
+    Etot = np.maximum(0.0,Etot)
     return Etot
 
 

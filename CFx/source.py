@@ -126,8 +126,15 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc))*\
                 (np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
 
-    if np.any(gamma_factor>1):
-        print('gamma may be blowing up',np.amax(gamma_factor))
+    if np.any(np.absolute(gamma_factor)>1):
+        print('gamma may be blowing up',np.amax(gamma_factor),np.amin(gamma_factor))
+        dum = max(np.amax(gamma_factor),np.amin(gamma_factor))
+        i1 = np.argmax(dum)
+        i_small = int(np.floor(i1/local_size2))
+        print('index of gamma blowing up',i1,i_small)
+        print('some values, Etot, k_tilde, s_tilde',Etot[i_small],k_tilde[i_small],s_tilde[i_small])
+        print('integral params Etot, sigma_factor, k factor', Etot[i_small],sigma_factor[i_small],k_factor[i_small])
+        
     S = -gamma_factor*N.getArray()
     return S
 

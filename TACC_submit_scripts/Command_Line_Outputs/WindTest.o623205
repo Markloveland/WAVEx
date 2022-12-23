@@ -1,0 +1,1179 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 623205 
+TACC:  Setting up parallel environment for MVAPICH2+mpispawn. 
+TACC:  Starting parallel tasks... 
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 154, pid: 780054) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 182, pid: 780082) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 125, pid: 780025) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 191, pid: 780091) exited with status 1
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 126, pid: 780026) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 134, pid: 780034) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 142, pid: 780042) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 144, pid: 780044) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 146, pid: 780046) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 165, pid: 780065) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 143, pid: 780043) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 175, pid: 780075) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 180, pid: 780080) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 192, pid: 780092) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 186, pid: 780086) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 198, pid: 780098) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 202, pid: 780102) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 203, pid: 780103) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 210, pid: 780110) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 211, pid: 780111) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 152, pid: 780052) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 153, pid: 780053) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 127, pid: 780027) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 128, pid: 780028) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 129, pid: 780029) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 130, pid: 780030) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 131, pid: 780031) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 132, pid: 780032) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 133, pid: 780033) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 135, pid: 780035) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 136, pid: 780036) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 137, pid: 780037) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 138, pid: 780038) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 139, pid: 780039) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 140, pid: 780040) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 141, pid: 780041) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 145, pid: 780045) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 147, pid: 780047) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 148, pid: 780048) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 149, pid: 780049) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 150, pid: 780050) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 151, pid: 780051) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 155, pid: 780055) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 156, pid: 780056) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 157, pid: 780057) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 158, pid: 780058) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 159, pid: 780059) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 160, pid: 780060) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 161, pid: 780061) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 162, pid: 780062) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 163, pid: 780063) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 164, pid: 780064) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 166, pid: 780066) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 167, pid: 780067) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 168, pid: 780068) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 169, pid: 780069) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 170, pid: 780070) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 171, pid: 780071) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 172, pid: 780072) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 173, pid: 780073) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 174, pid: 780074) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 176, pid: 780076) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 177, pid: 780077) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 178, pid: 780078) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 179, pid: 780079) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 181, pid: 780081) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 183, pid: 780083) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 184, pid: 780084) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 185, pid: 780085) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 187, pid: 780087) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 188, pid: 780088) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 189, pid: 780089) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 190, pid: 780090) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 193, pid: 780093) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 194, pid: 780094) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 195, pid: 780095) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 196, pid: 780096) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 197, pid: 780097) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 199, pid: 780099) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 200, pid: 780100) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 201, pid: 780101) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 204, pid: 780104) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 205, pid: 780105) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 206, pid: 780106) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 207, pid: 780107) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 208, pid: 780108) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 209, pid: 780109) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 212, pid: 780112) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 213, pid: 780113) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 214, pid: 780114) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 215, pid: 780115) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 216, pid: 780116) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 217, pid: 780117) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 218, pid: 780118) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 219, pid: 780119) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 220, pid: 780120) exited with status 1
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 221, pid: 780121) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 222, pid: 780122) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 223, pid: 780123) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 224, pid: 780124) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 225, pid: 780125) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 226, pid: 780126) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 227, pid: 780127) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 228, pid: 780128) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 229, pid: 780129) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 230, pid: 780130) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 231, pid: 780131) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 232, pid: 780132) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 233, pid: 780133) exited with status 1
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 234, pid: 780134) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 235, pid: 780135) exited with status 1
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 236, pid: 780136) exited with status 1
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+Traceback (most recent call last):
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 237, pid: 780137) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 238, pid: 780138) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 239, pid: 780139) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 240, pid: 780140) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 241, pid: 780141) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 242, pid: 780142) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 243, pid: 780143) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 244, pid: 780144) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 245, pid: 780145) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 246, pid: 780146) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 247, pid: 780147) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 248, pid: 780148) exited with status 1
+[c307-013.ls6.tacc.utexas.edu:mpispawn_1][child_handler] MPI process (rank: 249, pid: 780149) exited with status 1
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+Traceback (most recent call last):
+    from mpi4py import MPI
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'mpi4py'
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+    from mpi4py import MPI
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 10, in <module>
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+    from mpi4py import MPI
+ModuleNotFoundError: No module named 'mpi4py'
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 0, pid: 3595805) exited with status 1
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 2, pid: 3595807) exited with status 1
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 84, pid: 3595889) exited with status 1
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 99, pid: 3595904) exited with status 1
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 3, pid: 3595808) exited with status 1
+[c307-012.ls6.tacc.utexas.edu:mpispawn_0][child_handler] MPI process (rank: 63, pid: 3595868) exited with status 1
+TACC:  MPI job exited with code: 1 
+TACC:  Shutdown complete. Exiting. 
