@@ -78,10 +78,10 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     #S_wc - numpy array same size as E with the spectral density per unit time
 
     #constant
-    C_ds = 2.36*(10**(-5))
+    C_ds = 2.36e-5
     n_wc = 0.0
-    p_wc=4
-    mean_spm=np.sqrt(3.02*(10**(-3)))
+    p_wc=2
+    mean_spm=np.sqrt(3.02e-3)
 
     #need to get a few integral parameters
     Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
@@ -99,7 +99,7 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         print('k_factor contains nans')
     
     #set a tolerance to prevent division by zero, if Etot is below tolerance then the S_wc =0 there
-    tol = 1e-14
+    tol = 1e-11
 
     #mask that lives in domain 1
     valid_idx = Etot>tol
@@ -123,16 +123,19 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
 
         s_tilde = k_tilde*np.sqrt(Etot)
 
-        gamma_factor[big_idx] = (C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))))*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc))*\
-                (np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
+        gamma = C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))) )*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc)
+
+        gamma_factor[big_idx] = gamma*(np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
+
 
     if np.any(np.absolute(gamma_factor)>1):
         print('gamma may be blowing up',np.amax(gamma_factor),np.amin(gamma_factor))
-        dum = max(np.amax(gamma_factor),np.amin(gamma_factor))
+        dum = np.absolute(gamma_factor)
         i1 = np.argmax(dum)
         i_small = int(np.floor(i1/local_size2))
-        print('index of gamma blowing up',i1,i_small)
-        print('some values, Etot, k_tilde, s_tilde',Etot[i_small],k_tilde[i_small],s_tilde[i_small])
+        print('index and value of gamma blowing up',i1,i_small,gamma_factor[i1])
+        print("Etot %.2E" % Etot[i_small])
+        print('some values, Etot, k_tilde, s_tilde,sigma_tilde',Etot[i_small],k_tilde[i_small],s_tilde[i_small],sigma_tilde[i_small])
         print('integral params Etot, sigma_factor, k factor', Etot[i_small],sigma_factor[i_small],k_factor[i_small])
         
     S = -gamma_factor*N.getArray()
