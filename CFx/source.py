@@ -102,9 +102,12 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     tol = 1e-11
 
     #mask that lives in domain 1
-    valid_idx = Etot>tol
-   
+    valid_idx1 = Etot>tol
+    valid_idx2 = sigma_factor>tol
+    valid_idx3 = k_factor>tol
     
+    valid_idx = np.logical_and(np.logical_and(valid_idx1,valid_idx2),valid_idx3)
+
     gamma_factor = np.zeros(k.shape)
     #need check to see if any nonzeros, if valid_idx is all False then np.kron throws an error
     if np.any(valid_idx):
