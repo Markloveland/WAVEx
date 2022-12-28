@@ -62,7 +62,7 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #S.setValues(rows,B*E)
     #note that even though it is E, I left it as action balance N
     #S.assemble()
-    return B*E
+    return B*np.maximum(0.0,E)
 
 
 def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
@@ -141,7 +141,7 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         print('some values, Etot, k_tilde, s_tilde,sigma_tilde',Etot[i_small],k_tilde[i_small],s_tilde[i_small],sigma_tilde[i_small])
         print('integral params Etot, sigma_factor, k factor', Etot[i_small],sigma_factor[i_small],k_factor[i_small])
         
-    S = -gamma_factor*N.getArray()
+    S = -gamma_factor*np.maximum(0.0,N.getArray())
     return S
 
 def calc_S_bfr(sigmas,k,E,depth,g=9.81):
