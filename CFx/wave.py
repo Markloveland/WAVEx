@@ -371,7 +371,9 @@ def calculate_sigma_tilde(u_cart,V2,local_size1,local_size2,local_range2):
         #try to set proper values
         dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
         local_intf = fem.assemble_scalar(intf)
-        sigma_tilde_factor[i] = abs(local_intf)
+        sigma_tilde_factor[i] = local_intf
+
+    sigma_tilde_factor = np.maximum(0.0,sigma_tilde_factor)
 
     return sigma_tilde_factor
 
@@ -399,7 +401,9 @@ def calculate_k_tilde(k,u_cart,V2,local_size1,local_size2,local_range2):
         k_func.vector.setValues(dofs,np.array(1/np.sqrt(k[indx:indx+local_size2])))
         dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
         local_intf = fem.assemble_scalar(intf)
-        sigma_tilde_factor[i] = abs(local_intf)
+        sigma_tilde_factor[i] = local_intf
+
+    sigma_tilde_factor = np.maximum(0.0,sigma_tilde_factor)
 
     return sigma_tilde_factor
 
