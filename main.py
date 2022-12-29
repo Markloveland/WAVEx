@@ -316,8 +316,8 @@ elif Model_Params["Boundary Type"] == "JONSWAP":
 
         CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,1e-10)
         tol =1e-11
-        return (1-np.exp(-0.02*t))*(y<tol)*CDIR*N
-        #return CDIR*N
+        #return (1-np.exp(-0.02*t))*(y<tol)*CDIR*N
+        return CDIR*N
 
 ####################################################################
 ####################################################################
