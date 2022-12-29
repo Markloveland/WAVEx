@@ -96,11 +96,13 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,u_func,local_bo
 
         #substep 1
         u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows,k,V2,N_dof_1,N_dof_2,local_range2)
-
-
+        #correct boundary
+        u_d_vals = u_func(x,t,sigma,theta,c,t-dt_strang)[local_boundary_dofs]
+        u.setValues(global_boundary_dofs,u_d_vals)
+        u.assemble()
 
         #substep 2
-
+        
 
         #B will hold RHS of system of equations
         RHS2.mult(u,b)
@@ -124,6 +126,9 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,u_func,local_bo
         #substep3
         #u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows)
         u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows,k,V2,N_dof_1,N_dof_2,local_range2)
+        #correct boundary
+        u.setValues(global_boundary_dofs,u_d_vals)
+        u.assemble()
         # Save solution to file in VTK format
         if (i%nplot==0):
             #t1 = time.time()
