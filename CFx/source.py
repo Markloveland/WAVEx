@@ -62,7 +62,7 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #S.setValues(rows,B*E)
     #note that even though it is E, I left it as action balance N
     #S.assemble()
-    return B*np.maximum(0.0,E)
+    return B*np.absolute(E)
 
 
 def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
