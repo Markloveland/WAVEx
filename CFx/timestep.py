@@ -25,7 +25,7 @@ def no_source(t,nt,dt,u,ksp,M,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,glo
 
         #setting dirichlet BC
         #u_d_vals = u_func(x,y,sigma,theta,c,t)[local_boundary_dofs]
-        u_d_vals = u_func(x[local_boundary_dofs],y[local_boundary_dofs],sigma[local_boundary_dofs],theta[local_boundary_dofs],c[local_boundaey_dofs,:],t)
+        u_d_vals = u_func(x[local_boundary_dofs],y[local_boundary_dofs],sigma[local_boundary_dofs],theta[local_boundary_dofs],c[local_boundary_dofs,:],t)
         u_D.setValues(global_boundary_dofs,u_d_vals)
         C.mult(u_D,d)
         b = b - d

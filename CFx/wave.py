@@ -207,7 +207,7 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     
 
     temp = np.zeros(wet_dofs_local.shape)
-    k = np.ones(wet_dofs_local.shape)
+    k = np.ones(N_dof)
 
 
     c_out[wet_dofs_local,:],cph[wet_dofs_local],k[wet_dofs_local] = compute_wave_speeds_pointwise(x[wet_dofs_local],y[wet_dofs_local],sigma[wet_dofs_local],theta[wet_dofs_local],depth[wet_dofs_local],

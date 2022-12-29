@@ -281,7 +281,7 @@ if Model_Params["Boundary Type"] == "Gaussian":
         CTOT = np.sqrt(0.5*Dir_exp/np.pi)/(1.0 - 0.25/Dir_exp)
         A_COS = np.cos(theta - Dir_rad)
         CDIR = (A_COS>0)*CTOT*np.maximum(A_COS**Dir_exp, 1.0e-10)
-        return E*CDIR
+        return (1-np.exp(-0.02*t))*E*CDIR
 
 elif Model_Params["Boundary Type"] == "JONSWAP":
     def u_func(x,y,sigma,theta,c,t,JONgamma=3.3):
