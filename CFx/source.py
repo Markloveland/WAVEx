@@ -144,7 +144,7 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     S = -gamma_factor*np.maximum(0.0,N.getArray())
     return S
 
-def calc_S_bfr(sigmas,k,E,depth,g=9.81):
+def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     ##########################################################
     #S_bfr (bottom friction)
     #seems only relevant in very shallow water (see swantech manual)
@@ -159,16 +159,19 @@ def calc_S_bfr(sigmas,k,E,depth,g=9.81):
     C_bfr=0.067
     #S_bfr=Expression('-C_bfr/g*pow(x[0]/sinh(k*d),2)*E',degree=p_degree, C_bfr=C_bfr,g=g,k=k,d=H,E=E) <- Fenics ver.
     #S_bfr=project(S_bfr,V)
-    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh(k*depth))**2*E
+    #print('Shape of sigmas,k,depth,N',k.shape,sigmas.shape,depth.shape,E.getArray().shape)
+    #print('Shape of local size2 kronecker depth', local_size2,np.kron(depth,np.ones(local_size2)).shape )
+    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh(k*np.kron(depth,np.ones(local_size2))))**2*np.maximum(0.0,E.getArray())
     return S_bfr
 
 
 
 
-def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,rows,V2,local_size1,local_size2,local_range2,g=9.81):
+def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
     Swc = S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2)
-    S.setValues(rows,Sin+Swc)
+    Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
+    S.setValues(rows,Sin+Swc+Sbfr)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()

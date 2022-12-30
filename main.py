@@ -108,11 +108,14 @@ local_dof_coords1 = dof_coords1[0:N_dof_1,:domain1.topology.dim]
 #setting depth,u,v
 #here are some presets built in for some test cases
 if Model_Params["Bathymetry"] == "Uniform Slope":
-    depth_func.x.array[:] = 20 - dof_coords1[:,1]/200
+    depth =  np.array(20 - local_dof_coords1[:,1]/200)
+    depth_func.x.array[:] = np.array(20 - dof_coords1[:,1]/200)
 elif Model_Params["Bathymetry"] == "Deep":
-    depth_func.x.array[:] = 10000*np.ones(dof_coords1[:,0].shape)
+    depth = np.array(10000*np.ones(local_dof_coords1[:,0].shape))
+    depth_func.x.array[:] = np.array(10000*np.ones(dof_coords1[:,0].shape))
 elif Model_Params["Bathymetry"] == "Uniform Constant":
-    depth_func.x.array[:] = np.ones(dof_coords1[:,0].shape)
+    depth = np.array(np.ones(local_dof_coords1[:,0].shape))
+    depth_func.x.array[:] = np.array(np.ones(dof_coords1[:,0].shape))
 else:
     raise Exception("Bathymetry not defined")
 
@@ -444,7 +447,7 @@ if Model_Params["Source Terms"]=="off":
 elif Model_Params["Source Terms"]=="Wind":
     U10 = Model_Params["U10"]
     theta_wind = Model_Params["Wind Direction"]*np.pi/180
-    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
+    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,depth,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
 '''
 for i in range(nt):
     t+=dt
