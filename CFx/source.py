@@ -65,7 +65,7 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     return B*np.absolute(E)
 
 
-def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
+def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
     #########################################################
     #S_wc - whitecapping
     #follows WAM Cycle III formulation (see swantech manual)
@@ -83,10 +83,6 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
     p_wc=2
     mean_spm=np.sqrt(3.02e-3)
 
-    #need to get a few integral parameters
-    Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
-    sigma_factor = CFx.wave.calculate_sigma_tilde(N,V2,local_size1,local_size2,local_range2) 
-    k_factor=CFx.wave.calculate_k_tilde(k,N,V2,local_size1,local_size2,local_range2)
     
     #print('Max and min of integrated variables')
     #print(np.amax(Etot),np.amax(sigma_factor),np.amax(k_factor))
@@ -119,7 +115,10 @@ def S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2):
         k_tilde = np.zeros(Etot.shape)
         s_tilde = np.zeros(Etot.shape)
 
-        sigma_tilde[valid_idx] = Etot[valid_idx]/sigma_factor[valid_idx]
+        if opt==2:
+            sigma_tilde[valid_idx] = sigma_factor[valid_idx]/Etot[valid_idx]
+        else:
+            sigma_tilde[valid_idx] = Etot[valid_idx]/sigma_factor[valid_idx]
         #k_tilde[valid_idx] = Etot[valid_idx]**2/(k_factor[valid_idx]**2)
         k_tilde[valid_idx] = (k_factor[valid_idx]/Etot[valid_idx])**(-2)
     
@@ -168,8 +167,18 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
 
 
 def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
+    #calculate any necessary integral parameters
+    #int int E dsigma dtheta = int int N*sigma dsigma dtheta
+    Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
+    #int int E/sigma dsigma dtheta = int int N dsgima dtheta
+    sigma_factor = CFx.wave.calculate_sigma_tilde(N,V2,local_size1,local_size2,local_range2) 
+    #alternative since something strange is happening with sigma factor
+    sigma_factor2 = CFx.wave.calculate_sigma_tilde2(N,V2,local_size1,local_size2,local_range2)
+    #int int E/sqrt(k) dsigma dtheta= int int N*sigma/sqrt(k) dsigma dtheta
+    k_factor=CFx.wave.calculate_k_tilde(k,N,V2,local_size1,local_size2,local_range2)
+    
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
-    Swc = S_wc(sigmas,thetas,k,N,V2,local_size1,local_size2,local_range2)
+    Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     S.setValues(rows,Sin+Swc+Sbfr)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))

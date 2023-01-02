@@ -139,9 +139,33 @@ Sin = CFx.source.S_in(sigma_vec,theta_vec,dum.vector,U_mag,theta_wind,cph,g=9.81
 print(np.amax(Sin))
 print(np.amin(Sin))
 
-Swc = CFx.source.S_wc(sigma_vec,theta_vec,k,dum.vector,V2,1,len(Sin),local_range2)
-print(np.amax(Swc))
-print(np.amin(Swc))
+
+
+#calculate swc
+local_size1 = 1
+local_size2 = len(Sin)
+#int int E dsigma dtheta = int int N*sigma dsigma dtheta
+Etot = CFx.wave.calculate_Etot(dum.vector,V2,local_size1,local_size2,local_range2)
+#int int E/sigma dsigma dtheta = int int N dsgima dtheta
+sigma_factor = CFx.wave.calculate_sigma_tilde(dum.vector,V2,local_size1,local_size2,local_range2)
+#int int E*sigma dsigma dtheta = int int N*sigma*sigma dsigma dtheta
+sigma_factor2 = CFx.wave.calculate_sigma_tilde2(dum.vector,V2,local_size1,local_size2,local_range2)
+#int int E/sqrt(k) dsigma dtheta= int int N*sigma/sqrt(k) dsigma dtheta
+k_factor=CFx.wave.calculate_k_tilde(k,dum.vector,V2,1,local_size2,local_range2)
+
+
+print("Etot",Etot)
+print("int int E/sigma",sigma_factor)
+print("int int E/sqrt(k)",k_factor)
+print("mean sigma",Etot/sigma_factor)
+print("mean sigma version 2",sigma_factor2/Etot)
+print("mean k",Etot**2/k_factor**2)
+Swc = CFx.source.S_wc(sigma_vec,theta_vec,k,dum.vector,local_size2,Etot,sigma_factor,k_factor)
+print("min Swc",np.amax(Swc))
+print("max Swc",np.amin(Swc))
+Swc = CFx.source.S_wc(sigma_vec,theta_vec,k,dum.vector,local_size2,Etot,sigma_factor2,k_factor,opt=2)
+print("min SWc option 2",np.amax(Swc))
+print("max SWc option2",np.amin(Swc))
 
 dum.x.array[:] = Swc
 

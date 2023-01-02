@@ -350,6 +350,33 @@ def calculate_Etot(u_cart,V2,local_size1,local_size2,local_range2):
     return Etot
 
 
+def calculate_sigma_tilde2(u_cart,V2,local_size1,local_size2,local_range2):
+    sigma_tilde_factor = np.zeros(local_size1)
+    dum = fem.Function(V2)
+    sigma2 = fem.Function(V2)
+    sigma2.interpolate(lambda x: x[0]*x[0])
+
+    jit_parameters = {"cffi_extra_compile_args": ["-Ofast", "-march=native"],
+        "cffi_libraries": ["m"], "timeout":900}
+    intf = fem.form(sigma2*dum*ufl.dx,jit_params=jit_parameters)
+    
+    #vector of global indexes that we want
+    dofs = np.arange(*local_range2,dtype=np.int32)
+
+    
+    for i in range(local_size1):
+        indx = i*local_size2
+        #note this will only work if we only have 2nd domain unpartitioned!!!
+        #(missing ghost values)
+        #try to set proper values
+        dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
+        local_intf = fem.assemble_scalar(intf)
+        sigma_tilde_factor[i] = local_intf
+
+    sigma_tilde_factor = np.maximum(0.0,sigma_tilde_factor)
+
+    return sigma_tilde_factor
+
 def calculate_sigma_tilde(u_cart,V2,local_size1,local_size2,local_range2):
     sigma_tilde_factor = np.zeros(local_size1)
     dum = fem.Function(V2)
