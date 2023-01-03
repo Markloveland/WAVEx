@@ -62,7 +62,7 @@ def S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81):
     #S.setValues(rows,B*E)
     #note that even though it is E, I left it as action balance N
     #S.assemble()
-    return B*np.absolute(E)
+    return B*np.maximum(0.0,E)
 
 
 def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
@@ -117,10 +117,11 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
 
         if opt==2:
             sigma_tilde[valid_idx] = sigma_factor[valid_idx]/Etot[valid_idx]
+            k_tilde[valid_idx] = (k_factor[valid_idx]/Etot[valid_idx])**(2)
         else:
             sigma_tilde[valid_idx] = Etot[valid_idx]/sigma_factor[valid_idx]
+            k_tilde[valid_idx] = (k_factor[valid_idx]/Etot[valid_idx])**(-2)
         #k_tilde[valid_idx] = Etot[valid_idx]**2/(k_factor[valid_idx]**2)
-        k_tilde[valid_idx] = (k_factor[valid_idx]/Etot[valid_idx])**(-2)
     
 
         s_tilde = k_tilde*np.sqrt(Etot)
@@ -176,9 +177,11 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     sigma_factor2 = CFx.wave.calculate_sigma_tilde2(N,V2,local_size1,local_size2,local_range2)
     #int int E/sqrt(k) dsigma dtheta= int int N*sigma/sqrt(k) dsigma dtheta
     k_factor=CFx.wave.calculate_k_tilde(k,N,V2,local_size1,local_size2,local_range2)
-    
+    #int int Esqrt(k)
+    k_factor2=CFx.wave.calculate_k_tilde2(k,N,V2,local_size1,local_size2,local_range2)
+
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
-    Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor,opt=2)
+    Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     S.setValues(rows,Sin+Swc+Sbfr)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
