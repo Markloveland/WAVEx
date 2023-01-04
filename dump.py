@@ -153,6 +153,8 @@ sigma_factor2 = CFx.wave.calculate_sigma_tilde2(dum.vector,V2,local_size1,local_
 #int int E/sqrt(k) dsigma dtheta= int int N*sigma/sqrt(k) dsigma dtheta
 k_factor=CFx.wave.calculate_k_tilde(k,dum.vector,V2,1,local_size2,local_range2)
 
+Sbrk = CFx.source.S_brk(dum.vector,10.0,local_size2,Etot,sigma_factor2)
+
 
 print("Etot",Etot)
 print("int int E/sigma",sigma_factor)
@@ -167,6 +169,8 @@ Swc = CFx.source.S_wc(sigma_vec,theta_vec,k,dum.vector,local_size2,Etot,sigma_fa
 print("min SWc option 2",np.amax(Swc))
 print("max SWc option2",np.amin(Swc))
 
+print("min Sbrk option 2",np.amax(Sbrk))
+print("max Sbrk option2",np.amin(Sbrk))
 dum.x.array[:] = Swc
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")

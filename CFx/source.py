@@ -165,7 +165,37 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     return S_bfr
 
 
+def S_brk(E,depth,local_size2,m0,sigma_factor):
+    alpha_bj = 1
+    Hrms = np.sqrt(8*m0)
+    Hmax = 0.73*depth
+    beta = Hrms/Hmax
 
+    sigma_mean = np.zeros(m0.shape)
+    Q0 = np.zeros(beta.shape)
+    Qb = np.zeros(beta.shape)
+    factor1 = np.zeros(m0.shape)
+
+    tol = 1e-7
+    #mask that lives in domain 1
+    valid_idx1 = m0>tol
+
+
+    if np.any(valid_idx1):
+        sigma_mean[valid_idx1] = sigma_factor[valid_idx1]/m0[valid_idx1]
+    
+        mask1 = np.logical_and(beta>=0.5,beta<=1.0)
+        Q0[mask1] = (2*beta[mask1]-1)**2
+        
+        
+        
+        mask2 = np.logical_and(beta>=0.2,beta<1)
+        Qb[mask2] = Q0[mask2] - beta[mask2]**2*(Q0[mask2]-np.exp((Q0[mask2]-1)/beta[mask2]**2))/(beta[mask2]**2-np.exp((Q0[mask2]-1)/(beta[mask2]**2)));
+        Qb[beta>=1] = 1
+
+        factor1[valid_idx1] = -alpha_bj*Qb[valid_idx1]*sigma_mean[valid_idx1]/(beta[valid_idx1]**2*np.pi)
+    S_brk = np.kron(factor1,np.ones(local_size2))*np.maximum(0.0,E.getArray())
+    return S_brk
 
 def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
     #calculate any necessary integral parameters
@@ -183,7 +213,8 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
     Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
-    S.setValues(rows,Sin+Swc+Sbfr)
+    Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
+    S.setValues(rows,Sin+Swc+Sbfr+Sbrk)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()
