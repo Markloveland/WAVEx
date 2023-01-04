@@ -194,6 +194,10 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
         Qb[beta>=1] = 1
 
         factor1[valid_idx1] = -alpha_bj*Qb[valid_idx1]*sigma_mean[valid_idx1]/(beta[valid_idx1]**2*np.pi)
+    if np.any(factor1>0):
+        print("Breaking parameter is negative when it probably shouldnt be")
+        print("Minimum and maximum Qb value", np.amax(Qb),np.amin(Qb))
+    
     S_brk = np.kron(factor1,np.ones(local_size2))*np.maximum(0.0,E.getArray())
     return S_brk
 
@@ -214,7 +218,7 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
-    S.setValues(rows,Sin+Swc+Sbfr+Sbrk)
+    S.setValues(rows,Sin+Swc+Sbfr)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()
