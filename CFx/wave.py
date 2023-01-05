@@ -318,7 +318,7 @@ def calculate_HS_actionbalance(u_cart,V2,local_size1,local_size2,local_range2):
         #try to set proper values
         dum.vector.setValues(dofs,  np.array(u_cart.getArray()[indx:indx+local_size2]))
         local_intf = fem.assemble_scalar(intf)
-        HS_vec[i] = 4*np.sqrt(abs(local_intf))
+        HS_vec[i] = 4*np.sqrt(np.maximum(0.0,local_intf))
 
     return HS_vec
 
