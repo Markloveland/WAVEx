@@ -203,6 +203,135 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
     S_brk = np.kron(factor1,np.ones(local_size2))*np.maximum(0.0,E.getArray())
     return S_brk
 
+def S_nl4_DIA(sigmas,thetas,N,V2,mesh2):
+    ##DIA approximation
+    #parameters for DIA
+    #note I think we may still need to convert back to rel. rad. frequency
+    #but idk
+    #convert spectrum to from rad. freq. to freq by multiplying by Jacob
+    Ef = N.getArray()*2*np.pi*sigmas
+
+    #resonance conditions for quadruplets
+    lambda1=1+0.25
+    lambda2=1-.25
+    theta1=11.48*np.pi/180#in degrees
+    theta2=-33.56*np.pi/180#in degrees
+    DAL1   = 1. / (lambda1)**4
+    DAL2   = 1. / (lambda2)**4
+    DAL3   = 2. * DAL1 * DAL2
+
+    #first get the structured version of the dofs
+    #need to convert to regular grid
+    dof=np.zeros((len(sigmas),2))
+    dof[:,0]=sigmas
+    dof[:,1]=thetas
+    Matrix_indeces=dof_2_meshgrid_indeces(dof)
+    mini_sigma=np.unique(sigmas)
+    mini_thets=np.unique(thetas)#indeces_to_meshgrid(thets,Matrix_indeces)[:,0]
+
+
+    sig_low=min(mini_sigma)
+    sig_high=max(mini_sigma)
+    thet_low=min(mini_thets)
+    thet_high=max(mini_thets)
+    num_thet=len(mini_thets)
+    num_sigma=len(mini_sigma)
+
+    #establish extended spectrum to interpolate from
+    sigmas_e=np.insert(mini_sigma,0,sig_low/lambda1)
+    sigmas_e=np.append(sigmas_e,sig_high/lambda2)
+
+    '''
+    thetas_e=np.insert(mini_thets,0,thet_low-max(np.absolute([theta1,theta2])))
+    thetas_e=np.append(thetas_e,thet_high+max(np.absolute([theta1,theta2])))
+
+
+    SIGMAS_E,THETS_E=np.meshgrid(sigmas_e,thetas_e)
+
+    #now interpolote given spectrum onto bigger grid, also need to figure out
+    #to add exponential tail
+    E2=indeces_to_meshgrid(E,Matrix_indeces)
+    f=interp.interp2d(mini_sigma,mini_thets,E2,fill_value=0,bounds_error=False)
+    E00=f(sigmas_e,thetas_e)
+    
+    #Need an even larger extenion to interpolate from
+    #will keep this commented for now
+    #sigmas_e2=[sig_low*(lambda2/lambda1);sigs';sig_high*lambda1/lambda2];
+    #thetas_e2=[thetlow-2*max(abs([theta1,theta2]));thetas';thethigh+2*max(abs([theta1,theta2]))];
+    #[SIGMAS_E2,THETAS_E2]=meshgrid(sigmas_e2,thetas_e2);
+    #[N_ext2,~,~]=JONSWAP_2D_rad(sigmas_e2,thetas_e2,Hs,Pkper,MDIR,MSInput,LSHAPEin,DSHAPL);
+    #N_ext2=N_ext2*2*pi;
+    
+    sigmas_e2=sigmas_e
+    thetas_e2=thetas_e
+    N_ext2=E00
+
+    #now obtain the 4 shifted bins
+
+    #here is spectra shifted by +1 in frequency,+1 in theta1
+    sigmas_01=lambda1*sigmas_e
+    thetas_01=theta1+thetas_e
+    f=interp.interp2d(sigmas_e2,thetas_e2,E00,fill_value=0,bounds_error=False)
+    EP1=f(sigmas_01,thetas_01)    
+    
+
+    #here is spectra shifted by -1 in frequency, -1 in theta2
+    sigmas_02=lambda2*sigmas_e
+    thetas_02=theta2+thetas_e
+    EM1=f(sigmas_02,thetas_02)
+
+
+    #now flipping directions we obtain +1 in freq, -1 in theta1
+    sigmas_03=lambda1*sigmas_e
+    thetas_03=-theta1+thetas_e
+    EP2=f(sigmas_03,thetas_03)
+
+
+    #and finally -1 in freq -1 in theta2
+    sigmas_04=lambda2*sigmas_e
+    thetas_04=-theta2+thetas_e
+    EM2=f(sigmas_04,thetas_04)
+    
+    #calculate the nonlinear reaction as wavewatch does
+    #CONS=3*10^7*9.81^(-4);
+    SNLC1  = 1. / g**4
+    SNLCS1 = 5.5
+    SNLCS2 = 0.833
+    SNLCS3 = -1.25
+    X = 1#max( 0.75 * DEP2(KCGRD(1)) * KMESPC , 0.5 );
+    X2 = 1#% MAX ( -1.E15, SNLCS3*X)
+    CONS   = SNLC1 * ( 1. + SNLCS1/X * (1.-SNLCS2*X) * exp(X2))
+    PQUAD2= 3.E7
+    FACTOR = CONS * (SIGMAS_E/(2*np.pi))**11 * E00
+    SA1A   = E00 * ( EP1*DAL1 + EM1*DAL2 )*PQUAD2
+    SA1B   = SA1A - EP1*EM1*DAL3*PQUAD2
+    SA2A   = E00 * ( EP2*DAL1 + EM2*DAL2 )*PQUAD2
+    SA2B   = SA2A - EP2*EM2*DAL3*PQUAD2
+
+    SA1 = FACTOR * SA1B
+    SA2 = FACTOR * SA2B
+
+    del_Snl1=SA1+SA2;
+    
+    del_Snl1=del_Snl1[1:num_thet+1,1:num_sigma+1]
+    #print(del_Snl1.shape)
+    #now interpolate one last time
+    f_SA1=interp.interp2d(sigmas_01,thetas_01,SA1,fill_value=0,bounds_error=False)
+    f_SA2=interp.interp2d(sigmas_03,thetas_03,SA2,fill_value=0,bounds_error=False)
+    del_Snl2=f_SA1(mini_sigma,mini_thets)+f_SA2(mini_sigma,mini_thets)
+    
+    f_SA1=interp.interp2d(sigmas_02,thetas_02,SA1,fill_value=0,bounds_error=False)
+    f_SA2=interp.interp2d(sigmas_04,thetas_04,SA2,fill_value=0,bounds_error=False)
+    del_Snl3=f_SA1(mini_sigma,mini_thets)+f_SA2(mini_sigma,mini_thets)
+    
+    
+    #now calculate source term
+    S_nl4=-2*del_Snl1+del_Snl2+del_Snl3
+    #and lastly reshape
+    S_nl4=meshgrid_to_dof(S_nl4,Matrix_indeces)
+    '''
+    return S_nl4
+
 def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
     #calculate any necessary integral parameters
     #int int E dsigma dtheta = int int N*sigma dsigma dtheta

@@ -124,3 +124,99 @@ def ADCIRC_mesh_gen(comm,file_path):
     return domain1
 
 
+#generate interpolation weights for DIA, same idea as SWAN
+def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
+    #sigmas should be number of unique frequencies!! (NOT vector of dof in x)
+    MSC = len(sigmas)
+    print('MSC',MSC)
+    MDC = len(thetas)
+    NG = len(geographic_nodes)
+    half_nsig = int(np.floor(MSC/2))
+    half_nsig_minus = int(half_nsig - 1)
+    sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
+    snl_c1 = 1/(g**4)
+    lam1 = 0.25
+    C = 3e-7
+    snl_c2 = 5.5
+    snl_c3 = 0.833
+    snl_c4 = -1.25
+
+
+    #compute offsets for resonance conditions
+    #needed to get exxtents of extra grid
+    LAMM2  = (1-lam1)**2
+    LAMP2  = (1+lam1)**2
+    DELTH3 = np.arccos( (LAMM2**2+4-LAMP2**2) / (4.*LAMM2) ) #angle 1 33.557 in rad
+    AUX1 = np.sin(DELTH3)
+    DELTH4 = np.arcsin(-AUX1*LAMM2/LAMP2) #angle 2 -11.4783 in rad
+
+    #denominators for DIS
+    DAL1 = 1/((1.+lam1)**4)
+    DAL2   = 1. / ((1.-lam1)**4)
+    DAL3   = 2. * DAL1 * DAL2
+
+    #Compute directional indices in sigma and theta space ***
+    DDIR = thetas[1]-thetas[0]
+    CIDP   = abs(DELTH4/DDIR)
+    IDP   = np.floor(CIDP)
+    IDP1  = IDP + 1
+    WIDP   = CIDP - (IDP)
+    WIDP1  = 1.- WIDP
+    CIDM   = abs(DELTH3/DDIR)
+    IDM   = np.floor(CIDM)
+    IDM1  = IDM + 1
+    WIDM   = CIDM - (IDM)
+    WIDM1  = 1.- WIDM
+    XISLN  = np.log( sig_spacing )
+
+    
+    ISP = np.floor( np.log(1.+lam1) / XISLN )
+    ISP1   = ISP + 1
+    WISP   = (1.+lam1 - sig_spacing**ISP) / (sig_spacing**ISP1 - sig_spacing**ISP)
+    WISP1  = 1. - WISP
+    ISM    = np.floor( np.log(1.-lam1) / XISLN )
+    ISM1   = int(ISM - 1)
+    WISM   = (sig_spacing**ISM -(1.-lam1)) / (sig_spacing**ISM - sig_spacing**ISM1)
+    WISM1  = 1. - WISM
+
+    #calculate the max and min indeces for extended spectrum
+    ISLOW =  int(1  + ISM1)
+    ISHGH = int(MSC + ISP1 - ISM1)
+    ISCLW =  1
+    ISCHG = int(MSC - ISM1)
+    IDLOW = int(1 - MDC - max(IDM1,IDP1)) #MARK CHECK, why is this
+    IDHGH = int(MDC + MDC + max(IDM1,IDP1))
+    MSC4MI = ISLOW
+    MSC4MA = ISHGH
+    MDC4MI = IDLOW
+    MDC4MA = IDHGH
+    MSCMAX = int(MSC4MA - MSC4MI + 1)
+    MDCMAX = int(MDC4MA - MDC4MI + 1)
+
+    #MSCMAX is the number of spectral nodes in extended frequency
+    #MDCMAX is the number of directional nodes in extedned spectrum
+
+    print('ISLOW',ISLOW)
+    print('ISHGH',ISHGH)
+    print('ISCHG',ISCHG)
+    print('IDLOW',IDLOW)
+    print('IDHGH',IDHGH)
+    print('MSCMAX',MSCMAX)
+    print('MDCMAX',MDCMAX)
+
+    # need to create a matrix UE that will hold the extended spectrum
+    UE = np.zeros((MSCMAX,MDCMAX,NG))
+    #this will be like a meshgrid structure
+    #For extended frequencies indeces 0:ISM1 are the appended low frequencies
+    #ISM1:ISCHG should be original frequencies
+    #ISCHG:MSCMAX should be higher than before
+    #lets test
+    Extended_freq=np.zeros(MSCMAX)
+    print(ISM1)
+    print(ISCHG)
+    Extended_freq[-ISM1:ISCHG]=sigmas
+    print(Extended_freq)
+
+    #fill in extended freqs as needed...
+
+    return 0

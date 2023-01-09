@@ -1,6 +1,7 @@
 import CFx.io
 import CFx.wave
 import CFx.source
+import CFx.utils
 import numpy as np
 from mpi4py import MPI
 import ufl
@@ -50,8 +51,8 @@ y = 0
 
 f_min = 0.01
 f_max = .5
-deg_min = 80
-deg_max = 100
+deg_min = 50
+deg_max = 130
 
 
 
@@ -171,6 +172,12 @@ print("max SWc option2",np.amin(Swc))
 
 print("min Sbrk option 2",np.amax(Sbrk))
 print("max Sbrk option2",np.amin(Sbrk))
+
+print('sigs',new_coords)
+
+r=CFx.utils.DIA_weights(new_coords,np.linspace(theta_min,theta_max,n_theta+1),np.array([1]),g=9.81)
+
+
 dum.x.array[:] = Swc
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")
