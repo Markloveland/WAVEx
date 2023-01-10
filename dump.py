@@ -70,11 +70,28 @@ domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min])
 PETSc.Sys.Print("Switching to logarithmic spacing in frequency")
 #print(np.unique(domain2.geometry.x[:,0]))
 old_coords,inverted = np.unique(domain2.geometry.x[:,0],return_inverse=True)
+
 #modify x coords to be logarithmic
 gamma_space = (omega_max/omega_min)**(1/n_sigma)
 new_coords = gamma_space**(np.arange(n_sigma+1))*omega_min
 domain2.geometry.x[:,0] = new_coords[inverted]
 
+
+#save map for unique thetas
+thets_unique,inverse_thets = np.unique(domain2.geometry.x[:,1],return_inverse=True)
+
+#the map is side by side, append this
+map_to_matrix= np.array([inverted,inverse_thets]).T
+#need to flatten the map
+flat_map = np.array(map_to_matrix[:,0]*(n_theta+1)+map_to_matrix[:,1],dtype=np.int32)
+#need the inverse
+inverse_map = np.argsort(flat_map)
+
+print('unique coords',new_coords,thets_unique)
+print('potenital map',map_to_matrix[:5,:])
+print('flat map',flat_map[:5])
+print("inverse map",inverse_map[:5])
+print("corresponnding dof",domain2.geometry.x[inverse_map[:5],:])
 
 V2 = fem.FunctionSpace(domain2, ("CG", 1))
 u2 = ufl.TrialFunction(V2)
@@ -175,10 +192,11 @@ print("max Sbrk option2",np.amin(Sbrk))
 
 print('sigs',new_coords)
 
-r=CFx.utils.DIA_weights(new_coords,np.linspace(theta_min,theta_max,n_theta+1),np.array([1]),g=9.81)
+thetlist = np.linspace(theta_min,theta_max,n_theta+1)
+WWINT,WWAWG,WWSWG = CFx.utils.DIA_weights(new_coords,thetlist,np.array([1]),g=9.81)
+S_nl=CFx.utils.interpolate_for_DIA(WWINT,WWAWG,WWSWG,1,new_coords,thetlist,dum.vector,flat_map,inverse_map)
 
-
-dum.x.array[:] = Swc
+dum.x.array[:] = S_nl
 
 xdmf = io.XDMFFile(domain2.comm, "Outputs/JONSWAP_TEST/output.xdmf", "w")
 xdmf.write_mesh(domain2)

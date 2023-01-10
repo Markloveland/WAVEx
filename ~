@@ -203,7 +203,7 @@ def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
     print('IDHGH',IDHGH)
     print('MSCMAX',MSCMAX)
     print('MDCMAX',MDCMAX)
-    print('MDC4MI',MDC4MI)
+
     #*** Interpolation weights ***
     AWG1   = WIDP  * WISP;
     AWG2   = WIDP1 * WISP;
@@ -296,7 +296,7 @@ def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
     print('WWINT',WWINT)
     return WWINT,WWAWG,WWSWG
 
-def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_dof,g=9.81):
+def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat):
     
     MSC = len(sigmas)
     MDC = len(thetas)
@@ -304,50 +304,14 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     half_nsig_minus = int(half_nsig - 1)
     sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
     
-    MSC4MI = WWINT[14]
     MSCMAX = WWINT[18]
     MDCMAX = WWINT[19]
     ISM1 = WWINT[7]
     ISCHG = WWINT[11]
-    MDC4MI = WWINT[16]
+    MDC4MI = WWINT[14]
     MDC4MA = WWINT[15]
     IDCLOW = WWINT[12]
     IDCHGH = WWINT[13]
-    ISP1 = WWINT[5]
-    IDP1 = WWINT[1]
-    IDP = WWINT[0]
-    ISP = WWINT[4]
-    ISM = WWINT[6]
-    IDM1 = WWINT[3]
-    IDM = WWINT[2]
-
-   
-    ########################
-    #duplicate code, fix later
-    PQUAD1 = 0.25
-    PQUAD2 = 3e-7
-
-    snl_c1 = 1/(g**4)
-    lam1 = 0.25
-    C = 3e-7
-    snl_c2 = 5.5
-    snl_c3 = 0.833
-    snl_c4 = -1.25
-
-
-    #compute offsets for resonance conditions
-    #needed to get exxtents of extra grid
-    LAMM2  = (1-lam1)**2
-    LAMP2  = (1+lam1)**2
-    DELTH3 = np.arccos( (LAMM2**2+4-LAMP2**2) / (4.*LAMM2) ) #angle 1 33.557 in rad
-    AUX1 = np.sin(DELTH3)
-    DELTH4 = np.arcsin(-AUX1*LAMM2/LAMP2) #angle 2 -11.4783 in rad
-
-    #denominators for DIS
-    DAL1 = 1/((1.+lam1)**4)
-    DAL2   = 1. / ((1.-lam1)**4)
-    DAL3   = 2. * DAL1 * DAL2
-    #############################3
 
     # need to create a matrix UE that will hold the extended spectrum
     UE = np.zeros((MSCMAX,MDCMAX,NG))
@@ -357,6 +321,8 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     #ISCHG:MSCMAX should be higher than before
     #lets test
     Extended_freq=np.zeros(MSCMAX)
+    print(ISM1)
+    print(ISCHG)
     Extended_freq[-ISM1:ISCHG]=sigmas
 
 
@@ -375,78 +341,9 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     Narray = Nvals[map_to_mat].reshape(MSC,MDC)
     UEvals = np.multiply(Narray.T,sigmas).T*2*np.pi
 
+    print(np.amax(UEvals))
     UE[(-ISM1):ISCHG,-MDC4MI:(-MDC4MI+MDC),0] = UEvals
-    #add spectral tail
-    PWTAIL=4
-    FACHFR = 1./(sig_spacing**PWTAIL)
-    for a in range(ISCHG,MSCMAX):
-        UE[a,:,0] = UE[a-1,:,0]*FACHFR
     
-    #bilinear interpolation
-    I1 = -ISM1
-    I2 = ISCHG
-    J1 = IDCLOW -MDC4MI
-    J2 = IDCHGH - MDC4MI
-    print('J1',J1,IDCLOW,MDC4MI)
-    print(J2)
-    E00 = UE[I1:I2,J1:J2,0]
-    EP1 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1+IDP1:J2+IDP1,0] + \
-        WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1+IDP:J2+IDP,0] + \
-        WWAWG[2]*UE[I1+ISP:I2+ISP,J1+IDP1:J2+IDP1,0] + \
-        WWAWG[3]*UE[I1+ISP:I2+ISP,J1+IDP:J2+IDP,0]
-    EM1 = WWAWG[4]*UE[I1+ISM1:I2+ISM1, J1-IDM1:J2-IDM1,0] + \
-        WWAWG[5]*UE[I1+ISM1:I2+ISM1, J1-IDM:J2-IDM,0] + \
-        WWAWG[6]*UE[I1+ISM:I2+ISM, J1-IDM1:J2-IDM1,0] + \
-        WWAWG[7]*UE[I1+ISM:I2+ISM, J1-IDM:J2-IDM,0]
-
-    EP2 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1-IDP1:J2-IDP1,0] + \
-        WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1-IDP:J2-IDP,0] + \
-        WWAWG[2]*UE[I1+ISP:I2+ISP,J1-IDP1:J2-IDP1,0] + \
-        WWAWG[3]*UE[I1+ISP:I2+ISP,J1-IDP:J2-IDP,0]
-    EM2 = WWAWG[4]*UE[I1+ISM1:I2+ISM1, J1+IDM1:J2+IDM1,0] + \
-        WWAWG[5]*UE[I1+ISM1:I2+ISM1, J1+IDM:J2+IDM,0] + \
-        WWAWG[6]*UE[I1+ISM:I2+ISM, J1+IDM1:J2+IDM1,0] + \
-        WWAWG[7]*UE[I1+ISM:I2+ISM, J1+IDM:J2+IDM,0]
-    CONS = 3.7756e-04
-    AF11 = (Extended_freq/(2*np.pi))**11
-    FACTOR = CONS*np.multiply(E00.T,AF11[I1:I2]).T
-    SA1A = E00 *(EP1*DAL1 + EM1*DAL2)* PQUAD2
-    SA1B = SA1A - EP1*EM1*DAL3 * PQUAD2
-    SA2A = E00 * ( EP2*DAL1 + EM2*DAL2 )*PQUAD2
-    SA2B   = SA2A - EP2*EM2*DAL3*PQUAD2
-    
-    SA1 = np.zeros(UE.shape)
-    SA2 = np.zeros(UE.shape)
-
-    SA1[I1:I2,J1:J2,0] = FACTOR*SA1B
-    SA2[I1:I2,J1:J2,0] = FACTOR*SA2B
-
-    #compute DIA action
-    I1 = -MSC4MI
-    I2 = -MSC4MI + MSC
-    
-    J1 = - MDC4MI
-    J2 = -MDC4MI + MDC
-    SFNL = - 2. * ( SA1[I1:I2,J1:J2,0] + SA2[I1:I2,J1:J2,0] ) \
-            + WWAWG[0] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP1:J2-IDP1,0] + SA2[I1-ISP1:I2-ISP1,J1+IDP1:J2+IDP1,0] ) \
-            + WWAWG[1] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP:J2-IDP,0] + SA2[I1-ISP1:I2-ISP1,J1+IDP:J2+IDP,0] ) \
-            + WWAWG[2] * ( SA1[I1-ISP:I2-ISP,J1-IDP1:J2-IDP1,0] + SA2[I1-ISP:I2-ISP,J1+IDP1:J2+IDP1,0] ) \
-            + WWAWG[3] * ( SA1[I1-ISP:I2-ISP ,J1-IDP:J2-IDP,0] + SA2[I1-ISP:I2-ISP ,J1+IDP:J2+IDP,0] ) \
-            + WWAWG[4] * ( SA1[I1-ISM1:I2-ISM1,J1+IDM1:J2+IDM1,0] + SA2[I1-ISM1:I2-ISM1,J1-IDM1:J2-IDM1,0] ) \
-            + WWAWG[5] * ( SA1[I1-ISM1:I2-ISM1,J1+IDM:J2+IDM,0] + SA2[I1-ISM1:I2-ISM1,J1-IDM:J2-IDM,0] ) \
-            + WWAWG[6] * ( SA1[I1-ISM:I2-ISM ,J1+IDM1:J2+IDM1,0] + SA2[I1-ISM:I2-ISM ,J1-IDM1:J2-IDM1,0] ) \
-            + WWAWG[7] * ( SA1[I1-ISM:I2-ISM ,J1+IDM:J2+IDM,0] + SA2[I1-ISM:I2-ISM ,J1-IDM:J2-IDM,0] )
-    
-    #convert back to action balance
-    SFNL = np.multiply(SFNL.T,1/(2*np.pi*sigmas)).T
-
-    #now remap back to fem mesh
-    S_nl = SFNL.flatten()[map_to_dof] 
-
-    print('SFNL',SFNL.shape)
-    print('Eoo shape',E00.shape)
-    print('Ep1 shape', EP1.shape)
-    print('EM1 shape',EM1.shape)
     #test by plotting the meshgrid
     #this can;t be correct
     extended_thetas = np.zeros(MDCMAX)
@@ -458,5 +355,5 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     #print('should be ',MSC*MDC)
     #print('IDstuff',MDCMAX)
     print(Extended_freq)
-    return S_nl
+    return 0
 
