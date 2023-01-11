@@ -296,7 +296,7 @@ def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
     print('WWINT',WWINT)
     return WWINT,WWAWG,WWSWG
 
-def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_dof,g=9.81):
+def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,g=9.81):
     
     MSC = len(sigmas)
     MDC = len(thetas)
@@ -320,7 +320,7 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     ISM = WWINT[6]
     IDM1 = WWINT[3]
     IDM = WWINT[2]
-
+    
    
     ########################
     #duplicate code, fix later
@@ -371,24 +371,47 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     #print('MSCMAX',MSCMAX)
     #print('ISP1,MSC4MA',WWINT[1],WWINT[15])
 
-    Nvals = N.array
+    Nvals = np.array(N.array)*all_sigmas*2*np.pi
     Narray = Nvals[map_to_mat].reshape(MSC,MDC)
-    UEvals = np.multiply(Narray.T,sigmas).T*2*np.pi
+    Narray = Narray
+    print('Narray shape',Narray.shape)
+    UEvals = Narray
 
-    UE[(-ISM1):ISCHG,-MDC4MI:(-MDC4MI+MDC),0] = UEvals
+    temparr = N.array[map_to_mat].reshape(MSC,MDC)
+    print('Narray max should be here',temparr[24,:])
+    print('actual max',np.amax(temparr),np.argmax(temparr))
+    #this doesnt work
+    #np.multiply(Narray.T,sigmas).T*2*np.pi
+    J1 = -MDC4MI+1
+    J2 = -MDC4MI+MDC+1
+    I1 = -MSC4MI+1
+    I2 = -MSC4MI+MSC+1
+    
+    UE[I1:I2,J1:J2,0] = UEvals
+    
+    
     #add spectral tail
     PWTAIL=4
     FACHFR = 1./(sig_spacing**PWTAIL)
     for a in range(ISCHG,MSCMAX):
         UE[a,:,0] = UE[a-1,:,0]*FACHFR
-    
+
+    print("where max should be")
+    print(UE.shape)
+    print(UE[25:30,45:50,0])
+    print('UE max and loc')
+    print(np.amax(UE))
+    print(np.argmax(UE))
+
+    #looks like up to hear is fixed so far#######stopping point############3
+
     #bilinear interpolation
     I1 = -ISM1
-    I2 = ISCHG
+    I2 = ISCHG-MSC4MI
     J1 = IDCLOW -MDC4MI
     J2 = IDCHGH - MDC4MI
-    print('J1',J1,IDCLOW,MDC4MI)
-    print(J2)
+    print('I range (should be 4 and 48)',I1,I2)
+    print('J1 (should be25 and 71)',J1,J2)
     E00 = UE[I1:I2,J1:J2,0]
     EP1 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1+IDP1:J2+IDP1,0] + \
         WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1+IDP:J2+IDP,0] + \
@@ -421,6 +444,8 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
     SA1[I1:I2,J1:J2,0] = FACTOR*SA1B
     SA2[I1:I2,J1:J2,0] = FACTOR*SA2B
 
+    print('max of sa1',np.amax(SA1),np.argmax(SA1))
+    print('random value of sa1')
     #compute DIA action
     I1 = -MSC4MI
     I2 = -MSC4MI + MSC
@@ -438,6 +463,7 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,map_to_mat,map_to_d
             + WWAWG[7] * ( SA1[I1-ISM:I2-ISM ,J1+IDM:J2+IDM,0] + SA2[I1-ISM:I2-ISM ,J1-IDM:J2-IDM,0] )
     
     #convert back to action balance
+    print('SFNL max min',np.amin(SFNL),np.amax(SFNL))
     SFNL = np.multiply(SFNL.T,1/(2*np.pi*sigmas)).T
 
     #now remap back to fem mesh
