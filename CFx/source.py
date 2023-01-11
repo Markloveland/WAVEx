@@ -162,6 +162,7 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     #print('Shape of sigmas,k,depth,N',k.shape,sigmas.shape,depth.shape,E.getArray().shape)
     #print('Shape of local size2 kronecker depth', local_size2,np.kron(depth,np.ones(local_size2)).shape )
     S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh(k*np.kron(depth,np.ones(local_size2))))**2*np.maximum(0.0,E.getArray())
+    
     return S_bfr
 
 
@@ -203,134 +204,194 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
     S_brk = np.kron(factor1,np.ones(local_size2))*np.maximum(0.0,E.getArray())
     return S_brk
 
-def S_nl4_DIA(sigmas,thetas,N,V2,mesh2):
-    ##DIA approximation
-    #parameters for DIA
-    #note I think we may still need to convert back to rel. rad. frequency
-    #but idk
-    #convert spectrum to from rad. freq. to freq by multiplying by Jacob
-    Ef = N.getArray()*2*np.pi*sigmas
 
-    #resonance conditions for quadruplets
-    lambda1=1+0.25
-    lambda2=1-.25
-    theta1=11.48*np.pi/180#in degrees
-    theta2=-33.56*np.pi/180#in degrees
-    DAL1   = 1. / (lambda1)**4
-    DAL2   = 1. / (lambda2)**4
-    DAL3   = 2. * DAL1 * DAL2
-
-    #first get the structured version of the dofs
-    #need to convert to regular grid
-    dof=np.zeros((len(sigmas),2))
-    dof[:,0]=sigmas
-    dof[:,1]=thetas
-    Matrix_indeces=dof_2_meshgrid_indeces(dof)
-    mini_sigma=np.unique(sigmas)
-    mini_thets=np.unique(thetas)#indeces_to_meshgrid(thets,Matrix_indeces)[:,0]
-
-
-    sig_low=min(mini_sigma)
-    sig_high=max(mini_sigma)
-    thet_low=min(mini_thets)
-    thet_high=max(mini_thets)
-    num_thet=len(mini_thets)
-    num_sigma=len(mini_sigma)
-
-    #establish extended spectrum to interpolate from
-    sigmas_e=np.insert(mini_sigma,0,sig_low/lambda1)
-    sigmas_e=np.append(sigmas_e,sig_high/lambda2)
-
-    '''
-    thetas_e=np.insert(mini_thets,0,thet_low-max(np.absolute([theta1,theta2])))
-    thetas_e=np.append(thetas_e,thet_high+max(np.absolute([theta1,theta2])))
-
-
-    SIGMAS_E,THETS_E=np.meshgrid(sigmas_e,thetas_e)
-
-    #now interpolote given spectrum onto bigger grid, also need to figure out
-    #to add exponential tail
-    E2=indeces_to_meshgrid(E,Matrix_indeces)
-    f=interp.interp2d(mini_sigma,mini_thets,E2,fill_value=0,bounds_error=False)
-    E00=f(sigmas_e,thetas_e)
+def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,g=9.81):
+    MSC = DIA_PARAMS[0]
+    MDC = DIA_PARAMS[1]
+    sig_spacing = DIA_PARAMS[2]
+    CONS = DIA_PARAMS[3]
+    DAL1 = DIA_PARAMS[4]
+    DAL2 = DIA_PARAMS[5]
+    DAL3 = DIA_PARAMS[6]
+    PQUAD2 = DIA_PARAMS[7]
+    Extended_freq = DIA_PARAMS[8]
+    #MSC = len(sigmas)
+    #MDC = len(thetas)
+    #half_nsig = int(np.floor(MSC/2))
+    #half_nsig_minus = int(half_nsig - 1)
+    #sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
     
-    #Need an even larger extenion to interpolate from
-    #will keep this commented for now
-    #sigmas_e2=[sig_low*(lambda2/lambda1);sigs';sig_high*lambda1/lambda2];
-    #thetas_e2=[thetlow-2*max(abs([theta1,theta2]));thetas';thethigh+2*max(abs([theta1,theta2]))];
-    #[SIGMAS_E2,THETAS_E2]=meshgrid(sigmas_e2,thetas_e2);
-    #[N_ext2,~,~]=JONSWAP_2D_rad(sigmas_e2,thetas_e2,Hs,Pkper,MDIR,MSInput,LSHAPEin,DSHAPL);
-    #N_ext2=N_ext2*2*pi;
+    MSC4MI = WWINT[14]
+    MSCMAX = WWINT[18]
+    MDCMAX = WWINT[19]
+    ISM1 = WWINT[7]
+    ISCHG = WWINT[11]
+    MDC4MI = WWINT[16]
+    MDC4MA = WWINT[15]
+    IDCLOW = WWINT[12]
+    IDCHGH = WWINT[13]
+    ISP1 = WWINT[5]
+    IDP1 = WWINT[1]
+    IDP = WWINT[0]
+    ISP = WWINT[4]
+    ISM = WWINT[6]
+    IDM1 = WWINT[3]
+    IDM = WWINT[2]
+    ISHGH = WWINT[9]    
+    ISLOW = WWINT[8]
+    ISCLW = WWINT[10]
+
+    #############################3
+
+    # need to create a matrix UE that will hold the extended spectrum
+    UE = np.zeros((MSCMAX,MDCMAX,NG))
+    #this will be like a meshgrid structure
+    #For extended frequencies indeces 0:ISM1 are the appended low frequencies
+    #ISM1:ISCHG should be original frequencies
+    #ISCHG:MSCMAX should be higher than before
+    #lets test
+    #Extended_freq=np.zeros(MSCMAX)
+    #Extended_freq[-MSC4MI+1:-MSC4MI+1+MSC]=sigmas
+
+    #compute the parts that aren't in the range
+    #Extended_freq[-MSC4MI+1+MSC:] = sig_spacing**(np.arange(1,ISHGH-MSC+1))*sigmas[-1]
+    #Extended_freq[:-MSC4MI+1] = sig_spacing**(np.arange(ISLOW-1,0))*sigmas[0]
+
+    #fill in extended freqs as needed...
+    #compute extended spectrum, this is not set up for periodic full circle. directions outside of spectrum will be set to 0
+    #need to get a map from the mesh to a structured matrix
+    #print('ISM1,MSC4MI',ISM1,WWINT[14])
+    #print('MSCMAX',MSCMAX)
+    #print('ISP1,MSC4MA',WWINT[1],WWINT[15])
+
+    Nvals = np.array(N.getArray())*all_sigmas*2*np.pi
+    Narray = Nvals[map_to_mat].reshape(MSC,MDC,NG)
+    Narray = Narray
+    #print('Narray shape',Narray.shape)
+    UEvals = Narray
+
+    temparr = N.array[map_to_mat].reshape(MSC,MDC,NG)
+    #print('Narray max should be here',temparr[24,12,0])
+    #print('actual max',np.amax(temparr),np.argmax(temparr))
+    #this doesnt work
+    #np.multiply(Narray.T,sigmas).T*2*np.pi
+    I1 = -MSC4MI+1
+    I2 = -MSC4MI+MSC+1
+    J1 = -MDC4MI+1
+    J2 = -MDC4MI+MDC+1
+
+    #print('IDDUM, should be 72,45',J2,I2)
+    UE[I1:I2,J1:J2,:] = UEvals
     
-    sigmas_e2=sigmas_e
-    thetas_e2=thetas_e
-    N_ext2=E00
-
-    #now obtain the 4 shifted bins
-
-    #here is spectra shifted by +1 in frequency,+1 in theta1
-    sigmas_01=lambda1*sigmas_e
-    thetas_01=theta1+thetas_e
-    f=interp.interp2d(sigmas_e2,thetas_e2,E00,fill_value=0,bounds_error=False)
-    EP1=f(sigmas_01,thetas_01)    
     
+    #add spectral tail
+    PWTAIL=4
+    FACHFR = 1./(sig_spacing**PWTAIL)
+    for a in range(MSC+1-MSC4MI,ISHGH-MSC4MI+1):
+        UE[a,:,:] = UE[a-1,:,:]*FACHFR
 
-    #here is spectra shifted by -1 in frequency, -1 in theta2
-    sigmas_02=lambda2*sigmas_e
-    thetas_02=theta2+thetas_e
-    EM1=f(sigmas_02,thetas_02)
+    #print("where max should be")
+    #print(UE.shape)
+    #print(UE[44,48,0])
+    #print('UE max and loc')
+    #print(np.amax(UE))
+    #print(np.argmax(UE))
+
+    #looks like up to hear is fixed so far#######stopping point############3
+
+    #bilinear interpolation
+    I1 = ISCLW-MSC4MI
+    I2 = ISCHG-MSC4MI+1
+    J1 = IDCLOW -MDC4MI
+    J2 = IDCHGH - MDC4MI+1
 
 
-    #now flipping directions we obtain +1 in freq, -1 in theta1
-    sigmas_03=lambda1*sigmas_e
-    thetas_03=-theta1+thetas_e
-    EP2=f(sigmas_03,thetas_03)
+    print('I range (should be 4 and 49)',I1,I2)
+    print('J1 (should be 25 and 72)',J1,J2)
+    E00 = UE[I1:I2,J1:J2,:]
+    EP1 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1+IDP1:J2+IDP1,:] + \
+        WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1+IDP:J2+IDP,:] + \
+        WWAWG[2]*UE[I1+ISP:I2+ISP,J1+IDP1:J2+IDP1,:] + \
+        WWAWG[3]*UE[I1+ISP:I2+ISP,J1+IDP:J2+IDP,:]
+    EM1 = WWAWG[4]*UE[I1+ISM1:I2+ISM1, J1-IDM1:J2-IDM1,:] + \
+        WWAWG[5]*UE[I1+ISM1:I2+ISM1, J1-IDM:J2-IDM,:] + \
+        WWAWG[6]*UE[I1+ISM:I2+ISM, J1-IDM1:J2-IDM1,:] + \
+        WWAWG[7]*UE[I1+ISM:I2+ISM, J1-IDM:J2-IDM,:]
 
-
-    #and finally -1 in freq -1 in theta2
-    sigmas_04=lambda2*sigmas_e
-    thetas_04=-theta2+thetas_e
-    EM2=f(sigmas_04,thetas_04)
+    EP2 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1-IDP1:J2-IDP1,:] + \
+        WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1-IDP:J2-IDP,:] + \
+        WWAWG[2]*UE[I1+ISP:I2+ISP,J1-IDP1:J2-IDP1,:] + \
+        WWAWG[3]*UE[I1+ISP:I2+ISP,J1-IDP:J2-IDP,:]
+    EM2 = WWAWG[4]*UE[I1+ISM1:I2+ISM1, J1+IDM1:J2+IDM1,:] + \
+        WWAWG[5]*UE[I1+ISM1:I2+ISM1, J1+IDM:J2+IDM,:] + \
+        WWAWG[6]*UE[I1+ISM:I2+ISM, J1+IDM1:J2+IDM1,:] + \
+        WWAWG[7]*UE[I1+ISM:I2+ISM, J1+IDM:J2+IDM,:]
+    AF11 = (Extended_freq/(2*np.pi))**11
+    #print('AF11',AF11.shape,AF11[:10])
+    #print('EP1 shape',EP1.shape)
+    #print('max EP1',np.amax(EP1),np.argmax(EP1),EP1[21,20,0])    
+    #print('max EM1',np.amax(EM1),np.argmax(EM1),EM1[27,33,0])    
+    #print('max EP2',np.amax(EP2),np.argmax(EP2),EP2[21,26,0])    
+    #print('max EM2',np.amax(EM2),np.argmax(EM2),EM2[27,13,0])    
     
-    #calculate the nonlinear reaction as wavewatch does
-    #CONS=3*10^7*9.81^(-4);
-    SNLC1  = 1. / g**4
-    SNLCS1 = 5.5
-    SNLCS2 = 0.833
-    SNLCS3 = -1.25
-    X = 1#max( 0.75 * DEP2(KCGRD(1)) * KMESPC , 0.5 );
-    X2 = 1#% MAX ( -1.E15, SNLCS3*X)
-    CONS   = SNLC1 * ( 1. + SNLCS1/X * (1.-SNLCS2*X) * exp(X2))
-    PQUAD2= 3.E7
-    FACTOR = CONS * (SIGMAS_E/(2*np.pi))**11 * E00
-    SA1A   = E00 * ( EP1*DAL1 + EM1*DAL2 )*PQUAD2
-    SA1B   = SA1A - EP1*EM1*DAL3*PQUAD2
-    SA2A   = E00 * ( EP2*DAL1 + EM2*DAL2 )*PQUAD2
+    
+    FACTOR = CONS*np.multiply(E00.T,AF11[I1:I2]).T
+    #print('Factor shape,max',FACTOR.shape,np.max(FACTOR),FACTOR[44,23])
+    
+    SA1A = E00 *(EP1*DAL1 + EM1*DAL2)* PQUAD2
+    SA1B = SA1A - EP1*EM1*DAL3 * PQUAD2
+    SA2A = E00 * ( EP2*DAL1 + EM2*DAL2 )*PQUAD2
     SA2B   = SA2A - EP2*EM2*DAL3*PQUAD2
+    
 
-    SA1 = FACTOR * SA1B
-    SA2 = FACTOR * SA2B
+    #print('SA1A info',SA1A.shape,np.amax(SA1A),SA1A[23,21])
+    #print('DAL1,DAl2,PQAD',DAL1,DAL2,PQUAD2)
+    SA1 = np.zeros(UE.shape)
+    SA2 = np.zeros(UE.shape)
 
-    del_Snl1=SA1+SA2;
+
     
-    del_Snl1=del_Snl1[1:num_thet+1,1:num_sigma+1]
-    #print(del_Snl1.shape)
-    #now interpolate one last time
-    f_SA1=interp.interp2d(sigmas_01,thetas_01,SA1,fill_value=0,bounds_error=False)
-    f_SA2=interp.interp2d(sigmas_03,thetas_03,SA2,fill_value=0,bounds_error=False)
-    del_Snl2=f_SA1(mini_sigma,mini_thets)+f_SA2(mini_sigma,mini_thets)
+    SA1[I1:I2,J1:J2,:] = FACTOR*SA1B
+    SA2[I1:I2,J1:J2,:] = FACTOR*SA2B
+
+    #print('max of sa1',np.amax(SA1),np.argmax(SA1))
+    #print('random value of sa1')
+    #compute DIA action
+    I1 = -MSC4MI+1
+    I2 = -MSC4MI + MSC +1
     
-    f_SA1=interp.interp2d(sigmas_02,thetas_02,SA1,fill_value=0,bounds_error=False)
-    f_SA2=interp.interp2d(sigmas_04,thetas_04,SA2,fill_value=0,bounds_error=False)
-    del_Snl3=f_SA1(mini_sigma,mini_thets)+f_SA2(mini_sigma,mini_thets)
+    J1 = - MDC4MI+1
+    J2 = -MDC4MI + MDC+1
+
+    #print('indeces should be 4,45,36,61',I1,I2,J1,J2)
+    SFNL = - 2. * ( SA1[I1:I2,J1:J2,:] + SA2[I1:I2,J1:J2,:] ) \
+            + WWAWG[0] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP1:J2-IDP1,:] + SA2[I1-ISP1:I2-ISP1,J1+IDP1:J2+IDP1,:] ) \
+            + WWAWG[1] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP:J2-IDP,:] + SA2[I1-ISP1:I2-ISP1,J1+IDP:J2+IDP,:] ) \
+            + WWAWG[2] * ( SA1[I1-ISP:I2-ISP,J1-IDP1:J2-IDP1,:] + SA2[I1-ISP:I2-ISP,J1+IDP1:J2+IDP1,:] ) \
+            + WWAWG[3] * ( SA1[I1-ISP:I2-ISP ,J1-IDP:J2-IDP,:] + SA2[I1-ISP:I2-ISP ,J1+IDP:J2+IDP,:] ) \
+            + WWAWG[4] * ( SA1[I1-ISM1:I2-ISM1,J1+IDM1:J2+IDM1,:] + SA2[I1-ISM1:I2-ISM1,J1-IDM1:J2-IDM1,:] ) \
+            + WWAWG[5] * ( SA1[I1-ISM1:I2-ISM1,J1+IDM:J2+IDM,:] + SA2[I1-ISM1:I2-ISM1,J1-IDM:J2-IDM,:] ) \
+            + WWAWG[6] * ( SA1[I1-ISM:I2-ISM ,J1+IDM1:J2+IDM1,:] + SA2[I1-ISM:I2-ISM ,J1-IDM1:J2-IDM1,:] ) \
+            + WWAWG[7] * ( SA1[I1-ISM:I2-ISM ,J1+IDM:J2+IDM,:] + SA2[I1-ISM:I2-ISM ,J1-IDM:J2-IDM,:] )
     
+    #convert back to action balance
     
-    #now calculate source term
-    S_nl4=-2*del_Snl1+del_Snl2+del_Snl3
-    #and lastly reshape
-    S_nl4=meshgrid_to_dof(S_nl4,Matrix_indeces)
-    '''
-    return S_nl4
+    SFNL = np.multiply(SFNL.T,1/(2*np.pi*sigmas)).T
+
+    #print('SFNL max min',np.amin(SFNL),np.amax(SFNL),SFNL[21,1])
+    #now remap back to fem mesh
+    S_nl = SFNL.flatten()[map_to_dof] 
+
+    #print('SFNL',SFNL.shape)
+    #print('Eoo shape',E00.shape)
+    #print('Ep1 shape', EP1.shape)
+    #print('EM1 shape',EM1.shape)
+    #test by plotting the meshgrid
+    #this can;t be correct
+    return S_nl
+
+
+
 
 def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
     #calculate any necessary integral parameters

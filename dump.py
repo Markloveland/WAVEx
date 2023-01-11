@@ -82,6 +82,7 @@ thets_unique,inverse_thets = np.unique(domain2.geometry.x[:,1],return_inverse=Tr
 
 #the map is side by side, append this
 map_to_matrix= np.array([inverted,inverse_thets]).T
+map_to_matrix = np.kron(1,map_to_matrix)
 print('map_to_matrix shape',map_to_matrix.shape)
 #need to flatten the map
 flat_map = np.array(map_to_matrix[:,0]*(n_theta+1)+map_to_matrix[:,1],dtype=np.int32)
@@ -195,7 +196,7 @@ print('sigs',new_coords)
 
 thetlist = np.linspace(theta_min,theta_max,n_theta+1)
 WWINT,WWAWG,WWSWG,DIA_PARAMS = CFx.utils.DIA_weights(new_coords,thetlist,g=9.81)
-S_nl=CFx.utils.interpolate_for_DIA(WWINT,WWAWG,WWSWG,1,DIA_PARAMS,new_coords,thetlist,dum.vector,sigma_vec,inverse_map,flat_map)
+S_nl=CFx.source.Snl_DIA(WWINT,WWAWG,WWSWG,1,DIA_PARAMS,new_coords,thetlist,dum.vector,sigma_vec,inverse_map,flat_map)
 print('max/min Snl',np.amax(S_nl),np.amin(S_nl))
 dum.x.array[:] = S_nl
 
