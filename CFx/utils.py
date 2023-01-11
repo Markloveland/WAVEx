@@ -453,7 +453,7 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     SA2B   = SA2A - EP2*EM2*DAL3*PQUAD2
     
 
-    print('SA1A info',SA1A.shape,np.amax(SA1A))
+    print('SA1A info',SA1A.shape,np.amax(SA1A),SA1A[23,21])
     print('DAL1,DAl2,PQAD',DAL1,DAL2,PQUAD2)
     SA1 = np.zeros(UE.shape)
     SA2 = np.zeros(UE.shape)
@@ -466,11 +466,13 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     print('max of sa1',np.amax(SA1),np.argmax(SA1))
     print('random value of sa1')
     #compute DIA action
-    I1 = -MSC4MI
-    I2 = -MSC4MI + MSC
+    I1 = -MSC4MI+1
+    I2 = -MSC4MI + MSC +1
     
-    J1 = - MDC4MI
-    J2 = -MDC4MI + MDC
+    J1 = - MDC4MI+1
+    J2 = -MDC4MI + MDC+1
+
+    print('indeces should be 4,45,36,61',I1,I2,J1,J2)
     SFNL = - 2. * ( SA1[I1:I2,J1:J2,0] + SA2[I1:I2,J1:J2,0] ) \
             + WWAWG[0] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP1:J2-IDP1,0] + SA2[I1-ISP1:I2-ISP1,J1+IDP1:J2+IDP1,0] ) \
             + WWAWG[1] * ( SA1[I1-ISP1:I2-ISP1,J1-IDP:J2-IDP,0] + SA2[I1-ISP1:I2-ISP1,J1+IDP:J2+IDP,0] ) \
