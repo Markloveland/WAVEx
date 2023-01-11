@@ -320,12 +320,14 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     ISM = WWINT[6]
     IDM1 = WWINT[3]
     IDM = WWINT[2]
-    
-   
+    ISHGH = WWINT[9]    
+    ISLOW = WWINT[8]
+    ISCLW = WWINT[10]
+
     ########################
     #duplicate code, fix later
     PQUAD1 = 0.25
-    PQUAD2 = 3e-7
+    PQUAD2 = 3e7
 
     snl_c1 = 1/(g**4)
     lam1 = 0.25
@@ -357,12 +359,11 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     #ISCHG:MSCMAX should be higher than before
     #lets test
     Extended_freq=np.zeros(MSCMAX)
-    Extended_freq[-ISM1:ISCHG]=sigmas
-
+    Extended_freq[-MSC4MI+1:-MSC4MI+1+MSC]=sigmas
 
     #compute the parts that aren't in the range
-    Extended_freq[ISCHG:] = sig_spacing**(np.arange(1,1+MSCMAX-ISCHG))*sigmas[-1]
-    Extended_freq[:-ISM1] = sig_spacing**(np.arange(ISM1,0))*sigmas[0]
+    Extended_freq[-MSC4MI+1+MSC:] = sig_spacing**(np.arange(1,ISHGH-MSC+1))*sigmas[-1]
+    Extended_freq[:-MSC4MI+1] = sig_spacing**(np.arange(ISLOW-1,0))*sigmas[0]
 
     #fill in extended freqs as needed...
     #compute extended spectrum, this is not set up for periodic full circle. directions outside of spectrum will be set to 0
@@ -378,27 +379,28 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     UEvals = Narray
 
     temparr = N.array[map_to_mat].reshape(MSC,MDC)
-    print('Narray max should be here',temparr[24,:])
+    print('Narray max should be here',temparr[24,12])
     print('actual max',np.amax(temparr),np.argmax(temparr))
     #this doesnt work
     #np.multiply(Narray.T,sigmas).T*2*np.pi
-    J1 = -MDC4MI+1
-    J2 = -MDC4MI+MDC+1
     I1 = -MSC4MI+1
     I2 = -MSC4MI+MSC+1
-    
+    J1 = -MDC4MI+1
+    J2 = -MDC4MI+MDC+1
+
+    print('IDDUM, should be 72,45',J2,I2)
     UE[I1:I2,J1:J2,0] = UEvals
     
     
     #add spectral tail
     PWTAIL=4
     FACHFR = 1./(sig_spacing**PWTAIL)
-    for a in range(ISCHG,MSCMAX):
+    for a in range(MSC+1-MSC4MI,ISHGH-MSC4MI+1):
         UE[a,:,0] = UE[a-1,:,0]*FACHFR
 
     print("where max should be")
     print(UE.shape)
-    print(UE[25:30,45:50,0])
+    print(UE[44,48,0])
     print('UE max and loc')
     print(np.amax(UE))
     print(np.argmax(UE))
@@ -406,12 +408,14 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     #looks like up to hear is fixed so far#######stopping point############3
 
     #bilinear interpolation
-    I1 = -ISM1
-    I2 = ISCHG-MSC4MI
+    I1 = ISCLW-MSC4MI
+    I2 = ISCHG-MSC4MI+1
     J1 = IDCLOW -MDC4MI
-    J2 = IDCHGH - MDC4MI
-    print('I range (should be 4 and 48)',I1,I2)
-    print('J1 (should be25 and 71)',J1,J2)
+    J2 = IDCHGH - MDC4MI+1
+
+
+    print('I range (should be 4 and 49)',I1,I2)
+    print('J1 (should be 25 and 72)',J1,J2)
     E00 = UE[I1:I2,J1:J2,0]
     EP1 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1+IDP1:J2+IDP1,0] + \
         WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1+IDP:J2+IDP,0] + \
@@ -432,15 +436,30 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
         WWAWG[7]*UE[I1+ISM:I2+ISM, J1+IDM:J2+IDM,0]
     CONS = 3.7756e-04
     AF11 = (Extended_freq/(2*np.pi))**11
+    print('AF11',AF11.shape,AF11[:10])
+    print('EP1 shape',EP1.shape)
+    print('max EP1',np.amax(EP1),np.argmax(EP1),EP1[21,20])    
+    print('max EM1',np.amax(EM1),np.argmax(EM1),EM1[27,33])    
+    print('max EP2',np.amax(EP2),np.argmax(EP2),EP2[21,26])    
+    print('max EM2',np.amax(EM2),np.argmax(EM2),EM2[27,13])    
+    
+    
     FACTOR = CONS*np.multiply(E00.T,AF11[I1:I2]).T
+    print('Factor shape,max',FACTOR.shape,np.max(FACTOR),FACTOR[44,23])
+    
     SA1A = E00 *(EP1*DAL1 + EM1*DAL2)* PQUAD2
     SA1B = SA1A - EP1*EM1*DAL3 * PQUAD2
     SA2A = E00 * ( EP2*DAL1 + EM2*DAL2 )*PQUAD2
     SA2B   = SA2A - EP2*EM2*DAL3*PQUAD2
     
+
+    print('SA1A info',SA1A.shape,np.amax(SA1A))
+    print('DAL1,DAl2,PQAD',DAL1,DAL2,PQUAD2)
     SA1 = np.zeros(UE.shape)
     SA2 = np.zeros(UE.shape)
 
+
+    
     SA1[I1:I2,J1:J2,0] = FACTOR*SA1B
     SA2[I1:I2,J1:J2,0] = FACTOR*SA2B
 
