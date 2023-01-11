@@ -194,8 +194,8 @@ print("max Sbrk option2",np.amin(Sbrk))
 print('sigs',new_coords)
 
 thetlist = np.linspace(theta_min,theta_max,n_theta+1)
-WWINT,WWAWG,WWSWG = CFx.utils.DIA_weights(new_coords,thetlist,np.array([1]),g=9.81)
-S_nl=CFx.utils.interpolate_for_DIA(WWINT,WWAWG,WWSWG,1,new_coords,thetlist,dum.vector,sigma_vec,inverse_map,flat_map)
+WWINT,WWAWG,WWSWG,DIA_PARAMS = CFx.utils.DIA_weights(new_coords,thetlist,g=9.81)
+S_nl=CFx.utils.interpolate_for_DIA(WWINT,WWAWG,WWSWG,1,DIA_PARAMS,new_coords,thetlist,dum.vector,sigma_vec,inverse_map,flat_map)
 print('max/min Snl',np.amax(S_nl),np.amin(S_nl))
 dum.x.array[:] = S_nl
 

@@ -125,22 +125,27 @@ def ADCIRC_mesh_gen(comm,file_path):
 
 
 #generate interpolation weights for DIA, same idea as SWAN
-def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
+def DIA_weights(sigmas,thetas,g=9.81):
     #sigmas should be number of unique frequencies!! (NOT vector of dof in x)
     MSC = len(sigmas)
     print('MSC',MSC)
     MDC = len(thetas)
-    NG = len(geographic_nodes)
+    #NG = len(geographic_nodes)
     half_nsig = int(np.floor(MSC/2))
     half_nsig_minus = int(half_nsig - 1)
     sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
+    PQUAD2=3e7
     snl_c1 = 1/(g**4)
     lam1 = 0.25
     C = 3e-7
     snl_c2 = 5.5
     snl_c3 = 0.833
     snl_c4 = -1.25
-
+    
+    X = 1
+    X2 = 1
+    CONS   = snl_c1* ( 1 + snl_c2/X * (1.-snl_c3*X) * np.exp(X2))
+    
 
     #compute offsets for resonance conditions
     #needed to get exxtents of extra grid
@@ -291,18 +296,26 @@ def DIA_weights(sigmas,thetas,geographic_nodes,g=9.81):
     WWINT = np.array([IDP,IDP1,IDM,IDM1,ISP,ISP1,ISM,ISM1,ISLOW,ISHGH,ISCLW,ISCHG,IDLOW,IDHGH,MSC4MI,MSC4MA,MDC4MI,MDC4MA,MSCMAX,MDCMAX,IDPP,IDMM,ISPP,ISMM],dtype=np.int32)
     WWAWG = np.array([AWG1,AWG2,AWG3,AWG4,AWG5,AWG6,AWG7,AWG8])
     WWSWG = np.array([SWG1,SWG2,SWG3,SWG4,SWG5,SWG6,SWG7,SWG8])
+    DIA_PARAMS = [MSC,MDC,sig_spacing,CONS,DAL1,DAL2,DAL3,PQUAD2]
     WWINT[12] = 1- max( WWINT[3], WWINT[1] )
     WWINT[13] = MDC + max( WWINT[3], WWINT[1] )
     print('WWINT',WWINT)
-    return WWINT,WWAWG,WWSWG
+    return WWINT,WWAWG,WWSWG,DIA_PARAMS
 
-def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,g=9.81):
-    
-    MSC = len(sigmas)
-    MDC = len(thetas)
-    half_nsig = int(np.floor(MSC/2))
-    half_nsig_minus = int(half_nsig - 1)
-    sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
+def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,g=9.81):
+    MSC = DIA_PARAMS[0]
+    MDC = DIA_PARAMS[1]
+    sig_spacing = DIA_PARAMS[2]
+    CONS = DIA_PARAMS[3]
+    DAL1 = DIA_PARAMS[4]
+    DAL2 = DIA_PARAMS[5]
+    DAL3 = DIA_PARAMS[6]
+    PQUAD2 = DIA_PARAMS[7]
+    #MSC = len(sigmas)
+    #MDC = len(thetas)
+    #half_nsig = int(np.floor(MSC/2))
+    #half_nsig_minus = int(half_nsig - 1)
+    #sig_spacing = sigmas[half_nsig]/sigmas[half_nsig_minus]
     
     MSC4MI = WWINT[14]
     MSCMAX = WWINT[18]
@@ -324,31 +337,6 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
     ISLOW = WWINT[8]
     ISCLW = WWINT[10]
 
-    ########################
-    #duplicate code, fix later
-    PQUAD1 = 0.25
-    PQUAD2 = 3e7
-
-    snl_c1 = 1/(g**4)
-    lam1 = 0.25
-    C = 3e-7
-    snl_c2 = 5.5
-    snl_c3 = 0.833
-    snl_c4 = -1.25
-
-
-    #compute offsets for resonance conditions
-    #needed to get exxtents of extra grid
-    LAMM2  = (1-lam1)**2
-    LAMP2  = (1+lam1)**2
-    DELTH3 = np.arccos( (LAMM2**2+4-LAMP2**2) / (4.*LAMM2) ) #angle 1 33.557 in rad
-    AUX1 = np.sin(DELTH3)
-    DELTH4 = np.arcsin(-AUX1*LAMM2/LAMP2) #angle 2 -11.4783 in rad
-
-    #denominators for DIS
-    DAL1 = 1/((1.+lam1)**4)
-    DAL2   = 1. / ((1.-lam1)**4)
-    DAL3   = 2. * DAL1 * DAL2
     #############################3
 
     # need to create a matrix UE that will hold the extended spectrum
@@ -434,7 +422,6 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
         WWAWG[5]*UE[I1+ISM1:I2+ISM1, J1+IDM:J2+IDM,0] + \
         WWAWG[6]*UE[I1+ISM:I2+ISM, J1+IDM1:J2+IDM1,0] + \
         WWAWG[7]*UE[I1+ISM:I2+ISM, J1+IDM:J2+IDM,0]
-    CONS = 3.7756e-04
     AF11 = (Extended_freq/(2*np.pi))**11
     print('AF11',AF11.shape,AF11[:10])
     print('EP1 shape',EP1.shape)
@@ -484,9 +471,10 @@ def interpolate_for_DIA(WWINT,WWAWG,WWSWG,NG,sigmas,thetas,N,all_sigmas,map_to_m
             + WWAWG[7] * ( SA1[I1-ISM:I2-ISM ,J1+IDM:J2+IDM,0] + SA2[I1-ISM:I2-ISM ,J1-IDM:J2-IDM,0] )
     
     #convert back to action balance
-    print('SFNL max min',np.amin(SFNL),np.amax(SFNL))
+    
     SFNL = np.multiply(SFNL.T,1/(2*np.pi*sigmas)).T
 
+    print('SFNL max min',np.amin(SFNL),np.amax(SFNL),SFNL[21,1])
     #now remap back to fem mesh
     S_nl = SFNL.flatten()[map_to_dof] 
 
