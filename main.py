@@ -231,7 +231,7 @@ theta = local_dof[:,3]
 
 #get global equation number of any node on entire global boundary
 local_boundary_dofs = CFx.boundary.fetch_boundary_dofs(domain1,domain2,V1,V2,N_dof_1,N_dof_2)
-tol= 1e-11
+tol= 1e-9
 
 
 ##############################################################################################################
@@ -254,6 +254,8 @@ elif Model_Params["Currents"]=="A33":
     local_boundary_dofs=np.unique(np.concatenate((dum1,dum4,dum5),0))
 elif Model_Params["Currents"] == "A34":
     local_boundary_dofs=np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
+elif Model_Params["Currents"] == "None":
+    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3),0))
 else:
     local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 global_boundary_dofs = local_boundary_dofs + local_range[0]

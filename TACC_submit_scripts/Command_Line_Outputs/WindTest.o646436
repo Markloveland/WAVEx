@@ -1,0 +1,448 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 646436 
+TACC:  Starting parallel tasks... 
+Switching to logarithmic spacing in frequency
+KSP Object: 250 MPI processes
+  type: gmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=10000, nonzero initial guess
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using PRECONDITIONED norm type for convergence test
+PC Object: 250 MPI processes
+  type: bjacobi
+    number of blocks = 250
+    Local solver information for first block is in the following KSP and PC objects on rank 0:
+    Use -ksp_view ::ascii_info_detail to display information for all blocks
+  KSP Object: (sub_) 1 MPI processes
+    type: preonly
+    maximum iterations=10000, initial guess is zero
+    tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+    left preconditioning
+    using NONE norm type for convergence test
+  PC Object: (sub_) 1 MPI processes
+    type: ilu
+      out-of-place factorization
+      0 levels of fill
+      tolerance for zero pivot 2.22045e-14
+      matrix ordering: natural
+      factor fill ratio given 1., needed 1.
+        Factored matrix follows:
+          Mat Object: 1 MPI processes
+            type: seqaij
+            rows=30750, cols=30750
+            package used to perform factorization: petsc
+            total: nonzeros=1092254, allocated nonzeros=1092254
+              not using I-node routines
+    linear system matrix = precond matrix:
+    Mat Object: (sub_) 1 MPI processes
+      type: seqaij
+      rows=30750, cols=30750
+      total: nonzeros=1092254, allocated nonzeros=1092254
+      total number of mallocs used during MatSetValues calls=0
+        not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: 250 MPI processes
+    type: mpiaij
+    rows=7644450, cols=7644450
+    total: nonzeros=346023302, allocated nonzeros=346023302
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node (on process 0) routines
+Niter 9
+convergence code 2
+dof 7644450
+The build time is 762.4228012561798 seconds
+The solve time is 1156.9353051185608 seconds
+Final solution on boundary
+WARNING:py.warnings:/home1/04637/mdl2665/WAVEx/CFx/utils.py:57: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  vals = np.array(vals)
+
+gamma may be blowing up 1.309125497353247 0.0
+index and value of gamma blowing up 19476 19 1.309125497353247
+Etot 6.05E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 6.0469359999971e-07 197509.63427295932 153.58753522170846 1394.189560839947
+integral params Etot, sigma_factor, k factor 6.0469359999971e-07 0.0008430575046263223 0.0002687382684234529
+gamma may be blowing up 9.464671157073349 0.0
+index and value of gamma blowing up 16401 16 9.464671157073349
+Etot 4.33E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 4.3298321284340696e-05 42827.570384640836 281.8116656406259 649.1951028830529
+integral params Etot, sigma_factor, k factor 4.3298321284340696e-05 0.028109058140851035 0.008960511002450726
+gamma may be blowing up 86.4845382750169 0.0
+index and value of gamma blowing up 19476 19 86.4845382750169
+Etot 1.75E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.7511555263078726e-06 1588677.8871641264 2102.317038630294 3954.04951457953
+integral params Etot, sigma_factor, k factor 1.7511555263078726e-06 0.006924155658750905 0.0022072048630643244
+gamma may be blowing up 40.83455770827644 0.0
+index and value of gamma blowing up 15376 15 40.83455770827644
+Etot 4.19E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 4.186590178903933e-06 538766.8648334758 1102.3794357149952 2302.6648401022107
+integral params Etot, sigma_factor, k factor 4.186590178903933e-06 0.009640314004879311 0.003072988176585106
+gamma may be blowing up 4.839146052189669 0.0
+index and value of gamma blowing up 24601 24 4.839146052189669
+Etot 4.22E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 4.223160640049366e-05 27843.307279105058 180.94209774531842 523.449163631498
+integral params Etot, sigma_factor, k factor 4.223160640049366e-05 0.022106099049153023 0.007046898424459164
+gamma may be blowing up 4.47890894855417 0.0
+index and value of gamma blowing up 23576 23 4.47890894855417
+Etot 8.79E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.794147546136631e-05 16216.290593684955 152.07169693557015 399.47643884765984
+integral params Etot, sigma_factor, k factor 8.794147546136631e-05 0.03513054744431548 0.011198748900542555
+gamma may be blowing up 682.8012244559135 0.0
+index and value of gamma blowing up 24601 24 682.8012244559135
+Etot 1.41E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.4099471131253708e-06 7278129.391019484 8642.13773323612 8463.225221013361
+integral params Etot, sigma_factor, k factor 1.4099471131253708e-06 0.011932699968097617 0.003803756511035637
+gamma may be blowing up 13.577420565463404 0.0
+index and value of gamma blowing up 15376 15 13.577420565463404
+Etot 2.87E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.8707326481172607e-05 71647.47529002957 383.881572888866 839.6297781868235
+integral params Etot, sigma_factor, k factor 2.8707326481172607e-05 0.02410352616572368 0.00768410329174011
+gamma may be blowing up 84.08949021313049 0.0
+index and value of gamma blowing up 9226 9 84.08949021313049
+Etot 2.22E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.2223936295824076e-05 286582.1415986582 1351.0132723259867 1679.329102463205
+integral params Etot, sigma_factor, k factor 2.2223936295824076e-05 0.037321302992865686 0.011897221448895573
+gamma may be blowing up 219.09361008520523 0.0
+index and value of gamma blowing up 10251 10 219.09361008520523
+Etot 7.99E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 7.992468056547087e-06 1072986.5842719732 3033.435371347449 3249.516243817126
+integral params Etot, sigma_factor, k factor 7.992468056547087e-06 0.025971654777939255 0.00827900328998995
+gamma may be blowing up 1.42581950863446 0.0
+index and value of gamma blowing up 3076 3 1.42581950863446
+Etot 2.02E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00020160752010686068 4348.425861513342 61.74267392027447 206.86640016796161
+integral params Etot, sigma_factor, k factor 0.00020160752010686068 0.04170582193129621 0.013294523087380328
+gamma may be blowing up 1.5317475358109913 0.0
+index and value of gamma blowing up 5126 5 1.5317475358109913
+Etot 3.22E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00032179823903461685 3339.6499153626037 59.90909721063637 181.2870515224322
+integral params Etot, sigma_factor, k factor 0.00032179823903461685 0.05833785393969654 0.01859662505658031
+gamma may be blowing up 1.462955298896019 0.0
+index and value of gamma blowing up 5126 5 1.462955298896019
+Etot 3.18E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00031754126339672757 3267.7792962885833 58.23080595209942 179.32563321220695
+integral params Etot, sigma_factor, k factor 0.00031754126339672757 0.05694328812962236 0.01815208542958962
+gamma may be blowing up 17.586593418241613 0.0
+index and value of gamma blowing up 6151 6 17.586593418241613
+Etot 8.00E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 7.99575395627227e-05 43004.47143911979 384.5415964799836 650.5383285040325
+integral params Etot, sigma_factor, k factor 7.99575395627227e-05 0.05201544413842868 0.01658121034655475
+gamma may be blowing up 3.321306734659536 0.0
+index and value of gamma blowing up 5126 5 3.321306734659536
+Etot 2.04E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00020372631162099232 7588.233994541815 108.30893259780238 273.2658434904466
+integral params Etot, sigma_factor, k factor 0.00020372631162099232 0.05567144238630804 0.017746694769441542
+gamma may be blowing up 652.6416735631535 0.0
+index and value of gamma blowing up 5126 5 652.6416735631535
+Etot 1.16E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.164869973096425e-05 1728084.7917635913 5897.986490327415 4123.789655590109
+integral params Etot, sigma_factor, k factor 1.164869973096425e-05 0.04803678745162565 0.015312989144870023
+gamma may be blowing up 14.400231479160109 0.0
+index and value of gamma blowing up 1026 1 14.400231479160109
+Etot 3.17E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.17462629403618e-06 323401.88106209104 576.2206873168839 1784.01509458855
+integral params Etot, sigma_factor, k factor 3.17462629403618e-06 0.005663581228238254 0.0018053602657510047
+gamma may be blowing up 212.82898639794024 0.0
+index and value of gamma blowing up 9226 9 212.82898639794024
+Etot 2.42E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.420929862777975e-07 10830697.423664432 5329.02216923811 10324.198546171938
+integral params Etot, sigma_factor, k factor 2.420929862777975e-07 0.0024994160569676597 0.0007967286219199126
+gamma may be blowing up 5.637746320954557 0.0
+index and value of gamma blowing up 13326 13 5.637746320954557
+Etot 1.43E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.4302233624182735e-06 294504.32958249724 352.20345973916733 1702.4492736148904
+integral params Etot, sigma_factor, k factor 1.4302233624182735e-06 0.0024348827244560357 0.0007761572343836939
+gamma may be blowing up 4.666141618144327 0.0
+index and value of gamma blowing up 15376 15 4.666141618144327
+Etot 3.01E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.013903195279408e-06 157946.85161206746 274.2051598823006 1246.7570858263089
+integral params Etot, sigma_factor, k factor 3.013903195279408e-06 0.0037576051647091554 0.0011978013153198762
+gamma may be blowing up 125.75359881901326 0.0
+index and value of gamma blowing up 28701 28 125.75359881901326
+Etot 2.75E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.7490688225542897e-06 1509495.6203077734 2502.7914548991944 3854.4920544483484
+integral params Etot, sigma_factor, k factor 2.7490688225542897e-06 0.010596263933667187 0.0033775480887664796
+gamma may be blowing up 5.5432204467135495 0.0
+index and value of gamma blowing up 21526 21 5.5432204467135495
+Etot 3.56E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.5600611451667244e-05 34157.70846354011 203.8062302800026 579.8026120664915
+integral params Etot, sigma_factor, k factor 3.5600611451667244e-05 0.02064132751084092 0.006579635284665362
+gamma may be blowing up 18.115061971976655 0.0
+index and value of gamma blowing up 22551 22 18.115061971976655
+Etot 6.04E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 6.038064173880558e-05 52892.521633737226 411.0012423194268 721.4596208755858
+integral params Etot, sigma_factor, k factor 6.038064173880558e-05 0.04356219489710324 0.013886565937938631
+gamma may be blowing up 1.2600971636268055 0.0
+index and value of gamma blowing up 17426 17 1.2600971636268055
+Etot 5.62E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 5.623643302200543e-05 9379.735541977756 70.33953240884786 303.8504443874043
+integral params Etot, sigma_factor, k factor 5.623643302200543e-05 0.017087465164498848 0.005446444258859149
+gamma may be blowing up 4.614539416274651 0.0
+index and value of gamma blowing up 3076 3 4.614539416274651
+Etot 1.00E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0010027781271211098 3265.2099429169198 103.39833286976035 179.2571961871672
+integral params Etot, sigma_factor, k factor 0.0010027781271211098 0.17975519546554888 0.05730076334895252
+gamma may be blowing up 8.270804082706713 0.0
+index and value of gamma blowing up 23576 23 8.270804082706713
+Etot 6.45E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 6.4458495389264e-05 30024.4011896528 241.0540521715686 543.572424801625
+integral params Etot, sigma_factor, k factor 6.4458495389264e-05 0.035037860637806596 0.01116907844365139
+gamma may be blowing up 39.49148758968654 0.0
+index and value of gamma blowing up 26651 26 39.49148758968654
+Etot 2.99E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.989401458061316e-05 142091.01238341583 776.8885657994864 1182.5427360612287
+integral params Etot, sigma_factor, k factor 2.989401458061316e-05 0.03535094979401255 0.011268537292310395
+gamma may be blowing up 1.6273283343248508 0.0
+index and value of gamma blowing up 1 0 1.6273283343248508
+Etot 5.61E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005610223493525555 517.1351193221207 38.73415744623514 71.34362847950248
+integral params Etot, sigma_factor, k factor 0.005610223493525555 0.4002537006090637 0.1275798768666382
+gamma may be blowing up 1.9884622810573471 0.0
+index and value of gamma blowing up 2051 2 1.9884622810573471
+Etot 4.92E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00491733544283736 645.3780243711607 45.25630482053657 79.69618834266744
+integral params Etot, sigma_factor, k factor 0.00491733544283736 0.39189289159644025 0.12492142277576866
+gamma may be blowing up 2.2654304489176846 0.0
+index and value of gamma blowing up 11276 11 2.2654304489176846
+Etot 1.37E-02
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.013731213270691975 355.0277145015443 41.60223979709632 59.107659951705706
+integral params Etot, sigma_factor, k factor 0.013731213270691975 0.81161988472841 0.2587259801676331
+gamma may be blowing up 1.0679841059128947 0.0
+index and value of gamma blowing up 10251 10 1.0679841059128947
+Etot 6.46E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.006458898413274833 355.54851230209096 28.574464007448494 59.152304883749174
+integral params Etot, sigma_factor, k factor 0.006458898413274833 0.3820587281551967 0.12178895016817586
+gamma may be blowing up 6.774455383159111 0.0
+index and value of gamma blowing up 14351 14 6.774455383159111
+Etot 5.84E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0005844538676828295 6044.862284875198 146.13745157801534 243.8944629072503
+integral params Etot, sigma_factor, k factor 0.0005844538676828295 0.14254506215256885 0.045440535688397975
+gamma may be blowing up 42.2287609301214 0.0
+index and value of gamma blowing up 7176 7 42.2287609301214
+Etot 3.71E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00037122360149991965 27707.804808633267 533.8508142205866 522.1975636258587
+integral params Etot, sigma_factor, k factor 0.00037122360149991965 0.1938520602636747 0.06179262426027872
+gamma may be blowing up 23.066635625221004 0.0
+index and value of gamma blowing up 6151 6 23.066635625221004
+Etot 1.23E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0001232539068198985 38618.43663040811 428.74101874652473 616.3864380364315
+integral params Etot, sigma_factor, k factor 0.0001232539068198985 0.07597203659879147 0.024221332883052643
+gamma may be blowing up 1.1645866648256933 1.0578815579394475e-10
+index and value of gamma blowing up 26651 26 1.1645866648256933
+Etot 3.15E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.1505657653247475e-07 282150.19311563997 158.37062354069124 1666.3534057076602
+integral params Etot, sigma_factor, k factor 3.1505657653247475e-07 0.0005249955992954854 0.00016735115940787535
+gamma may be blowing up 44.24571095181061 0.0
+index and value of gamma blowing up 19476 19 44.24571095181061
+Etot 8.12E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.124497801689521e-05 78706.57310492982 709.4295370250694 880.0915490483236
+integral params Etot, sigma_factor, k factor 8.124497801689521e-05 0.0715030185552863 0.022793028171953323
+gamma may be blowing up 2.351829259842619 0.0
+index and value of gamma blowing up 22551 22 2.351829259842619
+Etot 1.99E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00019876752119613538 6128.366022876018 86.40072902306873 245.57258026011326
+integral params Etot, sigma_factor, k factor 0.00019876752119613538 0.04881185305204172 0.015560292974020364
+gamma may be blowing up 35.16307629135309 0.0
+index and value of gamma blowing up 18451 18 35.16307629135309
+Etot 3.39E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.392979440651325e-05 120865.05728867017 704.030341509617 1090.6089932109594
+integral params Etot, sigma_factor, k factor 3.392979440651325e-05 0.037004138917542256 0.011795914315520696
+gamma may be blowing up 7.698061254054266 0.0
+index and value of gamma blowing up 14351 14 7.698061254054266
+Etot 1.70E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00016990808037147418 14999.468503058706 195.5162626556377 384.19849638516797
+integral params Etot, sigma_factor, k factor 0.00016990808037147418 0.06527842900241065 0.02080903632985911
+gamma may be blowing up 5.746992996143603 0.0
+index and value of gamma blowing up 5126 5 5.746992996143603
+Etot 7.18E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 7.176971644714954e-05 21925.548381201686 185.746688352701 464.52936734336544
+integral params Etot, sigma_factor, k factor 7.176971644714954e-05 0.033339140975607105 0.010627141483645986
+gamma may be blowing up 3.6046044711482153 0.0
+index and value of gamma blowing up 6151 6 3.6046044711482153
+Etot 1.70E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00016990862913909382 9044.491539251838 117.89404662605115 298.3473785887689
+integral params Etot, sigma_factor, k factor 0.00016990862913909382 0.050691794103259954 0.01615874079193282
+gamma may be blowing up 1.280603497683628 0.0
+index and value of gamma blowing up 6151 6 1.280603497683628
+Etot 3.40E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00034041954439549343 2854.6811832356298 52.67018641351685 167.61264795236104
+integral params Etot, sigma_factor, k factor 0.00034041954439549343 0.05705862125086498 0.018188349562013574
+gamma may be blowing up 1.951926620406488 0.0
+index and value of gamma blowing up 3076 3 1.951926620406488
+Etot 2.62E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0002615828720863473 4506.770954910336 72.89036729721175 210.59734823680864
+integral params Etot, sigma_factor, k factor 0.0002615828720863473 0.05508865920555306 0.017560709040513482
+gamma may be blowing up 10.055454392330267 0.0
+index and value of gamma blowing up 5126 5 10.055454392330267
+Etot 8.30E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.295704653167509e-05 28906.686597390995 263.2842954378719 533.352465326072
+integral params Etot, sigma_factor, k factor 8.295704653167509e-05 0.04424534528383858 0.014104329287706345
+gamma may be blowing up 535.6136995286452 0.0
+index and value of gamma blowing up 8201 8 535.6136995286452
+Etot 2.77E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.768202566140541e-05 850648.0353672941 4475.574974152636 2893.1310633379144
+integral params Etot, sigma_factor, k factor 2.768202566140541e-05 0.08008772833712927 0.02553129352339289
+gamma may be blowing up 1.5775149618842705 1.4089739327896491e-09
+index and value of gamma blowing up 22551 22 1.5775149618842705
+Etot 1.60E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.6043692449554266e-06 116700.10985296652 147.81667497940902 1071.6725233135815
+integral params Etot, sigma_factor, k factor 1.6043692449554266e-06 0.0017193584370680873 0.0005480749596870369
+gamma may be blowing up 1.7285312842026863 0.0
+index and value of gamma blowing up 31776 31 1.7285312842026863
+Etot 1.21E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.2109880216046937e-05 32234.128932674153 112.1723613634726 563.2298455681098
+integral params Etot, sigma_factor, k factor 1.2109880216046937e-05 0.0068206459639324245 0.0021741916160972863
+gamma may be blowing up 6.430505579268491 0.0
+index and value of gamma blowing up 29726 29 6.430505579268491
+Etot 1.34E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.3420033299767402e-05 72270.5964233715 264.7515037675122 843.3232797034943
+integral params Etot, sigma_factor, k factor 1.3420033299767402e-05 0.011317426496089952 0.003607733198944532
+gamma may be blowing up 1.0439386604201346 0.0
+index and value of gamma blowing up 29726 29 1.0439386604201346
+Etot 1.76E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.762905367635857e-05 17932.10025299597 75.29144951092542 420.0287567816789
+integral params Etot, sigma_factor, k factor 1.762905367635857e-05 0.007404709498918377 0.002360720542574126
+gamma may be blowing up 2.7964205662659913 0.0
+index and value of gamma blowing up 25626 25 2.7964205662659913
+Etot 8.37E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.372225801951097e-05 12241.141062210223 112.00627885477321 347.059433819572
+integral params Etot, sigma_factor, k factor 8.372225801951097e-05 0.029056599466347602 0.009263004695669187
+gamma may be blowing up 13.644894447262766 0.0
+index and value of gamma blowing up 21526 21 13.644894447262766
+Etot 2.75E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.7535981001621048e-05 73907.06095725902 387.8253640359554 852.8013848721004
+integral params Etot, sigma_factor, k factor 2.7535981001621048e-05 0.023482722731994275 0.007485891348785035
+gamma may be blowing up 2.895280961211834 0.0
+index and value of gamma blowing up 18451 18 2.895280961211834
+Etot 1.01E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.0079419768852024e-07 1106950.8544983044 351.4358857279609 3300.5859329240543
+integral params Etot, sigma_factor, k factor 1.0079419768852024e-07 0.00033267991101109615 0.00010604732111745779
+gamma may be blowing up 3.681290293658757 0.0
+index and value of gamma blowing up 5126 5 3.681290293658757
+Etot 4.70E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 4.699808485574545e-07 465483.60870162625 319.1129825739251 2140.324949831708
+integral params Etot, sigma_factor, k factor 4.699808485574545e-07 0.0010059117361105973 0.0003206508218160147
+gamma may be blowing up 2.524525194674893 0.0
+index and value of gamma blowing up 13326 13 2.524525194674893
+Etot 2.82E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.000281660671359678 5092.468694670838 85.46562501006422 223.86661537572732
+integral params Etot, sigma_factor, k factor 0.000281660671359678 0.06305442118174617 0.020099737891132452
+gamma may be blowing up 28.078793108419188 0.0
+index and value of gamma blowing up 2051 2 28.078793108419188
+Etot 8.14E-05
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.137156378957338e-05 58062.347729987065 523.7583063248339 755.9192135833046
+integral params Etot, sigma_factor, k factor 8.137156378957338e-05 0.061510328507858016 0.019607397731682703
+gamma may be blowing up 2430.982208793382 9.219989667558415e-10
+index and value of gamma blowing up 27676 27 2430.982208793382
+Etot 3.90E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 3.899244339475858e-06 8613169.925501235 17007.99973800479 9206.668728183096
+integral params Etot, sigma_factor, k factor 3.899244339475858e-06 0.03589905092379733 0.011443581264258453
+gamma may be blowing up 1.3935204410111621 0.0
+index and value of gamma blowing up 13326 13 1.3935204410111621
+Etot 4.68E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00046826157708012824 2441.7769457126647 52.83847208065203 155.01832256056872
+integral params Etot, sigma_factor, k factor 0.00046826157708012824 0.07258912419852794 0.023138836532756862
+gamma may be blowing up 6.032400982862251 0.0
+index and value of gamma blowing up 21526 21 6.032400982862251
+Etot 8.75E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.008745796354761678 921.3495976468632 86.16365850958478 95.22052965810255
+integral params Etot, sigma_factor, k factor 0.008745796354761678 0.8327793611823096 0.2654676381045564
+gamma may be blowing up 5.834794842111129 0.0
+index and value of gamma blowing up 16401 16 5.834794842111129
+Etot 9.10E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.009095165622372597 877.8913378966396 83.72324831569611 92.94765054776906
+integral params Etot, sigma_factor, k factor 0.009095165622372597 0.8453742759423706 0.2694827644740464
+gamma may be blowing up 18597.930277050804 0.0
+index and value of gamma blowing up 13326 13 18597.930277050804
+Etot 8.37E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 8.374209192728078e-06 20089693.197060782 58136.00803569371 14060.854271408378
+integral params Etot, sigma_factor, k factor 8.374209192728078e-06 0.1177485350972379 0.037534484690076246
+gamma may be blowing up 5.351942765949886 0.0
+index and value of gamma blowing up 21526 21 5.351942765949886
+Etot 7.58E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00757781307373421 935.9940626623448 81.47887761760121 95.97512367824177
+integral params Etot, sigma_factor, k factor 0.00757781307373421 0.7272815469622382 0.2318357650934763
+gamma may be blowing up 10.152234679496315 0.0
+index and value of gamma blowing up 3076 3 10.152234679496315
+Etot 5.47E-02
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.05467618885585944 384.12840871873954 89.82051578665157 61.482453253460044
+integral params Etot, sigma_factor, k factor 0.05467618885585944 3.361626225407731 1.0716092371265626
+gamma may be blowing up 1.0767093223319602 0.0
+index and value of gamma blowing up 24601 24 1.0767093223319602
+Etot 2.17E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002172553447577076 739.1260476392814 34.451151491881554 85.28520510006078
+integral params Etot, sigma_factor, k factor 0.002172553447577076 0.18528666636745506 0.05906493403053603
+gamma may be blowing up 5.729376988035613 0.0
+index and value of gamma blowing up 23576 23 5.729376988035613
+Etot 1.09E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00010894279052081358 16566.685930944048 172.91588297701713 403.7731788552175
+integral params Etot, sigma_factor, k factor 0.00010894279052081358 0.043988176841946953 0.014022205089989826
+gamma may be blowing up 1.2014268892481577 1.309790362003708e-09
+index and value of gamma blowing up 3076 3 1.2014268892481577
+Etot 1.59E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.587236339699218e-06 98023.40348309712 123.49534185616574 982.1779364972068
+integral params Etot, sigma_factor, k factor 1.587236339699218e-06 0.0015589485128591576 0.0004969428963717277
+gamma may be blowing up 61.15060234987899 0.0
+index and value of gamma blowing up 9226 9 61.15060234987899
+Etot 1.27E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.2654336301518525e-07 7267730.785626247 2585.3450723827664 8457.202657598651
+integral params Etot, sigma_factor, k factor 1.2654336301518525e-07 0.0010702028659934956 0.00034114482520249253
+gamma may be blowing up 5.761835527522891 0.0
+index and value of gamma blowing up 11276 11 5.761835527522891
+Etot 1.26E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 1.2647947299819735e-06 324328.2467679598 364.7495779709458 1786.5708239335727
+integral params Etot, sigma_factor, k factor 1.2647947299819735e-06 0.002259645362850735 0.0007202983742460335
+gamma may be blowing up 7199.128675399177 0.0
+index and value of gamma blowing up 16401 16 7199.128675399177
+Etot 2.04E-07
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.03851124588626e-07 127038554.95482828 57357.749233387345 35358.634215174905
+integral params Etot, sigma_factor, k factor 2.03851124588626e-07 0.0072078973486812735 0.00229763418508685
+gamma may be blowing up 747.29447922914 0.0
+index and value of gamma blowing up 1 0 747.29447922914
+Etot 2.68E-06
+some values, Etot, k_tilde, s_tilde,sigma_tilde 2.6784706898035007e-06 5039206.616692666 8247.182683585675 7042.17660081227
+integral params Etot, sigma_factor, k factor 2.6784706898035007e-06 0.018862263617695715 0.006012678479301045
+TACC:  Shutdown complete. Exiting. 
