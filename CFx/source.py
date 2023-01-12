@@ -161,7 +161,9 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     #S_bfr=project(S_bfr,V)
     #print('Shape of sigmas,k,depth,N',k.shape,sigmas.shape,depth.shape,E.getArray().shape)
     #print('Shape of local size2 kronecker depth', local_size2,np.kron(depth,np.ones(local_size2)).shape )
-    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh(k*np.kron(depth,np.ones(local_size2))))**2*np.maximum(0.0,E.getArray())
+    #surpress over flow for deep water
+    denom_min = 710
+    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh( np.minimum( 710, k*np.kron(depth,np.ones(local_size2)) ) ) )**2*np.maximum(0.0,E.getArray())
     
     return S_bfr
 
