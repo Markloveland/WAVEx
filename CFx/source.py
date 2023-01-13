@@ -268,7 +268,7 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
     Nvals = np.array(N.getArray())*all_sigmas*2*np.pi
     Narray = Nvals[map_to_mat].reshape(MSC,MDC,NG)
-    Narray = Narray
+    #Narray = Narray
     #print('Narray shape',Narray.shape)
     UEvals = Narray
 
@@ -308,8 +308,8 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
     J2 = IDCHGH - MDC4MI+1
 
 
-    print('I range (should be 4 and 49)',I1,I2)
-    print('J1 (should be 25 and 72)',J1,J2)
+    #print('I range (should be 4 and 49)',I1,I2)
+    #print('J1 (should be 25 and 72)',J1,J2)
     E00 = UE[I1:I2,J1:J2,:]
     EP1 = WWAWG[0]*UE[I1+ISP1:I2+ISP1,J1+IDP1:J2+IDP1,:] + \
         WWAWG[1]*UE[I1+ISP1:I2+ISP1,J1+IDP:J2+IDP,:] + \
@@ -395,7 +395,8 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
 
 
-def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,g=9.81):
+def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,\
+        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,g=9.81):
     #calculate any necessary integral parameters
     #int int E dsigma dtheta = int int N*sigma dsigma dtheta
     Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
@@ -412,7 +413,8 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
-    S.setValues(rows,Sin+Swc+Sbfr+Sbrk)
+    Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map)
+    S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()

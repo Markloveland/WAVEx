@@ -158,6 +158,8 @@ if Model_Params["Spectral Mesh Type"] == "logarithmic":
     new_coords = gamma_space**(np.arange(n_sigma+1))*omega_min
     domain2.geometry.x[:,0] = new_coords[inverted]
 
+
+
 #domain2 = mesh.create_rectangle(MPI.COMM_SELF, [np.array([omega_min, theta_min]), np.array([omega_max, theta_max])], [n_sigma, n_theta], mesh.CellType.quadrilateral)
 V2 = fem.FunctionSpace(domain2, ("CG", 1))
 u2 = ufl.TrialFunction(V2)
@@ -255,7 +257,7 @@ elif Model_Params["Currents"]=="A33":
 elif Model_Params["Currents"] == "A34":
     local_boundary_dofs=np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 elif Model_Params["Currents"] == "None":
-    print("currents=none")
+    #print("currents=none")
     local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3),0))
 else:
     local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
@@ -450,9 +452,33 @@ u = fem.Function(V1)
 if Model_Params["Source Terms"]=="off":
     u_cart,xdmf=CFx.timestep.no_source(t,nt,dt,u_cart,ksp2,RHS,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2)
 elif Model_Params["Source Terms"]=="Wind":
+    #############
+    #Preprocessing grid for DIA
+    #Only works for logarithmic frequency spacing
+    #save map for unique thetas
+    thets_unique,inverse_thets = np.unique(domain2.geometry.x[:,1],return_inverse=True)
+    #the map is side by side, append this
+    map_to_matrix= np.array([inverted,inverse_thets])
+    map_to_matrix = np.kron(np.ones(N_dof_1),map_to_matrix)
+    map_to_matrix = map_to_matrix.T
+    map_to_matrix = np.column_stack((map_to_matrix, np.kron(np.arange(N_dof_1),np.ones(N_dof_2)) ) )
+    #need to flatten the map
+    flat_map = np.array(map_to_matrix[:,0]*((n_theta+1)*N_dof_1) + map_to_matrix[:,1]*(N_dof_1) + map_to_matrix[:,2],dtype=np.int32)
+    #need the inverse
+    inverse_map = np.argsort(flat_map)
+    WWINT,WWAWG,WWSWG,DIA_PARAMS = CFx.utils.DIA_weights(new_coords,thets_unique,g=9.81)
+    
+    
+    #S_nl=CFx.source.Snl_DIA(WWINT,WWAWG,WWSWG,1,DIA_PARAMS,new_coords,thets_unique,dum.vector,sigma_vec,inverse_map,flat_map)
+    
     U10 = Model_Params["U10"]
     theta_wind = Model_Params["Wind Direction"]*np.pi/180
-    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,depth,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
+    #u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,depth,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows)
+    u_cart,xdmf = CFx.timestep.strang_split(t,nt,dt,u_cart,ksp2,RHS,C,CFx.source.Gen3,x,y,sigma,theta,c,cph,k,depth,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows,\
+            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+
+
+
 '''
 for i in range(nt):
     t+=dt
