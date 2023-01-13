@@ -383,7 +383,10 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
     #print('SFNL max min',np.amin(SFNL),np.amax(SFNL),SFNL[21,1])
     #now remap back to fem mesh
     S_nl = SFNL.flatten()[map_to_dof] 
-
+    if np.amax(S_nl)>1:
+        print("warning,max Snl is blowing up",np.amax(S_nl))
+    if np.amin(S_nl)<-1:
+        print("warning, min Snl is blowing up",np.amin(S_nl))
     #print('SFNL',SFNL.shape)
     #print('Eoo shape',E00.shape)
     #print('Ep1 shape', EP1.shape)
