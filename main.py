@@ -258,7 +258,7 @@ elif Model_Params["Currents"] == "A34":
     local_boundary_dofs=np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 elif Model_Params["Currents"] == "None":
     #print("currents=none")
-    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
+    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3),0))
 else:
     local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 global_boundary_dofs = local_boundary_dofs + local_range[0]
