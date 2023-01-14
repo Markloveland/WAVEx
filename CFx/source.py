@@ -95,7 +95,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
         print('k_factor contains nans')
     
     #set a tolerance to prevent division by zero, if Etot is below tolerance then the S_wc =0 there
-    tol = 1e-6
+    tol = 1e-4
 
     #mask that lives in domain 1
     valid_idx1 = Etot>tol
@@ -417,7 +417,8 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
     Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map)
-    S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    #S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    S.setValues(rows,Sin+Swc+Sbfr+Sbrk)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()
