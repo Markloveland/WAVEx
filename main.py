@@ -243,8 +243,8 @@ y_min =0
 x_max = 20000
 x_min = 0
 dum1 = local_boundary_dofs[y[local_boundary_dofs]<=(y_min+tol)]
-dum2 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]>=(x_max-tol),theta[local_boundary_dofs]>np.pi/2)]
-dum3 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]<=(x_min+tol),theta[local_boundary_dofs]<np.pi/2)]
+dum2 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]>=(x_max-tol),theta[local_boundary_dofs]>=(np.pi/2-tol))]
+dum3 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]<=(x_min+tol),theta[local_boundary_dofs]<=(np.pi/2+tol))]
 dum4 = local_boundary_dofs[theta[local_boundary_dofs]<=(theta_min+tol)]
 dum5 = local_boundary_dofs[theta[local_boundary_dofs]>=(theta_max-tol)]
 
@@ -258,7 +258,7 @@ elif Model_Params["Currents"] == "A34":
     local_boundary_dofs=np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 elif Model_Params["Currents"] == "None":
     #print("currents=none")
-    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3),0))
+    local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 else:
     local_boundary_dofs = np.unique(np.concatenate((dum1,dum2,dum3,dum4,dum5),0))
 global_boundary_dofs = local_boundary_dofs + local_range[0]

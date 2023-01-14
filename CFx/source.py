@@ -95,7 +95,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
         print('k_factor contains nans')
     
     #set a tolerance to prevent division by zero, if Etot is below tolerance then the S_wc =0 there
-    tol = 1e-7
+    tol = 1e-6
 
     #mask that lives in domain 1
     valid_idx1 = Etot>tol
