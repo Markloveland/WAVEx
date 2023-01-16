@@ -385,7 +385,7 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
     S_nl_vals = SFNL.flatten()[map_to_dof] 
     
     S_nl = np.zeros(Nvals.shape)
-    
+
     if np.any(valid_idx):
         #corresponding mask that lives in knronecker product space
         big_idx = np.kron(valid_idx,np.ones(local_size2))
@@ -395,6 +395,21 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
         print("warning,max Snl is blowing up",np.amax(S_nl))
     if np.amin(S_nl)<-1:
         print("warning, min Snl is blowing up",np.amin(S_nl))
+
+    #limiting
+    tol = 1e-3
+
+    limit_idx = np.where(S_nl>tol)[0]
+    if np.any(limit_idx):
+        temp = np.unique( np.floor(limit_idx/local_size2) )
+        locs = np.kron(temp,np.ones(local_size2))
+        dum = np.kron(np.ones(temp.shape),np.arange(local_size2))
+
+
+        idx2 = np.array(dum + locs*local_size2,dtype=np.int32)
+        S_nl[idx2] = 0.0
+
+
     #print('SFNL',SFNL.shape)
     #print('Eoo shape',E00.shape)
     #print('Ep1 shape', EP1.shape)

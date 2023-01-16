@@ -30,3 +30,20 @@ b = np.array([710,720,50,20])
 a =np.minimum(710,b)
 x = np.sinh(a)
 print('npsinh',1/x)
+
+
+print('np where')
+x = np.arange(12)
+print('roriginal matrix',x)
+local_size2=3
+x[2]=0
+tol = 9
+limit_idx = np.where(x>tol)[0]
+print('imit_idx',limit_idx)
+if np.any(limit_idx):
+    temp = np.unique( np.floor(limit_idx/local_size2) )
+    locs = np.kron(temp,np.ones(local_size2))
+    dum = np.kron(np.ones(temp.shape),np.arange(local_size2))
+    idx2 = np.array(dum + locs*local_size2,dtype=np.int32)
+
+    print('index to shut down',idx2)
