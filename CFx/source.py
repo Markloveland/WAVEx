@@ -426,7 +426,10 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
     Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map,valid_idx,local_size2)
+    
     Snl[local_boundary_dofs] = 0.0
+    Swc[local_boundary_dofs] = 0.0
+
     S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
     #S.setValues(rows,Sin+Snl)
     #S.setValues(rows,Snl)
