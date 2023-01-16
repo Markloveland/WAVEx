@@ -142,7 +142,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
         print('integral params Etot, sigma_factor, k factor', Etot[i_small],sigma_factor[i_small],k_factor[i_small])
         
     S = -gamma_factor*np.maximum(0.0,N.getArray())
-    return S
+    return S,valid_idx
 
 def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     ##########################################################
@@ -207,7 +207,7 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
     return S_brk
 
 
-def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,g=9.81):
+def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,valid_idx,local_size2,g=9.81):
     MSC = DIA_PARAMS[0]
     MDC = DIA_PARAMS[1]
     sig_spacing = DIA_PARAMS[2]
@@ -382,7 +382,15 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
     #print('SFNL max min',np.amin(SFNL),np.amax(SFNL),SFNL[21,1])
     #now remap back to fem mesh
-    S_nl = SFNL.flatten()[map_to_dof] 
+    S_nl_vals = SFNL.flatten()[map_to_dof] 
+    
+    S_nl = np.zeros(Nvals.shape)
+    
+    if np.any(valid_idx):
+        #corresponding mask that lives in knronecker product space
+        big_idx = np.kron(valid_idx,np.ones(local_size2))
+        big_idx=np.array(big_idx, dtype=bool)
+        S_nl[big_idx] = S_nl_vals[big_idx]
     if np.amax(S_nl)>1:
         print("warning,max Snl is blowing up",np.amax(S_nl))
     if np.amin(S_nl)<-1:
@@ -393,6 +401,7 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
     #print('EM1 shape',EM1.shape)
     #test by plotting the meshgrid
     #this can;t be correct
+    #see if ignoring noise helps
     return S_nl
 
 
@@ -413,10 +422,10 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     k_factor2=CFx.wave.calculate_k_tilde2(k,N,V2,local_size1,local_size2,local_range2)
 
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
-    Swc = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
+    Swc,valid_idx = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
-    Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map)
+    Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map,valid_idx,local_size2)
     Snl[local_boundary_dofs] = 0.0
     S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
     #S.setValues(rows,Sin+Snl)
