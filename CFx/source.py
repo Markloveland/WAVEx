@@ -391,10 +391,10 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
         big_idx = np.kron(valid_idx,np.ones(local_size2))
         big_idx=np.array(big_idx, dtype=bool)
         S_nl[big_idx] = S_nl_vals[big_idx]
-    if np.amax(S_nl)>1:
-        print("warning,max Snl is blowing up",np.amax(S_nl))
-    if np.amin(S_nl)<-1:
-        print("warning, min Snl is blowing up",np.amin(S_nl))
+    #if np.amax(S_nl)>1:
+    #    print("warning,max Snl is blowing up",np.amax(S_nl))
+    #if np.amin(S_nl)<-1:
+    #    print("warning, min Snl is blowing up",np.amin(S_nl))
 
     #limiting
     tol = 1e-3
