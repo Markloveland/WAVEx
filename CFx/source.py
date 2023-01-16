@@ -399,7 +399,7 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
 
 def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,\
-        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,g=9.81):
+        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs,g=9.81):
     #calculate any necessary integral parameters
     #int int E dsigma dtheta = int int N*sigma dsigma dtheta
     Etot = CFx.wave.calculate_Etot(N,V2,local_size1,local_size2,local_range2)
@@ -417,8 +417,9 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
     Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map)
+    Snl[local_boundary_dofs] = 0.0
     #S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
-    S.setValues(rows,Sin*0)
+    S.setValues(rows,Sin+Snl)
     #S.setValues(rows,Snl)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))

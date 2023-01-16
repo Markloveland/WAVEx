@@ -58,18 +58,18 @@ def no_source(t,nt,dt,u,ksp,M,C,x,y,sigma,theta,c,u_func,local_boundary_dofs,glo
     return u,xdmf
 
 def Euler_Step(N,L,dt,sigmas,thetas,U_mag,theta_wind,c,k,depth,S,rows,V2,local_size1,local_size2,local_range2,\
-        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map):
+        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs):
     return  N+dt*L(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_size2,local_range2,\
-            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs)
     
 
 def SSP_RK2(N,A,dt,sigmas,thetas,U_mag,theta_wind,c,S,rows,k,depth,V2,local_size1,local_size2,local_range2,\
-        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map):
+        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs):
     #takes state N, operator A and time step dt and advances the state using SSP_RK2
     N1 = Euler_Step(N,A,dt,sigmas,thetas,U_mag,theta_wind,c,k,depth,S,rows,V2,local_size1,local_size2,local_range2,\
-            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs)
     N2 = 0.5*N + 0.5*Euler_Step(N1,A,dt,sigmas,thetas,U_mag,theta_wind,c,k,depth,S,rows,V2,local_size1,local_size2,local_range2,\
-            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+            WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs)
     return N2
 
 
@@ -102,7 +102,7 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,depth,u_func,lo
 
         #substep 1
         u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows,k,depth,V2,N_dof_1,N_dof_2,local_range2,\
-                WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+                WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs)
         #correct boundary
         #u_d_vals = u_func(x,t,sigma,theta,c,t-dt_strang)[local_boundary_dofs]
         #u.setValues(global_boundary_dofs,u_d_vals)
@@ -133,7 +133,7 @@ def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,depth,u_func,lo
         #substep3
         #u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows)
         u = SSP_RK2(u,S,dt_strang,sigma,theta,U10,theta_wind,cph,S_D,rows,k,depth,V2,N_dof_1,N_dof_2,local_range2,\
-                WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map)
+                WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,local_boundary_dofs)
         #correct boundary
         #u.setValues(global_boundary_dofs,u_d_vals)
         #u.assemble()
