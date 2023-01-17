@@ -105,6 +105,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
     valid_idx = np.logical_and(np.logical_and(valid_idx1,valid_idx2),valid_idx3)
 
     gamma_factor = np.zeros(k.shape)
+    k_tilde = np.zeros(Etot.shape)
     #need check to see if any nonzeros, if valid_idx is all False then np.kron throws an error
     if np.any(valid_idx):
         #corresponding mask that lives in knronecker product space
@@ -112,7 +113,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
         big_idx=np.array(big_idx, dtype=bool)
 
         sigma_tilde = np.zeros(Etot.shape)
-        k_tilde = np.zeros(Etot.shape)
+        
         s_tilde = np.zeros(Etot.shape)
 
         if opt==2:
@@ -142,7 +143,7 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
         print('integral params Etot, sigma_factor, k factor', Etot[i_small],sigma_factor[i_small],k_factor[i_small])
         
     S = -gamma_factor*np.maximum(0.0,N.getArray())
-    return S,valid_idx
+    return S,valid_idx,k_tilde
 
 def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     ##########################################################
@@ -207,7 +208,7 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
     return S_brk
 
 
-def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,valid_idx,local_size2,g=9.81):
+def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_mat,map_to_dof,valid_idx,local_size2,k_mean,depth,g=9.81):
     MSC = DIA_PARAMS[0]
     MDC = DIA_PARAMS[1]
     sig_spacing = DIA_PARAMS[2]
@@ -410,6 +411,23 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
         S_nl[idx2] = 0.0
 
 
+
+    #compute shallow water correction term
+    Csh1 = 5.5
+    Csh2 = 5.0/6.0
+    Csh3 = -5.0/4.0
+
+
+    kp = 0.75*k_mean
+
+    R = np.ones(kp.shape)
+
+    R[valid_idx] = 1 + Csh1/(kp[valid_idx]*depth[valid_idx])*(1-Csh2*kp[valid_idx]*depth[valid_idx])*np.exp(Csh3*kp[valid_idx]*depth[valid_idx])
+
+    S_nl = np.kron(R,np.ones(local_size2))*S_nl
+    
+
+
     #print('SFNL',SFNL.shape)
     #print('Eoo shape',E00.shape)
     #print('Ep1 shape', EP1.shape)
@@ -437,10 +455,10 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     k_factor2=CFx.wave.calculate_k_tilde2(k,N,V2,local_size1,local_size2,local_range2)
 
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
-    Swc,valid_idx = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
+    Swc,valid_idx,k_tilde = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
     Sbrk = S_brk(N,depth,local_size2,Etot,sigma_factor2)
-    Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map,valid_idx,local_size2)
+    Snl=Snl_DIA(WWINT,WWAWG,WWSWG,local_size1,DIA_PARAMS,new_coords,thets_unique,N,sigmas,inverse_map,flat_map,valid_idx,local_size2,k_tilde,depth)
     
     Snl[local_boundary_dofs] = 0.0
     Swc[local_boundary_dofs] = 0.0
