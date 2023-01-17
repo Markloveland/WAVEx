@@ -74,7 +74,7 @@ def SSP_RK2(N,A,dt,sigmas,thetas,U_mag,theta_wind,c,S,rows,k,depth,V2,local_size
 
 
 def strang_split(t,nt,dt,u,ksp2,RHS2,C,S,x,y,sigma,theta,c,cph,k,depth,u_func,local_boundary_dofs,global_boundary_dofs,nplot,xdmf,HS,dofs1,V2,N_dof_1,N_dof_2,local_range2,U10,theta_wind,rows,\
-        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map):
+        WWINT,WWAWG,WWSWG,DIA_PARAMS,new_coords,thets_unique,inverse_map,flat_map,dry_dofs):
     #preforms time loop with strang splitting given 2 sets of operators ksp1,RHS1 and ksp2,RHS2
 
 

@@ -156,7 +156,6 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     #depth- local water depth in meters
     #Outputs
     #S_br - numpy array same size as E with spectral density per unit time
-
     C_bfr=0.067
     #S_bfr=Expression('-C_bfr/g*pow(x[0]/sinh(k*d),2)*E',degree=p_degree, C_bfr=C_bfr,g=g,k=k,d=H,E=E) <- Fenics ver.
     #S_bfr=project(S_bfr,V)
@@ -172,6 +171,7 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
 def S_brk(E,depth,local_size2,m0,sigma_factor):
     alpha_bj = 1
     Hrms = np.sqrt(8*m0)
+    min_depth = 0.05 
     Hmax = 0.73*depth
     beta = Hrms/Hmax
 
@@ -454,6 +454,11 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     #int int Esqrt(k)
     k_factor2=CFx.wave.calculate_k_tilde2(k,N,V2,local_size1,local_size2,local_range2)
 
+
+
+    depth_min = 0.05
+    depth = np.maximum(depth_min,depth)
+    
     Sin =   S_in(sigmas,thetas,N,U_mag,theta_wind,c,g=9.81) 
     Swc,valid_idx,k_tilde = S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor2,k_factor2,opt=2)
     Sbfr = calc_S_bfr(sigmas,k,N,depth,local_size2)
@@ -462,6 +467,7 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     
     Snl[local_boundary_dofs] = 0.0
     Swc[local_boundary_dofs] = 0.0
+
 
     S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
     #S.setValues(rows,Sin+Snl)
