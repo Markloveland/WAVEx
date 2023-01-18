@@ -158,6 +158,13 @@ else:
     raise Exception("Bathymetry not defined")
 
 
+xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
+xdmf.write_mesh(domain1)
+xdmf.write_function(depth_func)
+xdmf.close()
+'''
+
+
 #here are some presets for u,v
 #setting none will default to 0
 if Model_Params["Currents"] == "A31":
@@ -520,37 +527,6 @@ elif Model_Params["Source Terms"]=="Wind":
 
 
 
-'''
-for i in range(nt):
-    t+=dt
-    #B will hold RHS of system of equations
-    M_SUPG.mult(u_cart,B)
-    #setting dirichlet BC
-    u_2 = u_func(x,y,sigma,theta,c,t)
-    u_d_vals = u_2[local_boundary_dofs]
-    u_D.setValues(global_boundary_dofs,u_d_vals)
-    C.mult(u_D,Temp)
-    B = B - Temp
-    B.setValues(global_boundary_dofs,u_d_vals)
-    B.assemble()
-    
-    
-    #solve for time t
-    ksp2.solve(B, u_cart)
-
-    #is this necessary?
-    B.zeroEntries()
-    # Save solution to file in VTK format
-    if (i%nplot==0):
-        #u.vector.setValues(dofs1, np.array(u_cart.getArray()[4::N_dof_2]))
-        #xdmf.write_function(u, t)
-        HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
-        HS.vector.setValues(dofs1,np.array(HS_vec))
-        HS.vector.ghostUpdate()
-        xdmf.write_function(HS,t)
-        
-        #hdf5_file.write(u,"solution",t)
-'''
 #print final iterations
 #HS_vec = CFx.wave.calculate_HS_actionbalance(u_cart,V2,N_dof_1,N_dof_2,local_range2)
 #HS.vector.setValues(dofs1,np.array(HS_vec))
@@ -617,3 +593,4 @@ if rank ==0:
                 vals_out[:,a] = Dir_vals[:,0]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
+    '''
