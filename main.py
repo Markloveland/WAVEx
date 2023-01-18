@@ -129,7 +129,7 @@ elif Model_Params["Bathymetry"] == "L11":
     bath_locs = np.linspace(-4.4,4.4*7,9)
     bath_vals = np.array([0.7,0.7,0.7,0.64,0.424,0.208,0.315,0.124,-0.06])
     for a in range(1,bath_locs.shape[0]):
-        seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1],local_dof_coords1[:,1]<=bath_locs[a])
+        seg = np.logical_and(local_dof_coords1[:,1]>bath_locs[a-1],local_dof_coords1[:,1]<=bath_locs[a])
         depth[seg] = (bath_vals[a] - bath_vals[a-1])/(bath_locs[a]-bath_locs[a-1])*(local_dof_coords1[seg,1]-bath_locs[a-1]) + bath_vals[a-1]
     
     #repeat for water depth and add
