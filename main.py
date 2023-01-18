@@ -159,11 +159,11 @@ else:
     raise Exception("Bathymetry not defined")
 
 
-xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
-xdmf.write_mesh(domain1)
-xdmf.write_function(depth_func)
-xdmf.close()
-'''
+#xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
+#xdmf.write_mesh(domain1)
+#xdmf.write_function(depth_func)
+#xdmf.close()
+
 
 
 #here are some presets for u,v
@@ -594,4 +594,3 @@ if rank ==0:
                 vals_out[:,a] = Dir_vals[:,0]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
-    '''
