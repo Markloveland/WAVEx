@@ -469,9 +469,10 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Swc[local_boundary_dofs] = 0.0
 
 
-    S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    #S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    
     #S.setValues(rows,Sin+Snl)
-    #S.setValues(rows,Snl)
+    S.setValues(rows,Snl*0)
     #print("max/min of source terms",np.amax(Sin),np.amax(Swc),np.amin(Sin),np.amax(Swc))
     #print("max/min of incoming action balance",np.amax(N.getArray()),np.amin(N.getArray()))
     S.assemble()
