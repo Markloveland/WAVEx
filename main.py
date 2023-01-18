@@ -132,6 +132,7 @@ elif Model_Params["Bathymetry"] == "L11":
     for a in range(1,bath_locs.shape[0]):
         seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1]-tol,local_dof_coords1[:,1]<=bath_locs[a]+tol)
         depth[seg] = (bath_vals[a] - bath_vals[a-1])/(bath_locs[a]-bath_locs[a-1])*(local_dof_coords1[seg,1]-bath_locs[a-1]) + bath_vals[a-1]
+    '''
     #repeat for water depth and add
     wlev_locs = np.linspace(0,30,31)
     wlev_vals = np.zeros(wlev_locs.shape)
@@ -150,7 +151,7 @@ elif Model_Params["Bathymetry"] == "L11":
     for a in range(1,wlev_locs.shape[0]):
         seg = np.logical_and(local_dof_coords1[:,1]>=wlev_locs[a-1]-tol,local_dof_coords1[:,1]<=wlev_locs[a]+tol)
         depth[seg] = depth[seg] + (wlev_vals[a] - wlev_vals[a-1])/(wlev_locs[a]-wlev_locs[a-1])*(local_dof_coords1[seg,1]-wlev_locs[a-1]) + wlev_vals[a-1]
-
+    '''
     depth_func.vector.setValues(dofs1,np.array(depth))
     depth_func.vector.ghostUpdate()
 
