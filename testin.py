@@ -47,3 +47,17 @@ if np.any(limit_idx):
     idx2 = np.array(dum + locs*local_size2,dtype=np.int32)
 
     print('index to shut down',idx2)
+
+
+print('bathymetry locations')
+bath_locs = np.linspace(4.4*1-7.4,4.4*7-7.4,7)
+bath_vals = np.array([0.7,0.64,0.424,0.208,0.315,0.124,-0.06])
+print('bath_locs',bath_locs)
+local_dof_coords1 = np.zeros((31,2))
+local_dof_coords1[:,1] = np.arange(0,31)
+local_dof_coords1[1:2,0] = 1
+a=2
+seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1],local_dof_coords1[:,1]<=bath_locs[a])
+print(local_dof_coords1)
+print(local_dof_coords1[seg,1])
+

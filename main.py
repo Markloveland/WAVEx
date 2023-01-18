@@ -79,6 +79,14 @@ elif Model_Params["Mesh Type"] == "Unstructured":
     encoding= io.XDMFFile.Encoding.HDF5
     with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
         domain1 = file.read_mesh()
+
+elif Model_Params["Mesh Type"] == "L11":
+    filename = Model_Params["Mesh Address"]
+    encoding= io.XDMFFile.Encoding.HDF5
+    with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
+        domain1 = file.read_mesh()
+    domain1.geometry.x[:,:] = domain1.geometry.x[:,:]*0.075
+
 else:
     raise Exception("Mesh not properly defined")
 
@@ -116,6 +124,36 @@ elif Model_Params["Bathymetry"] == "Deep":
 elif Model_Params["Bathymetry"] == "Uniform Constant":
     depth = np.array(np.ones(local_dof_coords1[:,0].shape))
     depth_func.x.array[:] = np.array(np.ones(dof_coords1[:,0].shape))
+elif Model_Params["Bathymetry"] == "L11":
+    depth = np.array(np.zeros(local_dof_coords1[:,0].shape))
+    bath_locs = np.linspace(0,4.4*7,8)
+    bath_vals = np.array([0.7,0.7,0.64,0.424,0.208,0.315,0.124,-0.06])
+    for a in range(1,bath_locs.shape[0]):
+        seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1],local_dof_coords1[:,1]<=bath_locs[a])
+        depth[seg] = (bath_vals[a] - bath_vals[a-1])/(bath_locs[a]-bath_locs[a-1])*(local_dof_coords1[seg,1]-bath_locs[a-1]) + bath_vals[a-1]
+    #repeat for water depth and add
+    wlev_locs = np.linspace(0,30,31)
+    wlev_vals = np.zeros(wlev_locs.shape)
+    wlev_vals[:13] = 0.062
+    wlev_vals[13:16] = 0.061
+    wlev_vals[16:18] = 0.060
+    wlev_vals[18] = 0.061
+    wlev_vals[19] = 0.062
+    wlev_vals[20] = 0.061
+    wlev_vals[21:23] = 0.062
+    wlev_vals[23:25] = 0.061
+    wlev_vals[25] = 0.060
+    wlev_vals[26] = 0.061
+    wlev_vals[27] = 0.066
+    wlev_vals[28:] = 0.067
+    for a in range(1,wlev_locs.shape[0]):
+        seg = np.logical_and(local_dof_coords1[:,1]>=wlev_locs[a-1],local_dof_coords1[:,1]<=wlev_locs[a])
+        depth[seg] = depth[seg] + (wlev_vals[a] - wlev_vals[a-1])/(wlev_locs[a]-wlev_locs[a-1])*(local_dof_coords1[seg,1]-wlev_locs[a-1]) + wlev_vals[a-1]
+
+    depth_func.vector.setValues(dofs1,np.array(depth))
+    depth_func.vector.ghostUpdate()
+
+
 else:
     raise Exception("Bathymetry not defined")
 
@@ -240,7 +278,10 @@ tol= 1e-9
 #now only want subset that is the inflow, need to automate later
 #this is assuming a rectangular shaped mesh with waves coming in from bottom side
 y_min =0
-x_max = 20000
+if Model_Params["Mesh Type"]=="L11":
+    x_max = 150
+else:
+    x_max = 20000
 x_min = 0
 dum1 = local_boundary_dofs[y[local_boundary_dofs]<=(y_min+tol)]
 dum2 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]>=(x_max-tol),theta[local_boundary_dofs]>=(np.pi/2+tol))]
