@@ -148,7 +148,7 @@ elif Model_Params["Bathymetry"] == "L11":
     wlev_vals[27] = 0.066
     wlev_vals[28:] = 0.067
     for a in range(1,wlev_locs.shape[0]):
-        seg = np.logical_and(local_dof_coords1[:,1]>=wlev_locs[a-1],local_dof_coords1[:,1]<=wlev_locs[a])
+        seg = np.logical_and(local_dof_coords1[:,1]>=wlev_locs[a-1]-tol,local_dof_coords1[:,1]<=wlev_locs[a]+tol)
         depth[seg] = depth[seg] + (wlev_vals[a] - wlev_vals[a-1])/(wlev_locs[a]-wlev_locs[a-1])*(local_dof_coords1[seg,1]-wlev_locs[a-1]) + wlev_vals[a-1]
 
     depth_func.vector.setValues(dofs1,np.array(depth))
