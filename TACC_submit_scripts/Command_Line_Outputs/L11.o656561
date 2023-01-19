@@ -1,0 +1,3111 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 656561 
+TACC:  Starting parallel tasks... 
+Switching to logarithmic spacing in frequency
+KSP Object: 250 MPI processes
+  type: gmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=10000, nonzero initial guess
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using PRECONDITIONED norm type for convergence test
+PC Object: 250 MPI processes
+  type: bjacobi
+    number of blocks = 250
+    Local solver information for first block is in the following KSP and PC objects on rank 0:
+    Use -ksp_view ::ascii_info_detail to display information for all blocks
+  KSP Object: (sub_) 1 MPI processes
+    type: preonly
+    maximum iterations=10000, initial guess is zero
+    tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+    left preconditioning
+    using NONE norm type for convergence test
+  PC Object: (sub_) 1 MPI processes
+    type: ilu
+      out-of-place factorization
+      0 levels of fill
+      tolerance for zero pivot 2.22045e-14
+      matrix ordering: natural
+      factor fill ratio given 1., needed 1.
+        Factored matrix follows:
+          Mat Object: 1 MPI processes
+            type: seqaij
+            rows=30750, cols=30750
+            package used to perform factorization: petsc
+            total: nonzeros=1092254, allocated nonzeros=1092254
+              not using I-node routines
+    linear system matrix = precond matrix:
+    Mat Object: (sub_) 1 MPI processes
+      type: seqaij
+      rows=30750, cols=30750
+      total: nonzeros=1092254, allocated nonzeros=1092254
+      total number of mallocs used during MatSetValues calls=0
+        not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: 250 MPI processes
+    type: mpiaij
+    rows=7644450, cols=7644450
+    total: nonzeros=346023302, allocated nonzeros=346023302
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node (on process 0) routines
+Niter 18
+convergence code 2
+dof 7644450
+The build time is 781.2868900299072 seconds
+The solve time is 178.4473958015442 seconds
+Final solution on boundary
+S_break getting big -2.5458884609204078
+S_break getting big -1.069147530774473
+S_break getting big -1.9642639738918999
+S_break getting big -1.0254078574222065
+S_break getting big -1.7760864713228197
+S_break getting big -1.2261737678705715
+S_break getting big -1.000107805547263
+S_break getting big -1.3253137476059718
+gamma may be blowing up 2.8277275957345593 0.0
+index and value of gamma blowing up 15376 15 2.8277275957345593
+Etot 5.26E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005257373553958008 56.63099466531674 4.106185903431002 23.632241206220833
+integral params Etot, sigma_factor, k factor 0.005257373553958008 0.12424351993834211 0.039563611718929935
+S_break getting big -1.9804110534432677
+S_break getting big -2.2253334845234782
+S_break getting big -1.1469836918576308
+S_break getting big -1.2074295757744058
+S_break getting big -1.1894485854202985
+gamma may be blowing up 1.491574916284511 0.0
+index and value of gamma blowing up 10251 10 1.491574916284511
+Etot 2.79E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002787354876585997 56.25373826754542 2.9699389411999455 23.583833895710846
+integral params Etot, sigma_factor, k factor 0.002787354876585997 0.06573651441780376 0.020905856221405457
+S_break getting big -2.3093967829728923
+S_break getting big -10.649922208319815
+S_break getting big -3.9269796920451605
+S_break getting big -2.0142503134835765
+S_break getting big -2.0116421339263506
+S_break getting big -3.398183855444693
+S_break getting big -3.8087708350608045
+S_break getting big -3.7649073402537026
+S_break getting big -3.70573273744754
+S_break getting big -3.0410574941257194
+S_break getting big -1.1902424597750103
+S_break getting big -1.108671068273292
+S_break getting big -1.4446644166588614
+S_break getting big -1.2127163952649522
+S_break getting big -2.483742952839823
+S_break getting big -2.259357596196375
+S_break getting big -1.4914112346265689
+S_break getting big -2.161258958054088
+S_break getting big -1.044821409295027
+S_break getting big -1.7591063640167004
+S_break getting big -1.0274234306877343
+S_break getting big -2.2075446722527037
+S_break getting big -1.1340374308680903
+S_break getting big -1.1448316710712607
+S_break getting big -1.3818140417482572
+S_break getting big -3.4556633690167384
+S_break getting big -3.359494994644639
+S_break getting big -3.301627216201252
+S_break getting big -3.42223116720146
+S_break getting big -1.0027085658132975
+S_break getting big -1.0187222944996555
+S_break getting big -1.5491488179726105
+gamma may be blowing up 3.1054948688065798 0.0
+index and value of gamma blowing up 20501 20 3.1054948688065798
+Etot 5.61E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005614592508464318 57.8877168174047 4.337560462274468 23.820637251082744
+integral params Etot, sigma_factor, k factor 0.005614592508464318 0.13374317145677525 0.04271805319128226
+S_break getting big -1.854927831674697
+S_break getting big -4.049301874271254
+S_break getting big -1.166599237723671
+S_break getting big -3.5997295495705934
+S_break getting big -1.183893199467181
+S_break getting big -2.5410088705792475
+S_break getting big -1.1338466539311556
+S_break getting big -1.7621629763652353
+S_break getting big -1.4577627970269507
+S_break getting big -1.3789383897872658
+S_break getting big -1.025702667596437
+S_break getting big -2.237330011098986
+S_break getting big -1.2450732444732375
+S_break getting big -1.9992657193882866
+S_break getting big -3.7651002141551144
+S_break getting big -2.4803396305187393
+S_break getting big -2.3863244484884776
+S_break getting big -1.7660028674204074
+S_break getting big -1.4394909685348896
+S_break getting big -4.037320287225408
+S_break getting big -5.731133904816953
+S_break getting big -1.218872054404887
+S_break getting big -2.4991179161614
+S_break getting big -1.6921579511057834
+S_break getting big -1.0310082095215596
+S_break getting big -1.1086533778482028
+S_break getting big -1.164168055967931
+S_break getting big -1.9221416121878299
+S_break getting big -1.911336599035204
+S_break getting big -1.023668068328659
+S_break getting big -2.0769128727757575
+S_break getting big -1.0324135656757678
+S_break getting big -4.099791758336634
+S_break getting big -1.0855053090758298
+S_break getting big -3.4568409099959436
+S_break getting big -1.08687441559013
+S_break getting big -3.1704075479754046
+S_break getting big -1.0287921206345387
+S_break getting big -1.4930667852781934
+S_break getting big -1.3835174905381984
+S_break getting big -1.0958725776954013
+S_break getting big -1.1155905837558295
+S_break getting big -1.0671174546669302
+S_break getting big -1.0117647312090194
+gamma may be blowing up 2.720406072651475 0.0
+index and value of gamma blowing up 8201 8 2.720406072651475
+Etot 5.03E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005026336624778348 56.64412247181606 4.015879182015316 23.696193883855276
+integral params Etot, sigma_factor, k factor 0.005026336624778348 0.11910504718627046 0.037829360306006636
+S_break getting big -4.403286350929686
+S_break getting big -2.96771306205119
+S_break getting big -1.9435903515954311
+S_break getting big -4.114927882115178
+S_break getting big -1.3801064968719918
+S_break getting big -1.3219008391360316
+S_break getting big -1.6944288660786915
+S_break getting big -1.6991667967151438
+S_break getting big -1.3084852534326585
+S_break getting big -1.2434256608257033
+S_break getting big -2.1999365876124215
+S_break getting big -2.2989854519256374
+S_break getting big -1.7953592367402484
+S_break getting big -4.229850835143177
+S_break getting big -3.4781244960388054
+S_break getting big -2.605977645451922
+S_break getting big -1.2927909412778167
+S_break getting big -2.936408599502263
+S_break getting big -4.749409686554644
+S_break getting big -4.693940749761391
+S_break getting big -1.0256044029023044
+S_break getting big -4.324553879071437
+S_break getting big -1.0324570414308942
+S_break getting big -1.2475589837919738
+S_break getting big -1.0844808326353956
+S_break getting big -1.1748902565792374
+S_break getting big -2.5097775426008497
+S_break getting big -1.22701236770293
+S_break getting big -5.924735521521525
+S_break getting big -3.2160266190649955
+S_break getting big -5.253364532430855
+S_break getting big -5.177535996661246
+S_break getting big -1.1658135776214995
+S_break getting big -1.2273824242742863
+S_break getting big -1.6064151169882608
+S_break getting big -1.0151501218558243
+S_break getting big -1.4304782494176496
+S_break getting big -8.21832937703268
+S_break getting big -2.8125969717510166
+S_break getting big -2.673549663951349
+S_break getting big -3.349263419070244
+S_break getting big -2.2098305237035323
+S_break getting big -2.6291439444245306
+S_break getting big -3.8223368605316437
+S_break getting big -1.496349082353676
+S_break getting big -1.6210010536200221
+S_break getting big -2.6247346242612895
+S_break getting big -2.122416662360572
+S_break getting big -1.463021173100826
+S_break getting big -1.6344735448825278
+S_break getting big -1.0443005982611806
+S_break getting big -1.6824739691525343
+S_break getting big -3.749016093024376
+S_break getting big -1.0994892858116034
+S_break getting big -3.664711701638641
+S_break getting big -2.7916642053569727
+S_break getting big -1.858166362216017
+S_break getting big -2.5291125746575527
+S_break getting big -1.7121031631278414
+S_break getting big -1.2372546438560124
+S_break getting big -1.5058782217826483
+S_break getting big -1.0221896413840676
+S_break getting big -1.1155334864439141
+gamma may be blowing up 3.2626769635204984 0.0
+index and value of gamma blowing up 4101 4 3.2626769635204984
+Etot 5.87E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005872870752555643 57.606275444678616 4.414637196977659 23.916627139817148
+integral params Etot, sigma_factor, k factor 0.005872870752555643 0.14045926002921066 0.044574383118456705
+S_break getting big -2.312126387258971
+S_break getting big -3.5931166568827764
+S_break getting big -3.3209303363767035
+S_break getting big -4.266009381274752
+S_break getting big -1.4110500390352765
+S_break getting big -1.8415810535135255
+S_break getting big -1.061298965269827
+S_break getting big -2.0690398841501207
+S_break getting big -1.7466213480249375
+S_break getting big -1.1243366318823829
+S_break getting big -1.5850013305611137
+S_break getting big -1.4344587210390098
+S_break getting big -1.9701514491736536
+S_break getting big -1.158880637143064
+S_break getting big -1.0343266324618179
+S_break getting big -3.7788629132526834
+S_break getting big -5.061766287717428
+S_break getting big -4.929115917132091
+S_break getting big -1.7116194807018328
+S_break getting big -1.1049581634727976
+S_break getting big -1.2196556290710512
+S_break getting big -2.5785072953980173
+S_break getting big -1.3413206188368731
+S_break getting big -2.447390307634609
+S_break getting big -1.6058331866135376
+S_break getting big -1.2976622136847422
+S_break getting big -1.533321799025065
+S_break getting big -2.1130760327639986
+S_break getting big -2.011314975857111
+S_break getting big -2.6798241554931557
+S_break getting big -2.7950121040158757
+S_break getting big -1.964794577337094
+S_break getting big -1.628596469189079
+S_break getting big -1.1087308526374797
+S_break getting big -1.3353425511631947
+S_break getting big -1.4878038258268071
+S_break getting big -1.4670656639296458
+S_break getting big -1.057112631614754
+S_break getting big -1.061014551350939
+S_break getting big -4.318935420637146
+S_break getting big -2.928317424963959
+S_break getting big -4.988724987829769
+S_break getting big -1.7582150327352104
+S_break getting big -1.7208756215972068
+S_break getting big -1.29956125545684
+S_break getting big -1.3761195338021863
+S_break getting big -1.6966121159629963
+S_break getting big -1.175492497662782
+S_break getting big -1.1407706712090295
+S_break getting big -1.6079297350180846
+S_break getting big -1.1166999829759694
+S_break getting big -1.109613129605772
+gamma may be blowing up 1.136790278600858 0.0
+index and value of gamma blowing up 21526 21 1.136790278600858
+Etot 2.16E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0021643132254946036 55.48283919862995 2.5811826282589 23.406618280591047
+integral params Etot, sigma_factor, k factor 0.0021643132254946036 0.050659253508786965 0.01612127742916728
+S_break getting big -6.770773018968058
+S_break getting big -2.8904219648723104
+S_break getting big -2.7548187150700962
+S_break getting big -2.833140696080854
+S_break getting big -6.901345914550796
+S_break getting big -2.1556064352454367
+S_break getting big -1.7236981658858685
+S_break getting big -1.6433402894530955
+S_break getting big -1.7620923371721804
+S_break getting big -1.3757533740988426
+S_break getting big -1.2141789689723022
+S_break getting big -1.0606039415797193
+S_break getting big -1.0556085841085174
+S_break getting big -1.1941842401344918
+S_break getting big -1.2188293144025961
+S_break getting big -5.432048335360184
+S_break getting big -1.350764515544217
+S_break getting big -1.2344067854310634
+S_break getting big -1.4568614810763996
+S_break getting big -1.111085341883407
+S_break getting big -1.1300822248935785
+S_break getting big -1.5506340686784412
+S_break getting big -2.0700191882171035
+S_break getting big -1.0215683471470216
+S_break getting big -1.0126929122102903
+S_break getting big -2.2247676263516563
+S_break getting big -2.0365586662177737
+S_break getting big -3.277872245842281
+S_break getting big -3.7881255663713227
+S_break getting big -4.805668353039421
+S_break getting big -1.6065013726254147
+S_break getting big -1.208187368920711
+S_break getting big -1.962075516056736
+S_break getting big -3.8146888008160533
+S_break getting big -2.1441178365024296
+S_break getting big -3.6871399366763074
+S_break getting big -3.0995901815439346
+S_break getting big -1.939512240607729
+S_break getting big -1.3184790358193337
+S_break getting big -1.1179158046552855
+S_break getting big -6.275669083904216
+S_break getting big -2.005848311315971
+S_break getting big -1.0605442352413619
+S_break getting big -1.3406006074405503
+S_break getting big -2.203089530201684
+S_break getting big -1.0892382119176363
+S_break getting big -1.103353604669317
+gamma may be blowing up 1.1453275989537601 0.0
+index and value of gamma blowing up 13326 13 1.1453275989537601
+Etot 2.21E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002212103685920055 55.10803897230972 2.5918967466868885 23.29637902282995
+integral params Etot, sigma_factor, k factor 0.002212103685920055 0.05153400590499278 0.01642150503608091
+S_break getting big -8.01613608607563
+S_break getting big -2.755632689150787
+S_break getting big -3.256554794861413
+S_break getting big -3.273382734564564
+S_break getting big -2.740613629439558
+S_break getting big -3.0148942189815786
+S_break getting big -1.7988628054507705
+S_break getting big -1.15485626524005
+S_break getting big -1.2287291836739311
+S_break getting big -1.1247555993541483
+S_break getting big -1.7318310251884994
+S_break getting big -1.093930737539716
+S_break getting big -1.173701052223113
+S_break getting big -1.272864021594077
+S_break getting big -1.0710021091442654
+S_break getting big -1.097862852937281
+S_break getting big -1.0221469694508796
+S_break getting big -1.0967350401291363
+S_break getting big -1.0949162990364167
+S_break getting big -1.1366869220976261
+S_break getting big -1.1394176201051922
+S_break getting big -1.3316129721275898
+S_break getting big -1.1635907748656371
+S_break getting big -1.0792347412474956
+S_break getting big -1.006442211255269
+S_break getting big -1.644620266257406
+S_break getting big -1.1256200783542818
+S_break getting big -1.9935912949207546
+S_break getting big -1.1231120402819728
+S_break getting big -1.0847421734173934
+S_break getting big -1.6540151922713546
+S_break getting big -1.915083043016948
+S_break getting big -1.053714676071258
+S_break getting big -1.5088956413926593
+S_break getting big -1.0031995158936164
+S_break getting big -1.014840250601844
+S_break getting big -1.6311732298982073
+S_break getting big -1.217789040234875
+S_break getting big -1.2863608818339767
+S_break getting big -1.0114753439254496
+S_break getting big -2.15076336668533
+S_break getting big -1.228331368161923
+S_break getting big -1.2881121100497128
+S_break getting big -1.1627821404255918
+S_break getting big -1.3848255811783279
+S_break getting big -3.3496691369455736
+S_break getting big -2.306785296488311
+gamma may be blowing up 2.975226127388635 0.0
+index and value of gamma blowing up 8201 8 2.975226127388635
+Etot 5.39E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005393803606860175 57.342567719508025 4.21138262307256 23.854583522186577
+integral params Etot, sigma_factor, k factor 0.005393803606860175 0.12866693864211726 0.040844510668856006
+S_break getting big -2.7700574679502226
+S_break getting big -3.4190952515615787
+S_break getting big -3.1237613993873836
+S_break getting big -3.0837724766211863
+S_break getting big -3.2874468673467336
+S_break getting big -2.05219955384729
+S_break getting big -1.2381196079915282
+S_break getting big -2.852101207870289
+S_break getting big -1.1495758902497688
+S_break getting big -1.2973940636955017
+S_break getting big -1.1724181710808836
+S_break getting big -1.1965616678561153
+S_break getting big -1.2196988250837018
+S_break getting big -1.007318830448331
+S_break getting big -1.331277650118406
+S_break getting big -1.028312010841794
+S_break getting big -4.21502990203151
+S_break getting big -2.2554826866216184
+S_break getting big -1.2380712858857221
+S_break getting big -2.05751616579163
+S_break getting big -1.2012137600161967
+S_break getting big -1.0549606577424908
+gamma may be blowing up 4.0471546574100525 0.0
+index and value of gamma blowing up 16401 16 4.0471546574100525
+Etot 8.22E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.008221533663315345 53.259067648744775 4.82914203528784 22.922368542450577
+integral params Etot, sigma_factor, k factor 0.008221533663315345 0.18845702461467811 0.05999977462700978
+S_break getting big -2.511537890104958
+S_break getting big -1.8198943582608589
+S_break getting big -3.1858706425514853
+S_break getting big -2.653502676414682
+S_break getting big -1.117606906086528
+S_break getting big -1.7457089039503617
+S_break getting big -1.890367201761314
+S_break getting big -1.2296799753356662
+S_break getting big -2.202630106144871
+S_break getting big -1.798168029431618
+S_break getting big -1.3224114236675164
+S_break getting big -1.1576451709838098
+gamma may be blowing up 2.1231161477795073 0.0
+index and value of gamma blowing up 29726 29 2.1231161477795073
+Etot 5.00E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005000703197679642 48.78956549246775 3.450185851767362 21.694165356442912
+integral params Etot, sigma_factor, k factor 0.005000703197679642 0.10848608206895499 0.03492967575758397
+S_break getting big -2.1732505934143433
+S_break getting big -1.6151984669397053
+S_break getting big -1.010606084121494
+S_break getting big -1.9474360839852594
+S_break getting big -1.1093036567516226
+S_break getting big -2.229113326290371
+S_break getting big -1.3343772674705119
+S_break getting big -2.419151177246767
+S_break getting big -1.2634001037127696
+S_break getting big -1.4663572593211591
+S_break getting big -1.0904594437754411
+S_break getting big -1.4804559587907853
+S_break getting big -1.271228730523508
+S_break getting big -1.0088809907632483
+S_break getting big -1.0033465625352622
+S_break getting big -1.68991776654042
+S_break getting big -1.72486429487492
+S_break getting big -1.4201589418272313
+S_break getting big -1.2090596220274803
+S_break getting big -4.261870709659664
+S_break getting big -1.348509302666221
+S_break getting big -4.827384595413651
+S_break getting big -2.323767909954539
+S_break getting big -3.4533231791592574
+S_break getting big -3.8307446856568976
+S_break getting big -1.9549673534352447
+S_break getting big -1.4770466298656837
+S_break getting big -1.3878557876352164
+S_break getting big -1.1589153097247475
+S_break getting big -1.0249501800612788
+S_break getting big -1.1208003125728776
+S_break getting big -1.934842938395423
+gamma may be blowing up 3.2205483317629557 0.0
+index and value of gamma blowing up 24601 24 3.2205483317629557
+Etot 5.77E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0057676127892649955 57.62154870103322 4.376057045745366 23.946208474855545
+integral params Etot, sigma_factor, k factor 0.0057676127892649955 0.13811245825398266 0.043781290581297205
+S_break getting big -1.157124158912912
+S_break getting big -3.2956269445573274
+S_break getting big -2.0106085960817377
+S_break getting big -2.3193097082671055
+S_break getting big -2.581275871925006
+S_break getting big -3.1075300431756614
+S_break getting big -1.126430379571932
+S_break getting big -2.323706173511182
+S_break getting big -2.6739773411138903
+S_break getting big -1.0291387938513012
+S_break getting big -1.2852243054380021
+S_break getting big -1.2803009189597132
+gamma may be blowing up 1.0175242785463499 0.0
+index and value of gamma blowing up 23576 23 1.0175242785463499
+Etot 1.95E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.001950284422039511 55.24772858698367 2.439851552248008 23.349006421004937
+integral params Etot, sigma_factor, k factor 0.001950284422039511 0.04553720349298644 0.01449623315695246
+S_break getting big -6.939699662483434
+S_break getting big -1.5851733167420194
+S_break getting big -2.9043140935132765
+S_break getting big -2.90525867928945
+S_break getting big -3.479552545107231
+S_break getting big -3.1990493249186143
+S_break getting big -2.8158575585031413
+S_break getting big -1.2909498203189775
+S_break getting big -1.0872358722250826
+S_break getting big -1.2073536817061215
+S_break getting big -1.5726944874572344
+S_break getting big -1.6178917049737946
+S_break getting big -1.471853707623013
+S_break getting big -1.7958143081038325
+S_break getting big -1.0545706882920258
+S_break getting big -1.43166278044677
+S_break getting big -1.252567864765287
+S_break getting big -1.8731562091455314
+S_break getting big -1.0682265777197426
+S_break getting big -1.3626438930190798
+S_break getting big -1.0423300186584323
+S_break getting big -1.2067289715052802
+S_break getting big -1.155677873411128
+S_break getting big -1.0187912537489292
+S_break getting big -1.1455943110767053
+S_break getting big -1.1469536702526455
+S_break getting big -1.1629947518768176
+gamma may be blowing up 1.2485242563784538 0.0
+index and value of gamma blowing up 30751 30 1.2485242563784538
+Etot 2.38E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0023814507602381843 55.841344031120066 2.7250637451273025 23.381754883914493
+integral params Etot, sigma_factor, k factor 0.0023814507602381843 0.05568249794400105 0.01779588282977012
+S_break getting big -1.5541670695917038
+S_break getting big -1.4713487224388795
+S_break getting big -2.116633036343934
+S_break getting big -2.429575006679307
+S_break getting big -1.3681241701370028
+S_break getting big -1.96342348917427
+S_break getting big -2.566738020087346
+S_break getting big -1.1176707387554268
+S_break getting big -1.3318089666909945
+S_break getting big -1.0750095033504563
+S_break getting big -1.7790876247068408
+S_break getting big -4.393787059201245
+S_break getting big -3.2077679303472175
+S_break getting big -3.202324795770425
+S_break getting big -1.547777368362712
+S_break getting big -2.7726490457415514
+S_break getting big -1.0010289007748412
+S_break getting big -1.0435972919161474
+S_break getting big -2.261995666159653
+S_break getting big -1.725596478745738
+S_break getting big -1.7986694248304178
+S_break getting big -1.0808857337304763
+S_break getting big -1.4094010238149024
+S_break getting big -1.1453445392972592
+S_break getting big -1.037580388035968
+S_break getting big -1.8273709079839786
+S_break getting big -1.0826672049095496
+S_break getting big -1.5531381308153716
+S_break getting big -1.5131236795953193
+S_break getting big -1.3402704409576245
+S_break getting big -1.2271152962932113
+S_break getting big -1.1888171781717907
+S_break getting big -1.0134573465073138
+gamma may be blowing up 3.954501224085721 1.679484893296762e-05
+index and value of gamma blowing up 12301 12 3.954501224085721
+Etot 8.61E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00860793573607854 51.24633692551139 4.754581931415435 22.340647538261774
+integral params Etot, sigma_factor, k factor 0.00860793573607854 0.1923068583117386 0.06162123950115334
+S_break getting big -1.6881601844247853
+S_break getting big -2.827488100195637
+S_break getting big -3.0579352806964053
+S_break getting big -2.239171264023704
+S_break getting big -1.6129874989951425
+S_break getting big -1.9984296892325575
+S_break getting big -1.013263383655799
+S_break getting big -1.3703254154477147
+S_break getting big -1.1016240756497913
+S_break getting big -1.1196556654420788
+S_break getting big -1.1369557953734473
+S_break getting big -1.2120816972264798
+S_break getting big -1.0796458686509465
+S_break getting big -2.2684870986588854
+S_break getting big -1.1832597115284642
+S_break getting big -1.55948338795817
+S_break getting big -1.0972454837593295
+S_break getting big -1.1793160445620103
+S_break getting big -1.1443042302230024
+S_break getting big -1.468717430436133
+S_break getting big -1.0387690077943421
+S_break getting big -1.122347001093427
+S_break getting big -1.2802001233126343
+S_break getting big -3.5953780898055148
+S_break getting big -4.258976633771489
+S_break getting big -1.8607383354404585
+S_break getting big -2.0800133459987666
+S_break getting big -1.7820187443225273
+S_break getting big -1.817895379515948
+S_break getting big -1.1337332824127027
+S_break getting big -3.210869610651832
+S_break getting big -2.873609769107338
+S_break getting big -1.1864471140244248
+S_break getting big -1.7440776108646834
+S_break getting big -2.2647679467800175
+S_break getting big -2.2082659814567083
+S_break getting big -1.2847467426110102
+S_break getting big -1.8118248719704966
+S_break getting big -3.9499566154237336
+S_break getting big -1.4909468187005546
+S_break getting big -1.0363678826650002
+S_break getting big -1.270433916630333
+S_break getting big -1.0372437220740933
+S_break getting big -1.4124558838261287
+S_break getting big -2.3106095312289083
+S_break getting big -1.3105640421168485
+S_break getting big -4.415599561885645
+S_break getting big -4.1335189957413965
+S_break getting big -1.164783974692042
+S_break getting big -2.660486241718947
+S_break getting big -1.0591008062473384
+S_break getting big -3.8523935746433797
+S_break getting big -2.195778152966904
+S_break getting big -4.366648452645548
+S_break getting big -1.77981043386765
+S_break getting big -3.424625512390371
+S_break getting big -2.284156761183307
+S_break getting big -1.0224919113532867
+S_break getting big -1.4377567344689173
+S_break getting big -1.1087529213038472
+S_break getting big -1.0648543312738017
+S_break getting big -1.1068515723496948
+S_break getting big -2.114637995398079
+S_break getting big -1.9779994835632648
+S_break getting big -1.8503716311310632
+S_break getting big -2.3426385972604686
+S_break getting big -1.775888848769949
+S_break getting big -1.8599286211603974
+S_break getting big -1.1438378828365523
+S_break getting big -1.1305797013845238
+S_break getting big -1.0692818503700585
+S_break getting big -1.0420550263590493
+S_break getting big -1.1716041387733438
+S_break getting big -4.515621124190197
+S_break getting big -1.5662824252199778
+S_break getting big -2.1854119873265274
+S_break getting big -1.9072584863398347
+S_break getting big -3.741066925510361
+S_break getting big -3.0086862368981944
+S_break getting big -2.2253685335302964
+S_break getting big -3.0465883662920885
+S_break getting big -2.434893500049805
+S_break getting big -1.2519493862919158
+S_break getting big -1.1911933269730282
+S_break getting big -1.697480602864949
+S_break getting big -1.4795096133241072
+S_break getting big -2.2168851832139995
+S_break getting big -1.254713200419922
+S_break getting big -1.256325416126345
+S_break getting big -1.5794408971853255
+S_break getting big -3.4998464839006416
+S_break getting big -3.30097123909765
+S_break getting big -1.9041946506052756
+S_break getting big -1.1999463562950952
+S_break getting big -2.043812606103502
+S_break getting big -3.2081280618241346
+S_break getting big -4.966343632222908
+S_break getting big -5.285414866381912
+S_break getting big -3.2667942881156233
+S_break getting big -2.3497385668916833
+S_break getting big -1.8266525464154701
+S_break getting big -1.5916634121363455
+S_break getting big -1.2430917889832174
+S_break getting big -1.3592668249028295
+S_break getting big -1.3475123497916184
+S_break getting big -1.012686294643886
+S_break getting big -1.0015367989721853
+S_break getting big -1.0997384373738686
+S_break getting big -1.0912005605422952
+S_break getting big -1.0274504150325965
+S_break getting big -1.0108406009651039
+S_break getting big -4.255237564222083
+S_break getting big -3.4654434362606197
+S_break getting big -1.2808296604662797
+S_break getting big -2.7753075528045903
+S_break getting big -2.0914255029616418
+S_break getting big -1.400791622764681
+S_break getting big -1.0746453943805792
+S_break getting big -1.0516920173792963
+S_break getting big -1.8801525360174258
+S_break getting big -1.9159601829035897
+S_break getting big -1.9110340942387936
+S_break getting big -2.9791395405658934
+S_break getting big -3.372070543830933
+S_break getting big -1.1910235593390321
+S_break getting big -4.01457107862102
+S_break getting big -1.8340094369355948
+S_break getting big -1.664449674686102
+S_break getting big -1.9044245690790578
+S_break getting big -2.901493217794874
+S_break getting big -1.0676341055886345
+S_break getting big -1.0228510245157907
+S_break getting big -1.2235059691936085
+S_break getting big -1.1222861138417257
+S_break getting big -1.521851888679767
+S_break getting big -1.7787042468797072
+S_break getting big -1.1403870284277684
+S_break getting big -1.1969860560166798
+S_break getting big -1.9040240270748339
+S_break getting big -4.241882952027402
+S_break getting big -2.4370777064160967
+S_break getting big -2.612347424813795
+S_break getting big -1.1515037453518615
+S_break getting big -2.0772658795657373
+S_break getting big -1.7522482382097135
+S_break getting big -1.0192423826270387
+S_break getting big -1.0069025280638266
+S_break getting big -1.921652766761747
+S_break getting big -1.1028671968665442
+S_break getting big -1.5156936360228441
+S_break getting big -2.4922233674144363
+S_break getting big -1.3791338227823697
+S_break getting big -2.2228401853661146
+S_break getting big -1.497286945023891
+S_break getting big -1.3272297864340006
+S_break getting big -4.369264491265438
+S_break getting big -1.1437450511971718
+S_break getting big -1.1529676921459378
+S_break getting big -5.21819315803831
+S_break getting big -4.623284010997762
+S_break getting big -1.8443286593886525
+S_break getting big -1.3703591375605717
+S_break getting big -1.0121280258283891
+S_break getting big -1.1452649240721462
+S_break getting big -1.2260029253229554
+S_break getting big -1.1699475504623946
+S_break getting big -1.000323058535646
+S_break getting big -1.2228417305245074
+S_break getting big -1.2082848210420236
+S_break getting big -1.0866448721427886
+S_break getting big -3.0511051175934507
+S_break getting big -1.373717331706104
+S_break getting big -2.5695647236493855
+S_break getting big -1.083434185741739
+S_break getting big -1.229636287341659
+S_break getting big -1.3284777297366346
+S_break getting big -3.453967857112384
+S_break getting big -3.0669342110408433
+S_break getting big -1.5352824997668864
+S_break getting big -3.205334194530847
+S_break getting big -1.2081828616458619
+S_break getting big -2.204364582357647
+S_break getting big -1.1021576415128007
+S_break getting big -2.772880945371349
+S_break getting big -1.3770026740165884
+S_break getting big -1.434052645336408
+S_break getting big -3.7621511859967445
+S_break getting big -3.596175895580456
+S_break getting big -1.2372424040460583
+S_break getting big -1.4599814853130522
+S_break getting big -1.2858943697658034
+S_break getting big -1.1486896646483091
+S_break getting big -1.0287615007817854
+S_break getting big -1.6760521947648115
+S_break getting big -1.9349364213209606
+gamma may be blowing up 1.9913999246356933 0.0
+index and value of gamma blowing up 16401 16 1.9913999246356933
+Etot 3.67E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0036736909511739285 56.95381170700645 3.452026367956252 23.682112069267912
+integral params Etot, sigma_factor, k factor 0.0036736909511739285 0.08700076081355641 0.027724518737525124
+S_break getting big -5.217065091387139
+S_break getting big -3.4539482958930408
+S_break getting big -4.088828887075208
+S_break getting big -3.310967651720205
+S_break getting big -1.2869670538973317
+S_break getting big -2.1089115502166087
+S_break getting big -1.024918124477329
+S_break getting big -1.273170798451323
+S_break getting big -1.160345311643819
+S_break getting big -1.0694527983560054
+S_break getting big -1.2242450132070128
+S_break getting big -2.0998295316333744
+S_break getting big -1.0562817609190955
+S_break getting big -2.9062017221726117
+S_break getting big -1.7232111762854225
+S_break getting big -1.0070545362722807
+S_break getting big -1.2935934281572978
+S_break getting big -1.0016361151904263
+S_break getting big -1.416765647169757
+S_break getting big -3.2703525410532293
+S_break getting big -1.0949679142008022
+S_break getting big -1.1705244566458746
+S_break getting big -1.5150644410191978
+S_break getting big -2.380686651853885
+S_break getting big -1.8449119317187306
+S_break getting big -1.6888707296238574
+S_break getting big -1.6201089577565368
+S_break getting big -1.0717518874092546
+S_break getting big -1.0599131015302359
+gamma may be blowing up 2.259510993360851 0.0
+index and value of gamma blowing up 17426 17 2.259510993360851
+Etot 5.65E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0056450867567607544 46.80939268272496 3.516967191058324 21.30273295360553
+integral params Etot, sigma_factor, k factor 0.0056450867567607544 0.1202557756792095 0.03862221027929431
+S_break getting big -1.5455336648416305
+S_break getting big -1.7102667319814293
+S_break getting big -1.6433932374615734
+S_break getting big -1.2385279411440349
+S_break getting big -1.1197347407131224
+S_break getting big -3.561384738833756
+S_break getting big -1.1364975400798523
+S_break getting big -1.5729799668541373
+S_break getting big -1.7621924562906555
+S_break getting big -1.5588813437466538
+S_break getting big -1.4366579240888284
+S_break getting big -3.6866336828791892
+S_break getting big -4.182413805139454
+S_break getting big -4.493146247916897
+S_break getting big -1.6559506443235028
+S_break getting big -1.0014104927563487
+S_break getting big -1.4572937204864223
+S_break getting big -2.2479023551020108
+S_break getting big -2.5996689237327466
+S_break getting big -3.3439531887033436
+S_break getting big -1.1709983464948315
+S_break getting big -1.503301258200035
+S_break getting big -2.941821646087997
+S_break getting big -1.3217930595720775
+S_break getting big -1.6999551464621983
+S_break getting big -3.855610061347874
+S_break getting big -2.513266412243103
+S_break getting big -1.0702685296643966
+S_break getting big -2.4933606619789717
+S_break getting big -1.0143215292726844
+S_break getting big -1.1314470782609392
+gamma may be blowing up 1.0175571245811892 0.0
+index and value of gamma blowing up 2051 2 1.0175571245811892
+Etot 3.29E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0032939297572769383 39.665223060634936 2.276496923561323 19.394134481528283
+integral params Etot, sigma_factor, k factor 0.0032939297572769383 0.06388291668533676 0.020745279197917143
+S_break getting big -2.874125100332194
+S_break getting big -1.449417509201151
+S_break getting big -1.489822207579933
+gamma may be blowing up 1.1199540680230058 0.0
+index and value of gamma blowing up 28701 28 1.1199540680230058
+Etot 2.22E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0022168590597799825 54.30128452540624 2.556696310371705 23.07680113516012
+integral params Etot, sigma_factor, k factor 0.0022168590597799825 0.051158015667220696 0.016335902573515953
+S_break getting big -7.0786605682184
+S_break getting big -2.7681894399300795
+S_break getting big -3.4634015648566785
+S_break getting big -1.9261688557911019
+S_break getting big -2.715875393827357
+S_break getting big -1.3186858704311142
+S_break getting big -1.7699909483131697
+S_break getting big -1.781477631716649
+S_break getting big -1.0015963588772303
+S_break getting big -1.0582952709372793
+S_break getting big -1.058908207837262
+S_break getting big -1.0028580609270148
+S_break getting big -1.122224910802575
+S_break getting big -1.259937378692958
+S_break getting big -1.4055054696072034
+S_break getting big -1.6181587067502503
+S_break getting big -1.0139713519615619
+S_break getting big -1.2390402668251457
+S_break getting big -1.5105840443245564
+S_break getting big -1.189248508519572
+S_break getting big -1.3722927236521356
+S_break getting big -1.3970822975716388
+gamma may be blowing up 2.230824341101208 0.0
+index and value of gamma blowing up 27676 27 2.230824341101208
+Etot 4.08E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004084533642392919 57.224504940340886 3.6572384998282828 23.748277325864976
+integral params Etot, sigma_factor, k factor 0.004084533642392919 0.09700063768637243 0.030898222739004565
+S_break getting big -3.7071787042829154
+S_break getting big -2.510222816589687
+S_break getting big -2.0821001854838745
+S_break getting big -3.6454200332121975
+S_break getting big -2.2244924760056297
+S_break getting big -1.027521542415211
+S_break getting big -1.0187811205016843
+S_break getting big -1.164183779313265
+S_break getting big -1.308458255356835
+S_break getting big -1.0747779324137106
+S_break getting big -1.2431031301877795
+S_break getting big -1.035400529312042
+S_break getting big -1.1435330639281278
+gamma may be blowing up 5.591078536970257 0.0
+index and value of gamma blowing up 8201 8 5.591078536970257
+Etot 1.03E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.001031883440846383 254.99535243802222 8.191201067900819 52.55355029475157
+integral params Etot, sigma_factor, k factor 0.001031883440846383 0.054229138306841694 0.01647770698257795
+S_break getting big -3.3174407573945315
+S_break getting big -1.1633225765150685
+S_break getting big -1.3066200655952351
+S_break getting big -1.2889059792913466
+S_break getting big -2.076019558163571
+S_break getting big -2.083280404843657
+S_break getting big -3.296086901610309
+S_break getting big -1.042119305739551
+S_break getting big -1.1962740548534272
+S_break getting big -1.107166193164742
+S_break getting big -1.0108797683116806
+S_break getting big -1.0095238970323654
+S_break getting big -1.4258853432455274
+S_break getting big -1.5904058578304292
+S_break getting big -2.2604940494216312
+S_break getting big -4.152233498489862
+S_break getting big -1.1869134121262608
+S_break getting big -1.570988254678572
+S_break getting big -1.2109943616193988
+S_break getting big -2.060053871511995
+S_break getting big -2.255554269900974
+S_break getting big -1.1070998412860205
+S_break getting big -1.7888318860287808
+S_break getting big -1.3236540948746731
+S_break getting big -1.207015638867798
+S_break getting big -1.041840479392217
+S_break getting big -1.0742906923723357
+S_break getting big -4.754331295759187
+S_break getting big -1.045699077932227
+S_break getting big -8.505687175122281
+S_break getting big -1.4984340506289253
+S_break getting big -3.873304165422376
+S_break getting big -1.1513731015025828
+S_break getting big -1.5445487342318647
+S_break getting big -1.6656877724643813
+S_break getting big -2.349132631943313
+S_break getting big -1.0147446862297196
+S_break getting big -1.0041920439897514
+S_break getting big -1.758074756647884
+S_break getting big -1.3246192408116668
+S_break getting big -1.6964871606090839
+S_break getting big -1.2421626586390748
+S_break getting big -1.5602936598160964
+S_break getting big -2.3545050894913984
+S_break getting big -1.1470469875319584
+S_break getting big -4.7819243172985635
+S_break getting big -3.5875794455068792
+S_break getting big -2.731857023120991
+S_break getting big -1.6989480420180918
+S_break getting big -1.6980301936749915
+S_break getting big -1.093668030742853
+S_break getting big -1.8289161749723535
+S_break getting big -1.851639300118116
+S_break getting big -1.1818001680159125
+S_break getting big -1.0539158080245208
+S_break getting big -1.0923568000585078
+S_break getting big -1.130182190500814
+S_break getting big -1.0452282904124952
+S_break getting big -1.0357013217123237
+S_break getting big -2.2480058439798163
+S_break getting big -1.2530466967616714
+S_break getting big -1.6230391395764614
+S_break getting big -1.0950829025314934
+S_break getting big -1.1559686009818406
+S_break getting big -1.2623817787666551
+S_break getting big -1.373876008651933
+S_break getting big -1.007439565335958
+S_break getting big -1.029153481642712
+S_break getting big -2.6206570018792354
+S_break getting big -1.1321842952607803
+S_break getting big -1.1578553276239059
+S_break getting big -1.022525888111705
+S_break getting big -1.0194300131281753
+S_break getting big -1.0285680334209
+S_break getting big -1.0176652423439625
+S_break getting big -1.0040266063278673
+S_break getting big -1.0026707689352106
+S_break getting big -1.0061548313058188
+S_break getting big -1.6198507042448145
+S_break getting big -2.3603785767718217
+S_break getting big -3.342407027915121
+S_break getting big -1.4253568795888505
+S_break getting big -1.1020335842993292
+S_break getting big -1.268716194645699
+S_break getting big -1.0861986652511728
+S_break getting big -1.0741758652670974
+S_break getting big -4.906355191679726
+S_break getting big -1.7927966298398332
+S_break getting big -1.6933906388789872
+S_break getting big -2.513241312056288
+S_break getting big -1.147700404964221
+S_break getting big -1.1654025095798137
+S_break getting big -1.7801966090473622
+S_break getting big -2.141518819438321
+S_break getting big -1.2619029364123662
+S_break getting big -2.6399213134838773
+S_break getting big -1.0904042362133026
+S_break getting big -2.0007358345428856
+S_break getting big -1.790460888634989
+S_break getting big -1.116992002843231
+S_break getting big -1.7798004010710635
+S_break getting big -1.207620984488876
+S_break getting big -1.3475976456193177
+S_break getting big -1.522096755779841
+S_break getting big -1.2111856409667652
+S_break getting big -1.0966636856601137
+S_break getting big -1.2757627925877877
+S_break getting big -1.0388528930727368
+S_break getting big -1.1620769161797515
+S_break getting big -1.1801316328217648
+S_break getting big -3.4571962043232727
+S_break getting big -3.2384244520290855
+S_break getting big -4.817236454827837
+S_break getting big -2.6230743569479538
+S_break getting big -2.4462788671461104
+S_break getting big -1.5417354033853532
+S_break getting big -2.805257114115255
+S_break getting big -4.86838389746064
+S_break getting big -4.132259207375643
+S_break getting big -2.9083189714065987
+S_break getting big -3.5502037241576336
+S_break getting big -2.4596141754471184
+S_break getting big -2.9876176814200934
+S_break getting big -1.521337318980277
+S_break getting big -1.133934704382948
+S_break getting big -1.0432173713153574
+S_break getting big -1.075405899696042
+S_break getting big -1.1231997548518449
+S_break getting big -1.3231300728274815
+S_break getting big -1.9094399847101022
+S_break getting big -1.0812171154839438
+S_break getting big -3.712470708108122
+S_break getting big -1.6599824590102992
+gamma may be blowing up 1.0892581335629588 0.0
+index and value of gamma blowing up 14351 14 1.0892581335629588
+Etot 2.13E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0021261282650598167 55.095039780404946 2.5404299931632464 23.182275970613617
+integral params Etot, sigma_factor, k factor 0.0021261282650598167 0.0492884921895386 0.015781406680929606
+S_break getting big -5.664355427490406
+S_break getting big -1.114680424285693
+S_break getting big -1.1608711769017723
+S_break getting big -1.2767365906446286
+S_break getting big -1.1905713620678058
+S_break getting big -5.735694851084511
+S_break getting big -2.54875303263956
+S_break getting big -1.2294021300749345
+S_break getting big -2.5562687279626624
+S_break getting big -1.2205775829654095
+S_break getting big -1.5740553550921637
+S_break getting big -1.182890149288415
+S_break getting big -1.910435218293295
+S_break getting big -1.0731203716189286
+S_break getting big -1.4313863540783651
+S_break getting big -1.2646713257932758
+S_break getting big -1.0331253120480155
+S_break getting big -1.3396172713130612
+S_break getting big -1.499665562344021
+S_break getting big -1.456039980577051
+S_break getting big -1.1119764853662353
+S_break getting big -1.6832297982090716
+S_break getting big -2.6874741149749926
+S_break getting big -2.843416792782818
+S_break getting big -2.2601385603205086
+S_break getting big -3.1332364291826216
+S_break getting big -3.629236393292358
+S_break getting big -2.1612013687585585
+S_break getting big -1.35412436638029
+S_break getting big -1.327663102907621
+S_break getting big -1.0325220342649464
+S_break getting big -1.1184997070590839
+gamma may be blowing up 1.957104605508581 0.0
+index and value of gamma blowing up 5126 5 1.957104605508581
+Etot 3.63E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0036314697557481034 56.80036007319967 3.4228849714882537 23.62522440497429
+integral params Etot, sigma_factor, k factor 0.0036314697557481034 0.08579428789942611 0.027368939903257606
+S_break getting big -3.3411006545445514
+S_break getting big -4.416362291018376
+S_break getting big -1.0243083333761798
+S_break getting big -1.5622411934877063
+S_break getting big -1.944252140769711
+S_break getting big -1.1552064868259528
+S_break getting big -3.8525882099711786
+S_break getting big -2.9645884548436108
+S_break getting big -1.5612798095213385
+S_break getting big -1.449873498868821
+S_break getting big -1.460839753200065
+S_break getting big -1.0422696160004545
+S_break getting big -1.1487561774828456
+S_break getting big -1.4151305252679443
+S_break getting big -1.401599897688172
+S_break getting big -1.2574367842459098
+S_break getting big -1.0838488017239745
+S_break getting big -1.0798097258323158
+S_break getting big -1.0428444237013916
+S_break getting big -1.0985354281715585
+S_break getting big -1.327871119388232
+gamma may be blowing up 3.050231799150923 0.0
+index and value of gamma blowing up 12301 12 3.050231799150923
+Etot 5.54E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005541222773296787 57.265970894548616 4.262843937195572 23.839324284742535
+integral params Etot, sigma_factor, k factor 0.005541222773296787 0.13209900662662247 0.0419328059649485
+S_break getting big -3.2017218481864838
+S_break getting big -7.538052281980736
+S_break getting big -1.9709009962641655
+S_break getting big -2.201593071286906
+S_break getting big -3.921096880228779
+S_break getting big -3.9272905091471584
+S_break getting big -1.1484014959261983
+S_break getting big -2.0179404221799087
+S_break getting big -1.4462059008929515
+S_break getting big -1.3354716670030482
+S_break getting big -1.0847211603885387
+S_break getting big -1.020118456670211
+S_break getting big -1.8689925857989875
+S_break getting big -2.161662495210756
+S_break getting big -1.1507855460849077
+S_break getting big -2.0130681815634737
+S_break getting big -1.110461516836356
+S_break getting big -1.1120792970075806
+S_break getting big -2.2896270565776784
+S_break getting big -1.881028921654535
+S_break getting big -2.240712826078883
+S_break getting big -1.2152676565053857
+S_break getting big -5.235039873860429
+S_break getting big -4.789391457305762
+S_break getting big -1.7864520971642155
+S_break getting big -2.4640813395265053
+S_break getting big -2.309424110787163
+S_break getting big -1.7456786676967557
+S_break getting big -4.942378078686406
+S_break getting big -4.140305027596645
+S_break getting big -1.5022556209842617
+S_break getting big -2.4359660749750236
+S_break getting big -2.4728530508048756
+S_break getting big -1.2348706827842966
+S_break getting big -1.767517828714022
+S_break getting big -1.6564014291931273
+S_break getting big -1.355426281155142
+S_break getting big -1.3263819971316533
+S_break getting big -1.2149440817023607
+S_break getting big -6.215005681249934
+S_break getting big -4.84422802937047
+S_break getting big -3.1773601453622455
+S_break getting big -3.2631252718342636
+S_break getting big -3.2029306700468596
+S_break getting big -3.2240948633104227
+S_break getting big -3.0470034329226636
+S_break getting big -5.301106167983641
+S_break getting big -5.399506953706255
+S_break getting big -3.8267148200074486
+S_break getting big -2.2746805240830077
+S_break getting big -1.74707072524481
+S_break getting big -1.4969472244106483
+S_break getting big -1.3347415928663384
+S_break getting big -1.0691632748297621
+S_break getting big -2.636365020505369
+S_break getting big -1.1566245515707405
+S_break getting big -4.126771276536921
+S_break getting big -1.379207359430365
+S_break getting big -3.6999319531456254
+S_break getting big -3.0827545493175537
+S_break getting big -4.795639283112915
+S_break getting big -1.0320680726251679
+S_break getting big -3.9405834640695185
+S_break getting big -1.2810813920185962
+S_break getting big -1.3105537961906244
+S_break getting big -1.0908210863834342
+S_break getting big -1.1548184708179015
+S_break getting big -1.2607158935841276
+gamma may be blowing up 2.255347519565867 0.0
+index and value of gamma blowing up 18451 18 2.255347519565867
+Etot 4.46E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004462980806767794 54.35249372521123 3.6310479507855993 23.134899788759096
+integral params Etot, sigma_factor, k factor 0.004462980806767794 0.10325061372372814 0.03290294385773816
+S_break getting big -2.176894249751393
+S_break getting big -9.91075054165998
+S_break getting big -4.933146681501734
+S_break getting big -2.432314072342019
+S_break getting big -5.274133663962812
+S_break getting big -4.254426538121478
+S_break getting big -3.160950556251572
+S_break getting big -1.7487939132513406
+S_break getting big -3.0825030585732907
+S_break getting big -1.2213885412036352
+S_break getting big -2.0194846116022465
+S_break getting big -1.4606101469970132
+S_break getting big -1.291483905200855
+S_break getting big -1.0519198135735655
+S_break getting big -1.828315584637893
+S_break getting big -3.3025982374190725
+S_break getting big -5.604098241083149
+S_break getting big -5.408547713913749
+S_break getting big -3.1356012861725486
+S_break getting big -3.0837148798374114
+S_break getting big -1.9957900651648055
+S_break getting big -1.45616146639948
+S_break getting big -1.280423381397977
+S_break getting big -1.0912134759395848
+S_break getting big -1.014905571111114
+S_break getting big -1.2134629694483745
+S_break getting big -1.0317106737942505
+S_break getting big -1.0699721725185964
+S_break getting big -1.4906527218728283
+S_break getting big -2.3691347877534836
+S_break getting big -1.1342185284773694
+S_break getting big -2.210637259028129
+S_break getting big -1.9510795528194935
+S_break getting big -1.5682072414105894
+S_break getting big -1.2559862208806352
+S_break getting big -1.1208267064666086
+S_break getting big -1.0505333976901483
+gamma may be blowing up 1.403031586454881 1.3996999703599202e-05
+index and value of gamma blowing up 14351 14 1.403031586454881
+Etot 4.26E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004255501850811701 41.429479882339734 2.7026192944567455 19.839668244255055
+integral params Etot, sigma_factor, k factor 0.004255501850811701 0.0844277449329175 0.027390850925245843
+S_break getting big -2.4272483044149507
+S_break getting big -1.9245842718089603
+S_break getting big -1.1699364455583814
+S_break getting big -1.5406354485287415
+S_break getting big -1.1130961505215156
+S_break getting big -1.0164603435200747
+S_break getting big -1.0827994113661616
+S_break getting big -4.131646820715445
+S_break getting big -5.493146662099669
+S_break getting big -3.9913040180939396
+S_break getting big -2.42414489075885
+S_break getting big -1.7339491156959044
+S_break getting big -1.883558462914161
+S_break getting big -2.2945145421471906
+S_break getting big -1.3614588236696858
+S_break getting big -1.0000221918879044
+S_break getting big -3.325227884750202
+S_break getting big -1.6802900190567378
+S_break getting big -2.8195594988239594
+S_break getting big -3.6381558199630635
+S_break getting big -3.582990195580611
+S_break getting big -1.910383766718385
+S_break getting big -1.1854165572474564
+S_break getting big -1.1768414325699303
+S_break getting big -1.4507797391882258
+S_break getting big -1.1926467604166067
+S_break getting big -1.9682068165023554
+S_break getting big -1.9469916259294167
+S_break getting big -1.0096244312925804
+S_break getting big -1.1418381110227023
+S_break getting big -1.5277905702879675
+S_break getting big -1.7318389943001942
+S_break getting big -1.050908818260154
+S_break getting big -1.537842678883784
+S_break getting big -2.337418385334297
+S_break getting big -3.0256997118369138
+S_break getting big -2.7132733369329376
+S_break getting big -1.363555563326199
+S_break getting big -2.150391313719876
+gamma may be blowing up 1.6298785031689467 0.0
+index and value of gamma blowing up 20501 20 1.6298785031689467
+Etot 3.07E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003071714096504536 55.94572393544818 3.100682465794264 23.512928477760468
+integral params Etot, sigma_factor, k factor 0.003071714096504536 0.07222499385523977 0.02297546129255438
+S_break getting big -8.30938813653871
+S_break getting big -2.6102733263035676
+S_break getting big -2.0179532559327424
+S_break getting big -2.8523191411868516
+S_break getting big -3.5242476961468276
+S_break getting big -2.312504129292894
+S_break getting big -3.2592796626462226
+S_break getting big -4.583788484012517
+S_break getting big -2.9527449131081274
+S_break getting big -1.39714670452053
+S_break getting big -1.15024926767392
+S_break getting big -1.1422317034367413
+S_break getting big -1.3128816235856882
+S_break getting big -1.0076596116146241
+S_break getting big -3.3838231389942806
+S_break getting big -2.2437629746692767
+S_break getting big -1.2681107746634988
+S_break getting big -2.413309521177641
+S_break getting big -1.1313784290493596
+S_break getting big -1.6885503343397898
+S_break getting big -1.117999964709911
+S_break getting big -1.046851002793239
+S_break getting big -1.0145531952368894
+gamma may be blowing up 1.4267706632033896 0.0
+index and value of gamma blowing up 8201 8 1.4267706632033896
+Etot 4.17E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00417310940619272 42.17635584246227 2.7245760714100062 20.185348057912346
+integral params Etot, sigma_factor, k factor 0.00417310940619272 0.08423566584774796 0.0271015604352775
+S_break getting big -1.7510687752288001
+S_break getting big -1.0023073273581122
+S_break getting big -1.0500123045715195
+S_break getting big -1.2442146142690367
+S_break getting big -2.3178639394938503
+S_break getting big -1.0156265081497524
+S_break getting big -1.3927792130477545
+S_break getting big -1.5022647703302938
+S_break getting big -1.2224281289275796
+S_break getting big -1.1921105718027307
+S_break getting big -1.2282730618193707
+S_break getting big -1.4990292769412648
+S_break getting big -1.5766530234142104
+S_break getting big -1.2588177775097624
+S_break getting big -1.0546701614281466
+S_break getting big -4.277457611291877
+S_break getting big -3.8527404068222633
+S_break getting big -2.251630933123685
+S_break getting big -1.716672637234806
+S_break getting big -1.9122811498900172
+S_break getting big -1.1415613809140042
+S_break getting big -1.0589513420377714
+S_break getting big -1.9251682780758461
+S_break getting big -1.1549047499050256
+S_break getting big -2.128102583817536
+S_break getting big -1.0446600805522293
+S_break getting big -1.0768139653131281
+S_break getting big -1.3816176782314966
+S_break getting big -1.2863313998466843
+S_break getting big -1.2859060847537436
+S_break getting big -2.532791215566217
+S_break getting big -2.2823602863667585
+S_break getting big -1.1553165588966718
+S_break getting big -1.1519145727075082
+S_break getting big -1.051761312872422
+S_break getting big -6.307375726700597
+S_break getting big -2.2087958804417918
+S_break getting big -2.2214810653308747
+S_break getting big -1.0753861637759454
+S_break getting big -1.7677741192167957
+S_break getting big -1.053773007204553
+S_break getting big -1.8206346476499482
+S_break getting big -1.7120983929900995
+S_break getting big -5.027162739615906
+S_break getting big -2.9364532185277477
+S_break getting big -2.190359080725592
+S_break getting big -1.2189082655617964
+S_break getting big -2.01257237543532
+S_break getting big -1.3361588182903053
+S_break getting big -1.2928811754190055
+S_break getting big -1.411819930352656
+S_break getting big -1.662630375139756
+S_break getting big -1.0682338340296227
+S_break getting big -2.3666658209234943
+S_break getting big -1.2098284875952632
+S_break getting big -3.715912401324908
+S_break getting big -1.2372143204505337
+S_break getting big -2.0876199992717113
+S_break getting big -1.1646577931935256
+S_break getting big -1.9092711275585175
+S_break getting big -1.5925852267856733
+S_break getting big -1.5139272355284799
+S_break getting big -1.2794642491751151
+S_break getting big -1.1273830849686262
+S_break getting big -2.0637143033603658
+S_break getting big -2.2003947582068855
+S_break getting big -1.514675448019995
+S_break getting big -1.3265491782982526
+S_break getting big -1.4619123954237345
+S_break getting big -1.1397393154599194
+S_break getting big -1.0838386115392462
+S_break getting big -1.3786892034362612
+S_break getting big -4.962515246998075
+S_break getting big -3.0301245857248365
+S_break getting big -3.4519383650648012
+S_break getting big -1.8612970110285267
+S_break getting big -1.0485924796133264
+S_break getting big -1.17893186496837
+S_break getting big -1.0559482968542333
+S_break getting big -1.628808222121534
+S_break getting big -2.209489419649146
+S_break getting big -1.0980592274579606
+S_break getting big -2.0508924000708117
+S_break getting big -1.762637691465369
+S_break getting big -1.6841411061315494
+S_break getting big -1.7129229220426858
+gamma may be blowing up 1.4296950421587484 0.0
+index and value of gamma blowing up 10251 10 1.4296950421587484
+Etot 2.75E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0027520241708867406 55.18269099949266 2.8948695434508758 23.339041276294864
+integral params Etot, sigma_factor, k factor 0.0027520241708867406 0.0642296057176868 0.020443426140524426
+S_break getting big -1.5466036283362496
+S_break getting big -7.4707105354259715
+S_break getting big -2.5855422477304195
+S_break getting big -2.389746316125364
+S_break getting big -2.389965459883748
+S_break getting big -1.9416567001730176
+S_break getting big -2.008415661893714
+S_break getting big -1.0323017546853277
+S_break getting big -1.4320881755977013
+S_break getting big -1.3929505362846166
+S_break getting big -1.5527154782989225
+S_break getting big -1.2307973459623556
+S_break getting big -1.070240006451146
+S_break getting big -1.0161450876199771
+S_break getting big -1.0182177103933163
+S_break getting big -1.2580536526937538
+S_break getting big -1.355827234078002
+gamma may be blowing up 1.165009452872528 0.0
+index and value of gamma blowing up 14351 14 1.165009452872528
+Etot 2.38E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002376692133066333 53.03311656196702 2.585434942670457 22.848837845539176
+integral params Etot, sigma_factor, k factor 0.002376692133066333 0.05430465315720126 0.017307984736416215
+S_break getting big -10.417899194189495
+S_break getting big -1.4915275635243548
+S_break getting big -2.560276920281155
+S_break getting big -2.5664016691749887
+S_break getting big -1.3109511908695446
+S_break getting big -1.1404320607910976
+S_break getting big -1.0500371606264645
+S_break getting big -1.166771640058025
+S_break getting big -1.1376801508724645
+S_break getting big -1.2415284360634629
+S_break getting big -1.3153148580138183
+gamma may be blowing up 1.0714681865031832 0.0
+index and value of gamma blowing up 21526 21 1.0714681865031832
+Etot 3.82E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003821774215157303 37.20570842225379 2.3000754959854603 18.785895344926953
+integral params Etot, sigma_factor, k factor 0.003821774215157303 0.07179545043788543 0.023311478293270124
+S_break getting big -1.9092240899447563
+S_break getting big -1.6456145616850661
+S_break getting big -1.3125665081898539
+S_break getting big -1.0538729211840197
+S_break getting big -1.0416152685784812
+S_break getting big -1.1203752689053494
+gamma may be blowing up 1.512501300410261 0.0
+index and value of gamma blowing up 27676 27 1.512501300410261
+Etot 5.18E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005183126186999498 38.13366974906825 2.7453928115115596 19.077549782176533
+integral params Etot, sigma_factor, k factor 0.005183126186999498 0.09888134785978576 0.03200708201877895
+S_break getting big -1.9040888571327608
+S_break getting big -2.1245061594322623
+S_break getting big -1.5386882543874103
+S_break getting big -1.569426973066001
+S_break getting big -1.305588905198008
+S_break getting big -1.024650126718759
+S_break getting big -2.398264275000467
+S_break getting big -2.0909723917503618
+S_break getting big -1.175031665632797
+S_break getting big -1.0811668473283313
+S_break getting big -1.0359954856042326
+S_break getting big -4.296416451286859
+S_break getting big -3.234372777207347
+S_break getting big -5.3016789358552785
+S_break getting big -4.974160065670628
+S_break getting big -3.9069946638613806
+S_break getting big -2.2195900192517146
+S_break getting big -1.4788024341283947
+S_break getting big -2.252552540024782
+S_break getting big -1.1147904489375104
+S_break getting big -5.379149110406448
+S_break getting big -4.338123989606498
+S_break getting big -1.1991856041429707
+S_break getting big -3.6013601919544724
+S_break getting big -4.736328623256164
+S_break getting big -1.320630539469502
+S_break getting big -1.2179356197526714
+S_break getting big -1.3093060621988035
+S_break getting big -1.6869898625234383
+S_break getting big -1.0508648819180169
+S_break getting big -1.0092839963334441
+S_break getting big -1.006031070499289
+S_break getting big -1.0543330206552521
+S_break getting big -2.270996971049325
+S_break getting big -1.296998915435672
+S_break getting big -1.1343390583437443
+S_break getting big -1.661427148692111
+S_break getting big -1.7110403360226814
+S_break getting big -2.4759761304021732
+S_break getting big -1.6043550329922682
+S_break getting big -1.1935357055728208
+gamma may be blowing up 1.960622787856728 0.0
+index and value of gamma blowing up 16401 16 1.960622787856728
+Etot 3.61E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003606481318416994 57.20849617473677 3.435598268334729 23.678631351964455
+integral params Etot, sigma_factor, k factor 0.003606481318416994 0.08539654161654274 0.02727808967403809
+S_break getting big -1.3952370936370797
+S_break getting big -1.0238413265757338
+S_break getting big -1.5037454419412792
+S_break getting big -1.006173109748935
+S_break getting big -1.4309793408321545
+S_break getting big -1.5353425486621903
+S_break getting big -1.2951725220186157
+S_break getting big -1.0409111711617822
+S_break getting big -1.3615866593105828
+S_break getting big -1.2346166662327862
+S_break getting big -1.3324209745852371
+S_break getting big -1.0398742255282976
+S_break getting big -1.0330188447416793
+S_break getting big -1.1081906328942648
+S_break getting big -1.103444945287911
+S_break getting big -1.0112514388066687
+S_break getting big -1.3539189483737064
+S_break getting big -1.188980240288074
+S_break getting big -2.0116414427459297
+S_break getting big -1.8217865490105327
+S_break getting big -1.0983706166362701
+S_break getting big -2.9946296155321535
+S_break getting big -1.1904602583734396
+S_break getting big -2.590097110068961
+S_break getting big -1.5889143887388233
+S_break getting big -1.6271604739191907
+S_break getting big -1.550518158980137
+S_break getting big -1.026840891904498
+S_break getting big -1.0298176339908531
+S_break getting big -1.1863206053019195
+gamma may be blowing up 1.7179427717275146 0.0
+index and value of gamma blowing up 8201 8 1.7179427717275146
+Etot 3.19E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0031904740312491517 56.710895307048624 3.203274161928522 23.624811308371466
+integral params Etot, sigma_factor, k factor 0.0031904740312491517 0.07537434697252046 0.024026386876441878
+S_break getting big -4.468033608537477
+S_break getting big -1.2066869030005873
+S_break getting big -3.1082028703305604
+S_break getting big -1.193741679162818
+S_break getting big -1.2021115973196221
+S_break getting big -1.16804903809201
+S_break getting big -2.2114038272222554
+S_break getting big -1.2959951904128202
+S_break getting big -2.4554343799459803
+S_break getting big -1.1392307044789334
+S_break getting big -1.4469458944764384
+S_break getting big -3.464227901354349
+S_break getting big -2.6755807771045017
+S_break getting big -2.857038181283014
+S_break getting big -1.1893474945062883
+S_break getting big -1.9797303112799864
+S_break getting big -1.1997882803240552
+S_break getting big -1.4783865783126098
+S_break getting big -1.1646463362557906
+S_break getting big -1.252026273434892
+S_break getting big -1.11111323936783
+S_break getting big -1.1326014273660037
+gamma may be blowing up 3.1933738977714947 0.0
+index and value of gamma blowing up 1 0 3.1933738977714947
+Etot 5.74E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005741171890113488 58.064735290729615 4.39959525907502 23.87286186766192
+integral params Etot, sigma_factor, k factor 0.005741171890113488 0.1370582034911828 0.04374785611230605
+S_break getting big -4.860247191084475
+S_break getting big -3.220089817665197
+S_break getting big -1.1274809826540237
+S_break getting big -1.0896601406597057
+S_break getting big -1.702074236726678
+S_break getting big -1.1306969671237765
+S_break getting big -1.3593880786366168
+S_break getting big -1.1010221539429117
+S_break getting big -1.1130650443569328
+S_break getting big -1.0907109081634023
+S_break getting big -1.1311722351000149
+S_break getting big -3.8732191468253565
+S_break getting big -1.2400567757003975
+S_break getting big -3.75838060142101
+S_break getting big -4.421701695332264
+S_break getting big -1.0679798967723124
+S_break getting big -2.250475458118011
+S_break getting big -1.300596026161844
+S_break getting big -2.89940630280522
+S_break getting big -2.697516252024518
+S_break getting big -3.6651806791319856
+S_break getting big -1.806052726510615
+S_break getting big -2.8374647671438007
+S_break getting big -1.6222039221028783
+S_break getting big -1.8701257952294303
+S_break getting big -1.5144954226201965
+S_break getting big -1.3218383422778968
+S_break getting big -1.3909063432482436
+S_break getting big -2.801859494269127
+S_break getting big -1.636992392528912
+S_break getting big -1.02561018483409
+S_break getting big -1.2731833916011708
+S_break getting big -1.0987803147018562
+S_break getting big -4.7241773720394935
+S_break getting big -1.3728556002730894
+S_break getting big -3.32769045969555
+S_break getting big -5.49701085181704
+S_break getting big -5.604015722190671
+S_break getting big -6.854178299060369
+S_break getting big -6.963263863755057
+S_break getting big -2.1969932677040735
+S_break getting big -2.1083443139823657
+S_break getting big -1.2624929850326234
+S_break getting big -1.6827774392128405
+S_break getting big -1.5203999614365362
+S_break getting big -2.5195208967073603
+S_break getting big -3.3319988052588934
+S_break getting big -1.380871817972439
+S_break getting big -1.0576810507546626
+S_break getting big -3.774567746160165
+S_break getting big -1.0956926204529989
+S_break getting big -4.9314831474825045
+S_break getting big -6.435407814068177
+S_break getting big -4.051682568333087
+S_break getting big -4.861746996446972
+S_break getting big -3.628275105187346
+S_break getting big -1.4999973445620607
+S_break getting big -1.005546619934447
+S_break getting big -1.0090607194882024
+gamma may be blowing up 2.022411617256347 0.0
+index and value of gamma blowing up 16401 16 2.022411617256347
+Etot 3.95E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003948066633273877 54.76698507589482 3.441209162567799 23.24099117001503
+integral params Etot, sigma_factor, k factor 0.003948066633273877 0.09175698176254914 0.029217556374449203
+S_break getting big -4.790671833273732
+S_break getting big -6.863466224875453
+S_break getting big -3.1782919476467146
+S_break getting big -3.3237861423815374
+S_break getting big -2.279946262034772
+S_break getting big -3.378555105033792
+S_break getting big -2.4970100597119194
+S_break getting big -1.2736718229694093
+S_break getting big -2.189406288348666
+S_break getting big -1.3454132578303466
+S_break getting big -2.1539526790548837
+S_break getting big -1.560902368441285
+S_break getting big -1.5108130946172658
+S_break getting big -1.4997303330467566
+S_break getting big -1.054991157409806
+gamma may be blowing up 2.607396798717754 0.0
+index and value of gamma blowing up 17426 17 2.607396798717754
+Etot 4.71E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004710319915344106 57.31867099034829 3.933881870009968 23.87152765263908
+integral params Etot, sigma_factor, k factor 0.004710319915344106 0.1124425321119134 0.03566140589875676
+S_break getting big -4.019996987203403
+S_break getting big -5.810618152948318
+S_break getting big -5.077322456798253
+S_break getting big -1.0626324246061523
+S_break getting big -1.245930729243261
+S_break getting big -1.9780055670386214
+S_break getting big -1.012441091629147
+S_break getting big -3.3004161679972097
+S_break getting big -3.18527218293703
+S_break getting big -4.16127541470801
+S_break getting big -1.3399836042102302
+S_break getting big -1.6646753685219569
+S_break getting big -1.0288266622684183
+S_break getting big -2.5998258809240964
+S_break getting big -1.9688761073177463
+S_break getting big -1.4001676443124214
+S_break getting big -1.3076376198048614
+S_break getting big -1.6743725704931451
+S_break getting big -2.2633868610749093
+S_break getting big -3.1771241487336384
+S_break getting big -1.2010395914553602
+S_break getting big -1.3537534107040485
+S_break getting big -1.3520644450961332
+S_break getting big -3.2847971645421836
+S_break getting big -2.4003731258933363
+S_break getting big -5.193675878340176
+S_break getting big -2.38517983179389
+S_break getting big -1.9195123466983963
+S_break getting big -2.316591912600445
+S_break getting big -2.17818613931112
+S_break getting big -1.0285475728606368
+S_break getting big -1.324041165691042
+S_break getting big -1.1137521915669002
+S_break getting big -2.116384711370587
+S_break getting big -1.6209485341155732
+S_break getting big -1.2097259251082386
+S_break getting big -2.2641390107314865
+S_break getting big -4.124502693898585
+S_break getting big -2.7585732174776076
+S_break getting big -1.2875857673006321
+S_break getting big -3.1528191028989094
+S_break getting big -1.2831265352061112
+S_break getting big -1.0007322382944546
+S_break getting big -1.1327683207352617
+S_break getting big -1.1680390824995666
+S_break getting big -1.0695922592788347
+S_break getting big -2.946353772087334
+S_break getting big -1.075135490352032
+S_break getting big -4.549909728984746
+S_break getting big -3.6906727999539206
+S_break getting big -4.161501625272201
+S_break getting big -1.5888722447748407
+S_break getting big -1.1465281077462461
+S_break getting big -1.259787865496652
+S_break getting big -2.7622672104098496
+S_break getting big -2.9767400499289316
+S_break getting big -2.8846679755442874
+S_break getting big -1.479037518677802
+S_break getting big -1.9530529466183317
+S_break getting big -1.2209233708168923
+S_break getting big -1.144359131796339
+S_break getting big -1.387640388969561
+S_break getting big -1.0266674453584317
+S_break getting big -3.2399277289730226
+S_break getting big -1.9136035653432535
+S_break getting big -1.1120634510116567
+S_break getting big -1.7438458560053975
+S_break getting big -1.7870570499856797
+S_break getting big -1.0144662529178412
+S_break getting big -1.5839414094645172
+S_break getting big -1.959958434518001
+S_break getting big -1.6401834428829751
+S_break getting big -1.2374928713386482
+S_break getting big -2.124375536854852
+S_break getting big -1.9478707852244668
+S_break getting big -1.2979262357068302
+S_break getting big -1.1843186520219215
+S_break getting big -1.2898949624274396
+S_break getting big -5.834260335262306
+S_break getting big -5.165334957998468
+S_break getting big -3.02654250913899
+S_break getting big -4.484986144484496
+S_break getting big -1.5980593175900348
+S_break getting big -1.7707271355413683
+S_break getting big -1.2430940832044923
+S_break getting big -1.0750883656723278
+S_break getting big -1.453729997516122
+S_break getting big -1.619575963706928
+S_break getting big -4.958631354919913
+S_break getting big -2.4273282603454507
+S_break getting big -4.063662280097716
+S_break getting big -1.6298720718464759
+S_break getting big -2.7114757152847715
+S_break getting big -2.631784236927256
+S_break getting big -1.9552426327203507
+S_break getting big -1.0089664079478786
+S_break getting big -1.1227082982795027
+S_break getting big -1.002697831473617
+S_break getting big -1.0058042229223665
+S_break getting big -1.0763466724104822
+S_break getting big -1.1748793790487162
+S_break getting big -2.762513208011577
+S_break getting big -3.4134070570596893
+S_break getting big -1.295234128148632
+S_break getting big -4.021586570391788
+S_break getting big -4.7820968872484695
+S_break getting big -1.281002034151168
+S_break getting big -2.7143869298789576
+S_break getting big -1.0927509137887734
+S_break getting big -1.6510854198384128
+S_break getting big -1.4549235978437773
+S_break getting big -1.0028657966905516
+S_break getting big -1.695728978758988
+S_break getting big -2.4275622154261463
+S_break getting big -3.106866859708038
+S_break getting big -4.5646513954758605
+S_break getting big -4.505857766249748
+S_break getting big -3.747773932911262
+S_break getting big -1.0346494422262658
+S_break getting big -1.6002642479833318
+S_break getting big -1.3946241929619068
+S_break getting big -1.251322465845312
+S_break getting big -2.1656678596042718
+S_break getting big -1.8668102439814993
+S_break getting big -2.1878326501955225
+S_break getting big -1.174562017980784
+S_break getting big -1.6905019508569066
+S_break getting big -1.398403539198467
+S_break getting big -2.130284886844653
+S_break getting big -1.151957871565514
+S_break getting big -1.4686346652128315
+S_break getting big -3.0766492175761018
+S_break getting big -1.2783855947824445
+S_break getting big -2.497874275704225
+S_break getting big -1.5001156543068335
+S_break getting big -2.0549196680930653
+S_break getting big -1.0516807394358074
+S_break getting big -1.954648921360834
+S_break getting big -1.1642284490113923
+S_break getting big -1.4285140816549335
+S_break getting big -1.3814016865991454
+S_break getting big -1.2429399440490507
+S_break getting big -1.1492589098338941
+S_break getting big -1.189228473266874
+S_break getting big -2.254424784121796
+S_break getting big -1.4816126497435622
+S_break getting big -1.48432423266117
+S_break getting big -1.51792899517587
+S_break getting big -1.3271406425559698
+S_break getting big -1.2574156271226702
+S_break getting big -1.2191437773170564
+S_break getting big -2.6629875823349933
+S_break getting big -1.8175237047322073
+S_break getting big -1.058938142890862
+S_break getting big -5.516886264429191
+S_break getting big -1.2193464232288587
+S_break getting big -2.654809703073693
+S_break getting big -2.4190998079581147
+S_break getting big -2.242181136301942
+S_break getting big -1.292072170111514
+S_break getting big -1.9273126133816818
+S_break getting big -4.28814415630625
+S_break getting big -4.423370028845526
+S_break getting big -2.102092711737496
+S_break getting big -2.622957844367131
+S_break getting big -3.527979862592701
+S_break getting big -2.3703065407357853
+S_break getting big -2.645799692728179
+S_break getting big -1.1496593083264814
+S_break getting big -2.8347948533419745
+S_break getting big -1.736074905774417
+S_break getting big -1.231251338153974
+S_break getting big -2.878934959753193
+gamma may be blowing up 2.7321270316201205 0.0
+index and value of gamma blowing up 8201 8 2.7321270316201205
+Etot 4.94E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004938244858937905 57.29053467621355 4.025957496324976 23.86393839487672
+integral params Etot, sigma_factor, k factor 0.004938244858937905 0.11784597109251083 0.03737782772134679
+S_break getting big -1.0413510830209916
+S_break getting big -3.150726771181669
+S_break getting big -1.4225037799728537
+S_break getting big -2.237074129208572
+S_break getting big -1.3219542672663813
+S_break getting big -1.658142109234729
+S_break getting big -1.6008582857171183
+S_break getting big -1.2136002574522857
+S_break getting big -1.1382793190404445
+S_break getting big -1.0387360902130438
+S_break getting big -6.184327842736374
+S_break getting big -2.669674464107527
+S_break getting big -1.7700435370925627
+gamma may be blowing up 1.4523283567153384 0.0
+index and value of gamma blowing up 13326 13 1.4523283567153384
+Etot 2.52E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0025219722924283918 59.50661063363037 2.9883768950432437 24.110057170208396
+integral params Etot, sigma_factor, k factor 0.0025219722924283918 0.060804896152130056 0.01945462742923291
+S_break getting big -1.8193787798261913
+S_break getting big -3.2267379422962117
+S_break getting big -1.1139572009105727
+S_break getting big -1.419649492885193
+S_break getting big -1.6466559882001122
+S_break getting big -1.4258053684142398
+S_break getting big -1.4502854904402807
+S_break getting big -2.111214378930416
+S_break getting big -1.0606551809774727
+S_break getting big -1.309600770395952
+S_break getting big -1.792907068047788
+S_break getting big -1.0268160082811082
+S_break getting big -1.037218421801931
+S_break getting big -3.455139370182352
+S_break getting big -2.401550864104066
+S_break getting big -1.4097724875315547
+S_break getting big -1.1844303053177327
+S_break getting big -1.0663184254957951
+S_break getting big -1.996050533918718
+S_break getting big -1.4091477823537921
+S_break getting big -1.0494304018307143
+S_break getting big -2.4509554461697296
+S_break getting big -1.0581942673956741
+S_break getting big -1.5126400331865102
+S_break getting big -1.0258595860298638
+S_break getting big -1.5537683951546306
+S_break getting big -3.325986264216938
+S_break getting big -1.2584826624573033
+S_break getting big -3.1544745698018404
+S_break getting big -2.4424455103707015
+S_break getting big -1.31450014340954
+S_break getting big -1.2211038591319345
+S_break getting big -1.2306600796968692
+S_break getting big -1.1899586944710976
+S_break getting big -1.5292373771652652
+S_break getting big -1.4415530356724744
+S_break getting big -1.1406365531039253
+gamma may be blowing up 2.1582792185316557 0.0
+index and value of gamma blowing up 18451 18 2.1582792185316557
+Etot 3.97E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0039666477366229365 57.07987641222665 3.5949664456975055 23.71661873566434
+integral params Etot, sigma_factor, k factor 0.0039666477366229365 0.09407547202817208 0.0299685096753727
+gamma may be blowing up 1.1033805933792014 0.0
+index and value of gamma blowing up 16401 16 1.1033805933792014
+Etot 2.00E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00019991937010825623 262.2305985546989 3.707753074072111 52.303229140808384
+integral params Etot, sigma_factor, k factor 0.00019991937010825623 0.010456428624458204 0.0032374014575098317
+S_break getting big -10.026455697354168
+S_break getting big -4.802239382721024
+S_break getting big -6.296928368405062
+S_break getting big -4.538928795026193
+S_break getting big -5.4806948485995175
+S_break getting big -3.893769573338133
+S_break getting big -3.0987367646150714
+S_break getting big -1.08013271293702
+S_break getting big -1.58116602669987
+S_break getting big -2.3912337128080625
+S_break getting big -1.0627799371590534
+S_break getting big -2.0592555344511663
+S_break getting big -1.0713211739859656
+S_break getting big -1.2635828281778236
+S_break getting big -1.255142379188488
+S_break getting big -1.1273468478345454
+S_break getting big -1.0496644528531627
+S_break getting big -1.2495009212432953
+S_break getting big -3.9928595247338112
+S_break getting big -4.786797259746101
+S_break getting big -1.0835363859500502
+S_break getting big -6.566912694341891
+S_break getting big -2.9067851302594754
+S_break getting big -2.81605138798995
+S_break getting big -1.8566579272474666
+S_break getting big -1.1377618358884694
+S_break getting big -1.5167907645406244
+S_break getting big -1.2634210823069039
+S_break getting big -1.5654692300131863
+S_break getting big -1.2970794709052604
+S_break getting big -1.2957025082413829
+S_break getting big -1.3402163765999862
+S_break getting big -1.0313434967288337
+S_break getting big -1.2478910291963563
+S_break getting big -1.2430588197311936
+S_break getting big -1.1401324963351955
+S_break getting big -1.0040700840151895
+S_break getting big -3.535767617103872
+S_break getting big -1.744610863660145
+S_break getting big -1.681373078596737
+S_break getting big -1.5982496796622354
+S_break getting big -3.730611454915559
+S_break getting big -1.84416283513067
+S_break getting big -1.0997770192098022
+S_break getting big -1.1543061013651599
+S_break getting big -1.186453567175301
+S_break getting big -1.1166776413441024
+gamma may be blowing up 8.362077197431637 0.0
+index and value of gamma blowing up 16401 16 8.362077197431637
+Etot 1.45E-02
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.014541028774698596 58.59830487802816 7.066146217815697 24.167246003905106
+integral params Etot, sigma_factor, k factor 0.014541028774698596 0.3514166195480038 0.11131089131561596
+gamma may be blowing up 2.1713840953406978 0.0
+index and value of gamma blowing up 11276 11 2.1713840953406978
+Etot 4.99E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004987506076085113 49.16752190837191 3.472322375085785 21.888855901809823
+integral params Etot, sigma_factor, k factor 0.004987506076085113 0.10917080180882797 0.03497217136366704
+S_break getting big -2.6334386563593988
+gamma may be blowing up 2.1765876683015253 0.0
+index and value of gamma blowing up 11276 11 2.1765876683015253
+Etot 3.14E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00031379627465186557 296.45272680511243 5.2514512846565005 57.83904306782268
+integral params Etot, sigma_factor, k factor 0.00031379627465186557 0.018149676244111568 0.005402882317512801
+S_break getting big -11.66422883303871
+S_break getting big -2.509731274967712
+S_break getting big -1.0216314247176124
+S_break getting big -1.3404551345948945
+S_break getting big -1.3287413796367484
+S_break getting big -1.2508637967501914
+S_break getting big -1.1350662405114924
+S_break getting big -1.4331515636900836
+S_break getting big -1.1992980157330588
+S_break getting big -1.7410806713181808
+S_break getting big -1.2839300996954188
+gamma may be blowing up 1.224511770367856 0.0
+index and value of gamma blowing up 13326 13 1.224511770367856
+Etot 2.31E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0023055036035436335 55.86896348813474 2.6825851544143418 23.50495054323881
+integral params Etot, sigma_factor, k factor 0.0023055036035436335 0.05419074817855196 0.01723261210555967
+S_break getting big -4.578369251580179
+S_break getting big -6.867362857112528
+S_break getting big -1.546201027633996
+S_break getting big -1.0430254218127504
+S_break getting big -1.9908362017723449
+S_break getting big -3.3361591334357144
+S_break getting big -3.1081733230097917
+S_break getting big -3.165495944734576
+S_break getting big -1.054923933210775
+S_break getting big -2.1002441449675238
+S_break getting big -3.6040937323745514
+S_break getting big -3.5583736647381308
+S_break getting big -2.3550445895979277
+S_break getting big -1.0254810045723686
+S_break getting big -3.1262967541182682
+S_break getting big -2.47377249861125
+S_break getting big -2.580777654438867
+S_break getting big -1.258227557796132
+S_break getting big -1.3992803374132243
+S_break getting big -2.718150332923598
+S_break getting big -2.1523310620595244
+S_break getting big -1.6499152561719914
+S_break getting big -1.11043438112136
+S_break getting big -1.0024560081706793
+S_break getting big -1.2746000348739213
+S_break getting big -1.0358856049522793
+S_break getting big -4.186097856544422
+S_break getting big -1.2851754915963631
+S_break getting big -4.118415575030518
+S_break getting big -2.7174232891407986
+S_break getting big -2.6650956509404553
+S_break getting big -4.430753822049881
+S_break getting big -1.0698946070587216
+S_break getting big -3.09328202931476
+S_break getting big -1.7908949101718488
+S_break getting big -1.1575947980975245
+S_break getting big -1.382530599245984
+S_break getting big -1.7732145021638253
+S_break getting big -1.078984513967991
+S_break getting big -4.025591821837472
+S_break getting big -2.530649909153239
+S_break getting big -1.7088422290495724
+S_break getting big -1.4505630531509197
+S_break getting big -1.026424128107808
+S_break getting big -1.7214649186980624
+S_break getting big -1.4039580795652677
+S_break getting big -1.1409708394069333
+S_break getting big -3.1644386557259216
+S_break getting big -2.123901802529707
+S_break getting big -1.3599513766935825
+S_break getting big -1.37526210877962
+S_break getting big -1.08985480395866
+S_break getting big -1.9281571326217983
+S_break getting big -1.1032298157996208
+S_break getting big -2.4818738834506404
+S_break getting big -1.4985568920231958
+S_break getting big -1.4477964048122676
+S_break getting big -1.1798447761210828
+S_break getting big -1.0591749878461272
+S_break getting big -1.0169617783277183
+S_break getting big -1.0490538930561608
+S_break getting big -1.0410578654505294
+S_break getting big -1.6519741245514648
+S_break getting big -1.8834806531467811
+S_break getting big -3.577679728871563
+S_break getting big -1.0977158598715941
+S_break getting big -3.322791095600172
+S_break getting big -2.821231210466354
+S_break getting big -3.016777310786557
+S_break getting big -1.0633352395855484
+gamma may be blowing up 1.8258767284106314 0.0
+index and value of gamma blowing up 27676 27 1.8258767284106314
+Etot 4.65E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004653055361510001 46.101425501917234 3.1447307279474623 21.16090992155775
+integral params Etot, sigma_factor, k factor 0.004653055361510001 0.09846288536493447 0.03159332950051991
+S_break getting big -1.2261577630862075
+S_break getting big -1.685370573656011
+S_break getting big -1.8405797236288943
+S_break getting big -1.2056115974423725
+S_break getting big -1.3144577549904342
+S_break getting big -2.0326734299762466
+S_break getting big -1.0316639911940266
+S_break getting big -1.0900038602385944
+S_break getting big -4.268277269505726
+S_break getting big -3.7754821020349025
+S_break getting big -4.2616854254267835
+S_break getting big -3.097848224083193
+S_break getting big -2.2102184734666666
+S_break getting big -4.21904562729904
+S_break getting big -2.1037512555959395
+S_break getting big -1.111442173549253
+S_break getting big -1.1368327622140435
+S_break getting big -1.0304572725885701
+S_break getting big -1.1654498629153414
+S_break getting big -2.7818493153351285
+S_break getting big -1.2525677160104927
+S_break getting big -1.7080683755002382
+S_break getting big -1.0708859129868948
+S_break getting big -3.0855771991095877
+S_break getting big -2.1098460620947197
+S_break getting big -2.5503800217108172
+S_break getting big -1.2490281173729754
+S_break getting big -1.1687747955339531
+S_break getting big -1.112639762856511
+S_break getting big -1.666825494750796
+S_break getting big -1.4128809098298958
+S_break getting big -1.118673841248163
+S_break getting big -5.067379007434604
+S_break getting big -2.8746482408322303
+S_break getting big -2.4077469023889693
+S_break getting big -2.422604439731188
+S_break getting big -3.09505658779922
+S_break getting big -1.0183961672678115
+S_break getting big -1.0129075820328186
+gamma may be blowing up 1.6787987194695888 0.0
+index and value of gamma blowing up 21526 21 1.6787987194695888
+Etot 1.23E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.001228635906036163 104.99220441301198 3.6801765680082665 32.27395403100095
+integral params Etot, sigma_factor, k factor 0.001228635906036163 0.039652938752248325 0.012589304274244203
+S_break getting big -2.1733452862973213
+S_break getting big -1.38977395414232
+S_break getting big -2.15854151141566
+S_break getting big -3.1254694751958256
+S_break getting big -1.181213756458966
+S_break getting big -3.527427654797885
+S_break getting big -1.164647546219089
+S_break getting big -1.3665582228891544
+S_break getting big -2.4613457417733957
+S_break getting big -1.6942473817474737
+S_break getting big -1.1119938013887514
+S_break getting big -1.3545232982740292
+S_break getting big -2.9651862475083295
+S_break getting big -2.828132822366529
+S_break getting big -1.0439809018831758
+S_break getting big -2.3943175394555976
+S_break getting big -2.5871442098351625
+S_break getting big -3.4168690375053146
+S_break getting big -1.2690560349563007
+S_break getting big -3.4347098930679594
+gamma may be blowing up 1.6521263070772987 0.0
+index and value of gamma blowing up 13326 13 1.6521263070772987
+Etot 2.93E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0029277680622754616 58.08343339268009 3.1428280071095167 24.021102839639195
+integral params Etot, sigma_factor, k factor 0.0029277680622754616 0.07032821771453003 0.022313248854571095
+S_break getting big -7.24419268635584
+S_break getting big -3.856538177155736
+S_break getting big -4.904330249202917
+S_break getting big -1.315802439235611
+S_break getting big -2.6366913130444387
+S_break getting big -1.8927337287243127
+S_break getting big -1.9215742560790068
+S_break getting big -1.4739683995242145
+S_break getting big -1.5138289818113049
+S_break getting big -1.0683683718416768
+S_break getting big -5.060549503550544
+S_break getting big -3.4624320282985313
+S_break getting big -1.209269322497383
+S_break getting big -2.621877464229551
+S_break getting big -1.6686824395760325
+S_break getting big -3.0347932957502235
+S_break getting big -1.1708758471219622
+S_break getting big -4.333070771359459
+S_break getting big -2.9430814703694996
+S_break getting big -2.3588465372523033
+S_break getting big -3.2444962103636446
+S_break getting big -1.437415931056307
+S_break getting big -2.305317772599594
+S_break getting big -2.325746865372293
+S_break getting big -1.0669870914074913
+S_break getting big -1.1037727426073842
+S_break getting big -1.0964133240915739
+S_break getting big -1.3420048033892698
+S_break getting big -1.5842610618376245
+S_break getting big -1.6089744835595767
+S_break getting big -1.1172259108258966
+S_break getting big -1.0411644712249806
+S_break getting big -1.0779555007892732
+S_break getting big -1.431921161826433
+S_break getting big -1.5478078874446202
+S_break getting big -1.400789541831669
+S_break getting big -1.9923909470668748
+gamma may be blowing up 1.8997751869440276 0.0
+index and value of gamma blowing up 30751 30 1.8997751869440276
+Etot 3.51E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0035110907606980568 56.88715873799942 3.370817742734998 23.666513893387243
+integral params Etot, sigma_factor, k factor 0.0035110907606980568 0.08309527826900415 0.02648190221631366
+S_break getting big -4.778504572910489
+S_break getting big -4.412138152047696
+S_break getting big -1.2859900469684653
+S_break getting big -6.9773774985085515
+S_break getting big -1.7326303100133162
+S_break getting big -3.040128242692118
+S_break getting big -2.6881342216124793
+S_break getting big -3.2658194485822025
+S_break getting big -4.368611259051708
+gamma may be blowing up 3.2784909625530094 0.0
+index and value of gamma blowing up 15376 15 3.2784909625530094
+Etot 6.19E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.006185557830951026 56.20191220628532 4.420185830079849 23.483968846700606
+integral params Etot, sigma_factor, k factor 0.006185557830951026 0.14526144740151886 0.046371849503586034
+S_break getting big -3.1232622999172976
+S_break getting big -2.5053057167369044
+S_break getting big -2.6448882703692025
+S_break getting big -2.2353475723857454
+S_break getting big -1.0772097006884318
+S_break getting big -1.744213807286628
+S_break getting big -1.1827409380317144
+S_break getting big -1.4783987719394671
+S_break getting big -1.1092696951254928
+S_break getting big -1.1696504215425916
+S_break getting big -1.5567318497596205
+S_break getting big -1.2963802149140238
+S_break getting big -1.0528616444686416
+S_break getting big -1.3719574303519289
+S_break getting big -1.85636585327393
+S_break getting big -2.8382978438353534
+S_break getting big -1.2769092614966115
+S_break getting big -2.5902349418820636
+S_break getting big -1.2768150368327127
+S_break getting big -2.3881261046108073
+S_break getting big -1.0167680541923358
+S_break getting big -6.482216652794571
+S_break getting big -2.1147948223346416
+S_break getting big -1.1359923762544433
+S_break getting big -1.437903023638284
+S_break getting big -1.2800335172120367
+S_break getting big -1.1941232674937516
+S_break getting big -4.033357462977635
+S_break getting big -1.3643459653358299
+S_break getting big -4.82930400919631
+S_break getting big -1.6577009784243457
+S_break getting big -1.6621987141578813
+S_break getting big -1.3187306451601457
+S_break getting big -1.2858728358807994
+S_break getting big -2.5212129396889082
+S_break getting big -2.064067975076601
+S_break getting big -1.0613605107078248
+S_break getting big -2.5728319378675324
+S_break getting big -1.1751289281651471
+S_break getting big -1.469798513037806
+S_break getting big -1.0469207124906565
+S_break getting big -1.1326260835897088
+S_break getting big -1.8230844037357359
+S_break getting big -1.3481001398814845
+S_break getting big -4.002519768837534
+S_break getting big -2.914168725422222
+S_break getting big -1.423802263852421
+S_break getting big -2.554616037719994
+S_break getting big -1.4572411752935435
+S_break getting big -1.5780336535861526
+S_break getting big -1.2124783746359722
+S_break getting big -1.3213875382364266
+S_break getting big -1.1914239123686945
+S_break getting big -1.373926089260446
+S_break getting big -1.4832764876489755
+S_break getting big -1.2200754092045858
+S_break getting big -1.2197921033398023
+S_break getting big -1.480507860039316
+S_break getting big -1.2965808010142823
+S_break getting big -1.8222974408967358
+S_break getting big -1.817926327136734
+S_break getting big -1.0892227951521614
+S_break getting big -1.8779197318447702
+S_break getting big -1.0469650155034202
+S_break getting big -1.1185098963782443
+S_break getting big -1.0274918668646382
+S_break getting big -1.218332791072681
+S_break getting big -2.281243240644895
+S_break getting big -2.7118501861794218
+S_break getting big -3.0817674811432325
+S_break getting big -1.4842545868190324
+S_break getting big -1.1748787901551356
+S_break getting big -3.2859261996993707
+S_break getting big -3.1644155221192904
+S_break getting big -1.401423655253346
+S_break getting big -2.274235821853358
+S_break getting big -1.058062227791357
+S_break getting big -2.093599686562965
+S_break getting big -1.1442216484672414
+S_break getting big -2.174339786270015
+S_break getting big -1.1820624340894899
+S_break getting big -1.1308783570228509
+S_break getting big -1.1241222415894674
+S_break getting big -1.3031191775300495
+S_break getting big -1.4248920734465007
+S_break getting big -1.3768232802981815
+S_break getting big -1.1322525890477522
+S_break getting big -1.0352537204899053
+S_break getting big -1.0756325317992785
+S_break getting big -3.7313981755021843
+S_break getting big -1.1595273561403114
+S_break getting big -1.8800026739529108
+S_break getting big -4.620220071931617
+S_break getting big -5.832727196104538
+S_break getting big -2.7102214467134544
+S_break getting big -2.8217443749984032
+S_break getting big -2.3731203180664773
+S_break getting big -1.7794572847281127
+S_break getting big -1.3208816133010224
+S_break getting big -1.041785937956343
+S_break getting big -1.2203618761753132
+S_break getting big -1.0838003379421042
+gamma may be blowing up 2.0012949508892075 0.0
+index and value of gamma blowing up 27676 27 2.0012949508892075
+Etot 3.69E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003686343030602498 57.086574412329504 3.466026317836724 23.6820388368841
+integral params Etot, sigma_factor, k factor 0.003686343030602498 0.08730011881680538 0.02785240729352081
+S_break getting big -3.6318759531958515
+S_break getting big -3.4954515183571133
+S_break getting big -4.325189411720808
+S_break getting big -3.666383154075127
+S_break getting big -3.1603752106076985
+S_break getting big -1.7898287792616767
+S_break getting big -3.7798180165886444
+S_break getting big -1.6819515234159907
+S_break getting big -1.6093665672133433
+S_break getting big -3.3009390134002223
+S_break getting big -5.0030542204723805
+S_break getting big -5.638696407469693
+S_break getting big -2.5683126385829906
+S_break getting big -1.161281806204001
+S_break getting big -5.211290861785138
+S_break getting big -2.707420119785936
+S_break getting big -1.25752994393387
+S_break getting big -2.186918506170364
+S_break getting big -1.130936134015829
+S_break getting big -1.5526177156881478
+S_break getting big -1.4302625461209706
+S_break getting big -1.1172465229298607
+S_break getting big -1.0112402771004023
+S_break getting big -1.017237454294497
+S_break getting big -1.0905784626058963
+S_break getting big -1.1042265376111162
+S_break getting big -1.2388702518009698
+gamma may be blowing up 2.3886202336485995 0.0
+index and value of gamma blowing up 14351 14 2.3886202336485995
+Etot 7.12E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0071204966675272605 41.64909180524319 3.5144767892185578 20.07228973716896
+integral params Etot, sigma_factor, k factor 0.0071204966675272605 0.1429246721831532 0.045952913890047936
+S_break getting big -1.7732771210802694
+S_break getting big -2.445417725575095
+S_break getting big -2.9624185690308886
+S_break getting big -2.4369558410003687
+S_break getting big -2.587404705486975
+S_break getting big -1.633407231904196
+S_break getting big -1.1179977841424051
+S_break getting big -2.960189331155152
+S_break getting big -4.465558292616395
+S_break getting big -3.8888881025658866
+S_break getting big -4.129719561334298
+S_break getting big -1.1508777591500823
+S_break getting big -3.900288792549171
+S_break getting big -2.744730716423264
+S_break getting big -2.7746031307018253
+S_break getting big -1.8565724376899146
+S_break getting big -1.116566442949292
+S_break getting big -1.4902590047595043
+S_break getting big -4.954340972561155
+S_break getting big -3.317653873010544
+S_break getting big -1.187224314094886
+S_break getting big -3.536467933794527
+S_break getting big -1.2297404355864825
+S_break getting big -2.5781694752846285
+S_break getting big -1.383552228400147
+S_break getting big -1.167818800939324
+S_break getting big -1.0308872746920048
+S_break getting big -1.0221276071014045
+S_break getting big -1.1188198813153096
+S_break getting big -1.647103162938652
+S_break getting big -1.1517053038998795
+S_break getting big -1.1175738132195214
+gamma may be blowing up 2.181818131337647 0.0
+index and value of gamma blowing up 14351 14 2.181818131337647
+Etot 3.97E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003974123948630123 57.03595199881012 3.595583666607969 23.79786290073029
+integral params Etot, sigma_factor, k factor 0.003974123948630123 0.09457565688000857 0.03001343865261861
+S_break getting big -3.254907313768458
+S_break getting big -3.6882725483524395
+S_break getting big -1.4850140933341611
+S_break getting big -1.4859046717782043
+S_break getting big -1.994108616697249
+S_break getting big -1.799110103155522
+S_break getting big -1.2146527534428055
+S_break getting big -1.224274972226246
+S_break getting big -1.0824875133073206
+S_break getting big -1.430441974729502
+S_break getting big -1.675469010128295
+S_break getting big -3.0495670987694345
+S_break getting big -3.566324222650902
+S_break getting big -4.040377380733373
+S_break getting big -1.0688602061211088
+S_break getting big -2.6452746833852157
+S_break getting big -1.08895723834788
+S_break getting big -1.5397650020057128
+S_break getting big -1.2328949834120129
+S_break getting big -1.0022796750408598
+S_break getting big -1.0345814186952471
+S_break getting big -1.3876841672572002
+S_break getting big -2.7186219793141975
+S_break getting big -1.0193293691873857
+S_break getting big -2.313277878697929
+S_break getting big -1.9267885478443454
+S_break getting big -1.0884344051344004
+S_break getting big -1.3773247142165077
+S_break getting big -1.0389492793887563
+S_break getting big -1.345348140871583
+S_break getting big -1.1939018661272707
+S_break getting big -1.0072901144404847
+S_break getting big -1.1664493462706618
+S_break getting big -1.052762093347431
+S_break getting big -1.0424493056311885
+S_break getting big -1.0083208933910033
+S_break getting big -1.0111728964147821
+gamma may be blowing up 2.064317367824901 0.0
+index and value of gamma blowing up 4101 4 2.064317367824901
+Etot 4.89E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004891740328681496 48.64210832865746 3.4020766024375475 21.624101334287637
+integral params Etot, sigma_factor, k factor 0.004891740328681496 0.10577948856843018 0.034116902185519896
+S_break getting big -1.3544440593034748
+S_break getting big -1.4869147569053216
+S_break getting big -1.2944220367100754
+gamma may be blowing up 1.584717310217806 0.0
+index and value of gamma blowing up 13326 13 1.584717310217806
+Etot 3.63E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0036287529003920273 49.93823238009342 3.0082357209086106 21.801604756579763
+integral params Etot, sigma_factor, k factor 0.0036287529003920273 0.07911263649363943 0.02564330388227861
+S_break getting big -3.104556201799136
+S_break getting big -2.572458628797171
+S_break getting big -1.3912233178908924
+S_break getting big -3.5038679711236536
+S_break getting big -2.264844648916012
+S_break getting big -1.2706978947640253
+S_break getting big -2.205281481526228
+S_break getting big -1.6393713606016416
+S_break getting big -2.0280850767151533
+S_break getting big -2.394098367229358
+S_break getting big -1.590988823690418
+S_break getting big -1.0196929561796502
+S_break getting big -1.2139822560984919
+S_break getting big -2.015116663454444
+S_break getting big -3.0436712804823287
+S_break getting big -3.7268100785388274
+S_break getting big -1.2371863538135555
+S_break getting big -2.86805674046045
+S_break getting big -1.2584365784916371
+S_break getting big -3.3887728188507773
+S_break getting big -3.108079599776659
+S_break getting big -3.440608007592626
+S_break getting big -2.573496189303981
+S_break getting big -1.1891845397568948
+S_break getting big -2.942135044730839
+S_break getting big -2.6599645006306036
+S_break getting big -1.0242638733648242
+S_break getting big -2.2995683919738954
+S_break getting big -3.4706691968622843
+S_break getting big -2.205704692121722
+S_break getting big -1.0202766045238227
+S_break getting big -1.1435673169356253
+S_break getting big -1.8944746768705858
+S_break getting big -2.1800400369194604
+S_break getting big -2.7027618325943976
+S_break getting big -2.7118873735367925
+S_break getting big -1.4176261999594004
+S_break getting big -1.386005054271908
+S_break getting big -1.1114558185546755
+S_break getting big -7.019659850432573
+S_break getting big -2.791863063220041
+S_break getting big -5.095601352630587
+S_break getting big -4.742093224319737
+S_break getting big -2.145803065460707
+S_break getting big -1.7732463512404653
+S_break getting big -2.51733077510267
+S_break getting big -1.1365691320238895
+S_break getting big -1.042129474466984
+S_break getting big -1.1334594572011745
+S_break getting big -1.2157578141554561
+S_break getting big -1.0995079770572405
+S_break getting big -1.455986591895426
+S_break getting big -1.0734160578631968
+S_break getting big -2.1634651309102004
+S_break getting big -1.3226499657593729
+Traceback (most recent call last):
+  File "/home1/04637/mdl2665/WAVEx/main.py", line 590, in <module>
+    vals_out[:,a] = HS_vals[:]
+ValueError: could not broadcast input array from shape (114,1) into shape (114,)
+S_break getting big -2.7119268864456063
+S_break getting big -3.847476255806678
+S_break getting big -5.377493599813338
+S_break getting big -3.551641575418945
+S_break getting big -4.951404077217884
+S_break getting big -1.125753100910081
+S_break getting big -1.3535406540321553
+S_break getting big -1.1075867193272453
+S_break getting big -1.0098934406109705
+S_break getting big -5.435926747981738
+S_break getting big -1.0526373248957224
+S_break getting big -4.906292025143392
+S_break getting big -4.520503345331965
+S_break getting big -1.109417411624435
+S_break getting big -1.978583768032429
+S_break getting big -1.901613479577106
+S_break getting big -1.1366848378770182
+S_break getting big -1.1854686224274475
+S_break getting big -1.7727006355526456
+S_break getting big -1.810890644755189
+S_break getting big -1.1311097933824605
+S_break getting big -1.2996215594877787
+S_break getting big -1.338601960277249
+S_break getting big -1.197812068161263
+S_break getting big -4.759032680725726
+S_break getting big -1.622938295084079
+S_break getting big -1.4446100280775422
+S_break getting big -1.2041819903115147
+S_break getting big -1.1708115252393385
+S_break getting big -1.3685583543759003
+S_break getting big -1.1444093002874955
+S_break getting big -1.1074767377063115
+S_break getting big -1.0068546805337686
+S_break getting big -1.0234869920148757
+S_break getting big -1.0891261856666348
+S_break getting big -1.0433938490583743
+S_break getting big -1.014405683156535
+S_break getting big -3.2611796758886267
+gamma may be blowing up 2.8094342285675635 0.0
+index and value of gamma blowing up 28701 28 2.8094342285675635
+Etot 5.10E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005095630579550302 57.546484726859475 4.107880177041497 23.833516408032207
+integral params Etot, sigma_factor, k factor 0.005095630579550302 0.12144679502698279 0.03865514751730276
+S_break getting big -4.560729648843564
+S_break getting big -2.8361395501950124
+S_break getting big -5.338336814342724
+S_break getting big -2.611558573946116
+gamma may be blowing up 1.1343770425035475 0.0
+index and value of gamma blowing up 12301 12 1.1343770425035475
+Etot 1.15E-04
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.000115301641161141 374.10443139132457 4.017081075533632 65.02066803817348
+integral params Etot, sigma_factor, k factor 0.000115301641161141 0.007496989734195148 0.0022301389108759263
+S_break getting big -10.470768468881685
+S_break getting big -1.306373755255015
+S_break getting big -2.573263057492373
+S_break getting big -2.7714640113516227
+S_break getting big -1.251233149108225
+S_break getting big -2.6729411278567468
+S_break getting big -1.160563796230028
+S_break getting big -3.0888565526375262
+S_break getting big -3.437786872672227
+S_break getting big -3.0242188028506205
+S_break getting big -2.752416320075011
+S_break getting big -1.907296012154851
+S_break getting big -1.2932072645904826
+S_break getting big -1.7859378916350843
+S_break getting big -1.069202339640065
+S_break getting big -1.7008689727376602
+S_break getting big -1.7341749807357865
+S_break getting big -1.5564440434733262
+S_break getting big -1.2132303233434518
+gamma may be blowing up 2.4884294340027067 0.0
+index and value of gamma blowing up 21526 21 2.4884294340027067
+Etot 4.53E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004530220810251823 57.624922443915175 3.8785557582844588 23.759206515386552
+integral params Etot, sigma_factor, k factor 0.004530220810251823 0.10763445179107485 0.034389395964484606
+S_break getting big -1.599316185671353
+S_break getting big -2.6655326683924425
+S_break getting big -1.1271316376817577
+S_break getting big -2.52982028030093
+S_break getting big -3.232056082690827
+S_break getting big -1.0432864870030039
+S_break getting big -1.6006685838736814
+S_break getting big -1.034337196199771
+S_break getting big -2.7093105720976203
+S_break getting big -1.5297792894751032
+S_break getting big -1.2289752748654121
+S_break getting big -1.7254327964300444
+S_break getting big -1.1323517241914633
+S_break getting big -1.6348286956974871
+S_break getting big -1.0958516998904944
+S_break getting big -1.1434280363256872
+S_break getting big -1.0130785113457672
+S_break getting big -1.0035085640594998
+S_break getting big -1.0903343096309257
+S_break getting big -1.0138030127352347
+S_break getting big -1.129541222524793
+S_break getting big -1.0022631693414217
+S_break getting big -1.1345335554918499
+S_break getting big -1.9024122239870078
+gamma may be blowing up 2.7432338073801374 0.0
+index and value of gamma blowing up 2051 2 2.7432338073801374
+Etot 4.99E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004991209696858479 57.21968026461662 4.042484234775117 23.821404931371944
+integral params Etot, sigma_factor, k factor 0.004991209696858479 0.11889762728625604 0.03775535252908634
+S_break getting big -4.414885317597412
+S_break getting big -2.765875238192097
+S_break getting big -1.3978470460028773
+S_break getting big -1.0894249787171089
+S_break getting big -1.1210760915050018
+S_break getting big -1.5844789822258984
+S_break getting big -1.8950834412658897
+S_break getting big -1.102765222052218
+S_break getting big -1.2481152952710146
+S_break getting big -1.2344562379500725
+S_break getting big -1.0783757511693084
+S_break getting big -1.0079696260714235
+S_break getting big -1.0250073078782256
+S_break getting big -1.0820343088557614
+gamma may be blowing up 1.6100970661025327 0.0
+index and value of gamma blowing up 12301 12 1.6100970661025327
+Etot 3.01E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003005831087373612 56.29795428318043 3.0865612525263844 23.59221288329856
+integral params Etot, sigma_factor, k factor 0.003005831087373612 0.07091420690455505 0.0225533406064446
+S_break getting big -3.09875062072659
+S_break getting big -9.770524232706746
+S_break getting big -4.085569485346057
+S_break getting big -1.1981416358358827
+S_break getting big -2.1818115513013328
+S_break getting big -2.4212628699854624
+S_break getting big -3.366547839998539
+S_break getting big -3.031253412428432
+S_break getting big -1.996624656414995
+S_break getting big -3.582488940891625
+S_break getting big -1.2882598581882923
+S_break getting big -1.2905787707620224
+S_break getting big -1.1289510594295042
+S_break getting big -1.3340272045374864
+S_break getting big -1.2721026003679956
+gamma may be blowing up 2.160267628369267 0.0
+index and value of gamma blowing up 26651 26 2.160267628369267
+Etot 3.93E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003925575300556189 57.12288936803459 3.5790010257169858 23.819719098514383
+integral params Etot, sigma_factor, k factor 0.003925575300556189 0.0935061009593146 0.02966937486099303
+S_break getting big -8.485713777915747
+S_break getting big -3.92563582881515
+S_break getting big -2.643697976803956
+S_break getting big -8.800202333003062
+S_break getting big -1.074609200183646
+S_break getting big -2.9540707985883365
+S_break getting big -1.3146359294853935
+S_break getting big -2.3105038025667497
+S_break getting big -1.2169219428841347
+S_break getting big -1.1931020966181864
+S_break getting big -1.1400114728629245
+S_break getting big -1.177143536184228
+S_break getting big -1.7451598797452952
+S_break getting big -2.855896043673429
+S_break getting big -1.4164956014735137
+S_break getting big -1.5802262014562307
+S_break getting big -1.704781399921774
+S_break getting big -1.798792873251061
+S_break getting big -1.3344263916574644
+S_break getting big -4.850363934160649
+S_break getting big -5.937209400224504
+S_break getting big -3.5805430628137196
+S_break getting big -2.967575845131238
+S_break getting big -2.813311934470745
+S_break getting big -1.865011638445941
+S_break getting big -2.4048547886352036
+S_break getting big -1.0137264786902727
+S_break getting big -1.1229136752518716
+S_break getting big -1.141698221242984
+S_break getting big -1.139878774239895
+S_break getting big -2.0961455595056866
+S_break getting big -1.6035536726397812
+S_break getting big -1.4726774643791944
+S_break getting big -1.04392234867315
+S_break getting big -1.0840095514069226
+S_break getting big -1.0147989359649003
+S_break getting big -3.4984455837000326
+gamma may be blowing up 1.5927880569452268 0.0
+index and value of gamma blowing up 12301 12 1.5927880569452268
+Etot 2.98E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002976010649435398 56.39687742542638 3.076608950596857 23.58265791362458
+integral params Etot, sigma_factor, k factor 0.002976010649435398 0.07018224109293872 0.02234920145840183
+S_break getting big -9.913156403580365
+S_break getting big -3.313105956848473
+S_break getting big -2.4458486737707146
+S_break getting big -4.417263587756652
+S_break getting big -4.310506404847324
+S_break getting big -1.34473181534809
+S_break getting big -1.9544952081519498
+S_break getting big -2.048750717764646
+S_break getting big -1.8131155746495857
+S_break getting big -3.098662775452273
+S_break getting big -2.457275744412804
+S_break getting big -1.6691627681042716
+S_break getting big -2.0070154751999802
+S_break getting big -2.1230290484803547
+S_break getting big -1.466224766386107
+S_break getting big -1.563352664908412
+S_break getting big -1.1281633431255085
+S_break getting big -1.050151767150784
+S_break getting big -1.0193889886993677
+S_break getting big -1.0010312387040812
+S_break getting big -1.11143525611035
+S_break getting big -1.5095091290035525
+S_break getting big -1.2367966982302667
+S_break getting big -1.0925771238887507
+S_break getting big -1.0738142850732522
+S_break getting big -1.8943259971583317
+S_break getting big -1.4776296941026976
+S_break getting big -1.1144698905114332
+S_break getting big -1.0775160706203681
+S_break getting big -1.3435457643791624
+S_break getting big -3.0496764524290962
+S_break getting big -3.3321078012595033
+S_break getting big -1.621793610969783
+S_break getting big -5.145630493985936
+S_break getting big -4.061431016764925
+S_break getting big -2.749101293559342
+S_break getting big -2.127251280388501
+S_break getting big -1.6041126907702445
+S_break getting big -1.538561495426946
+S_break getting big -1.1020005402582236
+S_break getting big -1.4434828251058998
+S_break getting big -4.921203222447118
+S_break getting big -1.2312513740897137
+S_break getting big -1.1436755741706823
+S_break getting big -1.4954370116051743
+S_break getting big -1.159745366358986
+S_break getting big -1.0070380023106553
+S_break getting big -1.5532646846879394
+S_break getting big -1.6126420905648713
+S_break getting big -1.3292261446795213
+S_break getting big -1.111916410474388
+S_break getting big -1.1043166386771126
+S_break getting big -1.6124213349595817
+S_break getting big -1.708609456800561
+S_break getting big -1.1682347522685563
+S_break getting big -1.325724004904292
+S_break getting big -1.200915903013214
+S_break getting big -1.044925118115642
+S_break getting big -1.039081463559149
+S_break getting big -2.063107321120418
+S_break getting big -1.408067622596036
+S_break getting big -1.9415124719354746
+S_break getting big -1.3924147989671645
+S_break getting big -1.2307259847433296
+S_break getting big -1.9144793428099822
+S_break getting big -1.0040981367318886
+S_break getting big -1.4352483811080854
+S_break getting big -1.1802880347123543
+S_break getting big -1.4780466038218363
+S_break getting big -1.1747382022053894
+S_break getting big -1.0363312632482942
+S_break getting big -4.440004796708156
+S_break getting big -5.319915173890544
+S_break getting big -5.6821601078337896
+S_break getting big -3.441888619238791
+S_break getting big -5.16129033044612
+S_break getting big -2.8824699639933278
+S_break getting big -1.0124525796738661
+S_break getting big -1.3475759587052214
+S_break getting big -4.188520737250749
+S_break getting big -2.1029686973480146
+S_break getting big -5.225656722617332
+S_break getting big -2.6776768108909157
+S_break getting big -5.040712654107317
+S_break getting big -2.086623457250492
+S_break getting big -3.4559633939300487
+S_break getting big -1.6580399897801144
+S_break getting big -1.1031059870791158
+S_break getting big -1.083627332463637
+S_break getting big -3.2508873146332817
+S_break getting big -3.360232640641124
+S_break getting big -1.7132554957414294
+S_break getting big -2.035342833983169
+S_break getting big -2.7253238212411737
+S_break getting big -2.482076148168693
+S_break getting big -2.1199838814328125
+S_break getting big -1.9968635778771946
+S_break getting big -1.092503935529577
+S_break getting big -1.3164858043340446
+S_break getting big -1.0155850155524027
+S_break getting big -1.1810036772220924
+S_break getting big -1.1029729040314569
+S_break getting big -1.1809410878422453
+S_break getting big -2.2710407915740687
+S_break getting big -1.1676609318793698
+S_break getting big -3.9725329046330695
+S_break getting big -2.250932013734506
+S_break getting big -2.7889093402926934
+S_break getting big -2.6792278333602533
+S_break getting big -4.364946535536791
+S_break getting big -2.91844227283547
+S_break getting big -1.6848200714154513
+S_break getting big -1.2174587281453846
+S_break getting big -1.2248084772783812
+S_break getting big -1.0505182534672217
+S_break getting big -2.108871974085815
+S_break getting big -4.521760127066928
+S_break getting big -1.1865351640310253
+S_break getting big -2.462507621448092
+S_break getting big -1.0015338444372406
+S_break getting big -1.0929927491621685
+S_break getting big -1.1694552110150636
+S_break getting big -3.204170729693473
+S_break getting big -2.12411267706127
+S_break getting big -1.0273212023942069
+S_break getting big -2.4177730062140235
+S_break getting big -2.6369872819343176
+S_break getting big -1.5708155675139652
+S_break getting big -1.8240332233847456
+S_break getting big -1.0256429003609637
+S_break getting big -1.0273518704806328
+S_break getting big -1.1087099399744262
+S_break getting big -1.4932813937726488
+S_break getting big -1.2733680782553218
+S_break getting big -1.0604923532927935
+S_break getting big -1.387301235862214
+S_break getting big -1.8024464585479567
+S_break getting big -1.7865817360890008
+S_break getting big -1.1077122332181726
+S_break getting big -1.1836203993669536
+gamma may be blowing up 2.595228071361423 0.0
+index and value of gamma blowing up 17426 17 2.595228071361423
+Etot 4.72E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004717036593241199 57.569991999237025 3.953946528354649 23.798488334434904
+integral params Etot, sigma_factor, k factor 0.004717036593241199 0.11225834033735324 0.03579046409504547
+S_break getting big -1.7450035933797812
+S_break getting big -2.543498165441142
+S_break getting big -1.2937028186433288
+S_break getting big -1.9491858241012323
+S_break getting big -3.39660559508252
+S_break getting big -4.191812618088892
+S_break getting big -3.25404058695062
+S_break getting big -2.374076839085136
+S_break getting big -2.9559688099847707
+S_break getting big -1.073096473157979
+S_break getting big -1.0173062776037838
+S_break getting big -1.0611595582239277
+S_break getting big -1.067007000814549
+S_break getting big -1.5433128554477018
+S_break getting big -1.3420932819390234
+S_break getting big -1.303683680693137
+S_break getting big -1.0459995920358085
+S_break getting big -1.028018413673414
+S_break getting big -1.0272037491968342
+S_break getting big -1.1332964926665212
+S_break getting big -1.133270176587751
+S_break getting big -2.0373238888698646
+S_break getting big -1.7054316897088182
+S_break getting big -1.444212465970152
+S_break getting big -1.5760308449222165
+S_break getting big -1.4349572126360457
+S_break getting big -1.1789360143001315
+S_break getting big -1.7703776018416573
+S_break getting big -1.2041965161009185
+S_break getting big -5.162384685602953
+S_break getting big -1.054491907041182
+S_break getting big -4.890300289881698
+S_break getting big -2.967991080681553
+S_break getting big -1.2590216677171222
+S_break getting big -2.4631714940753553
+S_break getting big -4.67481979243702
+S_break getting big -4.911888484126336
+S_break getting big -2.845953620175871
+S_break getting big -1.11738734895269
+S_break getting big -3.1717897308412017
+S_break getting big -5.152741910868358
+S_break getting big -1.057592427666793
+S_break getting big -1.0158975937577859
+S_break getting big -1.0137268703189957
+S_break getting big -1.0455620068949572
+S_break getting big -1.4016557928242739
+S_break getting big -1.460750686537518
+S_break getting big -1.0380637924878924
+S_break getting big -1.0971073175216621
+S_break getting big -1.5977650134552985
+S_break getting big -5.0818858121305075
+S_break getting big -4.680888165405218
+S_break getting big -2.4236181964113297
+S_break getting big -1.892833495870529
+S_break getting big -1.0663534580118676
+S_break getting big -2.9557748378325877
+S_break getting big -1.053840197578002
+S_break getting big -1.0179245278359648
+S_break getting big -1.0966841561864298
+S_break getting big -2.2064207355974226
+S_break getting big -2.2876066801183925
+S_break getting big -5.303937951783196
+S_break getting big -1.3540770265678888
+S_break getting big -2.0933019833607074
+S_break getting big -3.4104454538380575
+S_break getting big -3.48606378142143
+S_break getting big -2.0668840266655595
+S_break getting big -1.240522833395086
+S_break getting big -1.5086544072217598
+gamma may be blowing up 1.2010335254327384 9.243134053886978e-06
+index and value of gamma blowing up 16401 16 1.2010335254327384
+Etot 3.35E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.003353186764629994 43.617355640304375 2.525737451649538 20.46060301204285
+integral params Etot, sigma_factor, k factor 0.003353186764629994 0.06860822321633067 0.022145597866790743
+S_break getting big -1.2378437919760394
+S_break getting big -1.7280908381343945
+S_break getting big -1.2355168283511988
+S_break getting big -2.645640325404074
+S_break getting big -1.9401294367779405
+gamma may be blowing up 2.250210331786665 9.425166630970368e-06
+index and value of gamma blowing up 5126 5 2.250210331786665
+Etot 4.46E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004457613381839809 54.605276455605335 3.6457409755896357 23.033266579074972
+integral params Etot, sigma_factor, k factor 0.004457613381839809 0.10267339733036823 0.032939704862501605
+S_break getting big -1.0296947727006132
+S_break getting big -1.788571610847339
+S_break getting big -1.5262095364876989
+S_break getting big -2.7932019979202756
+S_break getting big -1.6740239771954017
+S_break getting big -1.5157161100181995
+S_break getting big -6.588264897101043
+S_break getting big -1.005265465440089
+S_break getting big -1.4112430422855196
+S_break getting big -1.4224723455760973
+S_break getting big -1.0926126584675766
+S_break getting big -1.7331432616454245
+S_break getting big -1.5581676809090432
+S_break getting big -1.3655060546810014
+S_break getting big -1.638694124428596
+gamma may be blowing up 2.3604646939631455 8.330624413934925e-06
+index and value of gamma blowing up 15376 15 2.3604646939631455
+Etot 4.19E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004191483971077581 58.75781904181834 3.8040793923526253 23.88053601914766
+integral params Etot, sigma_factor, k factor 0.004191483971077581 0.10009488394499824 0.03212925410853225
+S_break getting big -1.1551513895355077
+S_break getting big -1.9490678784296551
+S_break getting big -3.4474836980134618
+S_break getting big -3.858058411697805
+S_break getting big -3.1343224559913843
+S_break getting big -2.4530321256019874
+S_break getting big -1.90122304314281
+S_break getting big -2.060653153228251
+S_break getting big -1.5104560072305047
+S_break getting big -3.0143308552732773
+S_break getting big -1.639178556952622
+S_break getting big -1.026141633260665
+S_break getting big -1.1035676864487145
+S_break getting big -1.1353675864316894
+S_break getting big -1.0361265435347016
+S_break getting big -1.1943301962144384
+S_break getting big -2.6135984675202097
+S_break getting big -4.8714973127177235
+S_break getting big -5.49264731255565
+S_break getting big -3.794251817357021
+S_break getting big -2.965432319366216
+S_break getting big -1.5549954079173323
+S_break getting big -2.989329683454746
+S_break getting big -2.1822300549090854
+S_break getting big -1.9633136253881576
+S_break getting big -1.47501216346238
+S_break getting big -4.220558913049036
+S_break getting big -5.585126395929149
+S_break getting big -1.4102642908096883
+S_break getting big -1.1727096138256072
+S_break getting big -1.8869386951810965
+S_break getting big -1.2733851066471258
+S_break getting big -1.2914196318251858
+S_break getting big -1.3605573035685037
+S_break getting big -1.269174123008865
+S_break getting big -1.4100179023618342
+S_break getting big -1.1692479530347333
+S_break getting big -1.1627130669535384
+S_break getting big -1.2773325556093644
+S_break getting big -1.0870010502889094
+S_break getting big -1.3907364881758608
+S_break getting big -1.9630999560166027
+S_break getting big -1.0086232856033719
+S_break getting big -4.217175542975525
+S_break getting big -5.064325748399737
+S_break getting big -3.8370868935596856
+S_break getting big -1.1668466394196353
+S_break getting big -1.6713098123592818
+S_break getting big -3.2177213866291283
+S_break getting big -5.199353466113776
+S_break getting big -3.1763878223518534
+S_break getting big -2.723526295956662
+S_break getting big -2.072655947132328
+S_break getting big -1.743009263305383
+S_break getting big -2.4624811134353597
+S_break getting big -1.4328226734041458
+S_break getting big -1.2237763106629258
+S_break getting big -1.069131561771455
+S_break getting big -1.4145665467227941
+S_break getting big -5.128365338745665
+S_break getting big -1.3171095007736429
+S_break getting big -2.788330619374332
+S_break getting big -1.0569248834101639
+S_break getting big -4.6360253323356755
+S_break getting big -4.32579647259666
+S_break getting big -3.393135952654443
+S_break getting big -2.525468133643672
+S_break getting big -3.0093429183679925
+S_break getting big -1.788736220267821
+S_break getting big -1.0787646980624008
+S_break getting big -1.0954572359987025
+S_break getting big -1.5826300198579077
+S_break getting big -1.614765976870228
+S_break getting big -1.4066673719990705
+S_break getting big -1.1903526075557094
+S_break getting big -1.0855396069195025
+S_break getting big -1.439959840486822
+gamma may be blowing up 2.817860127914227 0.0
+index and value of gamma blowing up 1 0 2.817860127914227
+Etot 5.70E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.005695005843077329 53.96315105700107 4.072343359444521 22.853952939299475
+integral params Etot, sigma_factor, k factor 0.005695005843077329 0.1301533955267248 0.041835293935899166
+S_break getting big -1.20796578640264
+S_break getting big -1.7905975826952503
+S_break getting big -2.3061957957023633
+S_break getting big -3.0731519171697945
+S_break getting big -1.0265731008971175
+S_break getting big -4.204579078364108
+S_break getting big -2.8056262953840254
+S_break getting big -1.2540335381413965
+S_break getting big -1.3688713626057412
+S_break getting big -1.3931810313439639
+S_break getting big -2.424118636328347
+S_break getting big -1.2488178506747099
+S_break getting big -1.77639565906703
+S_break getting big -1.0638315177207738
+S_break getting big -2.126499251890969
+S_break getting big -2.793327946192218
+S_break getting big -1.9124536359445927
+S_break getting big -1.0082692100875263
+S_break getting big -1.2487136525432916
+S_break getting big -7.972126357182595
+S_break getting big -1.3372465588989395
+S_break getting big -2.282045692732307
+S_break getting big -1.0728358751609777
+S_break getting big -2.964134721032579
+S_break getting big -3.8482504235441297
+S_break getting big -2.7581654700266176
+S_break getting big -1.9503149976256566
+S_break getting big -1.3230456758464508
+S_break getting big -1.0249061293648116
+S_break getting big -1.8293655880940642
+S_break getting big -2.5862157663920784
+S_break getting big -2.21577757994508
+S_break getting big -1.5695370260841028
+S_break getting big -1.6441140292500378
+S_break getting big -1.0671308327937379
+S_break getting big -1.030613699105265
+S_break getting big -1.6328764507147218
+S_break getting big -3.1737634825255125
+S_break getting big -1.889993568480529
+S_break getting big -1.076820235088959
+S_break getting big -1.8090506056020565
+S_break getting big -1.1137021690832778
+S_break getting big -1.391517339176527
+S_break getting big -1.6365460852369176
+S_break getting big -1.15605018607311
+S_break getting big -1.2315421384563165
+S_break getting big -1.175269482111332
+S_break getting big -1.579729828873309
+S_break getting big -1.5193373109711696
+S_break getting big -1.4160367565962038
+S_break getting big -1.0245501695814272
+S_break getting big -1.436302858137404
+S_break getting big -1.7749803689559986
+S_break getting big -1.7806302568623216
+S_break getting big -1.0111235470835558
+S_break getting big -1.035057720951128
+S_break getting big -4.179458461125646
+S_break getting big -2.750885021522306
+S_break getting big -2.9684001231172212
+S_break getting big -2.531238806333895
+S_break getting big -1.4345243312060552
+S_break getting big -1.0194107580749103
+S_break getting big -1.1149967898577715
+S_break getting big -1.2210651701873125
+S_break getting big -1.0291862760574209
+S_break getting big -1.006630967442983
+S_break getting big -1.77470651263481
+S_break getting big -2.376029258205843
+S_break getting big -2.2149072984536113
+S_break getting big -1.6292699551521952
+S_break getting big -1.747858924484805
+S_break getting big -4.363870373919871
+S_break getting big -2.1766727796156107
+S_break getting big -4.742416028909845
+S_break getting big -1.6806612083731893
+S_break getting big -1.0594136693714098
+S_break getting big -1.3753005270413219
+S_break getting big -1.247286510452677
+S_break getting big -1.113164239566819
+S_break getting big -1.0101249652141076
+S_break getting big -1.0638068275639685
+S_break getting big -1.1536471764463219
+S_break getting big -1.0630936083138978
+S_break getting big -1.345795389335847
+S_break getting big -2.3384030625600323
+S_break getting big -1.8521978673550685
+S_break getting big -1.1339908160584313
+S_break getting big -1.0577114456880112
+S_break getting big -1.2641683557121512
+gamma may be blowing up 1.5883089977976994 0.0
+index and value of gamma blowing up 1026 1 1.5883089977976994
+Etot 4.49E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.004485415470208213 43.38724966737783 2.90578487735444 20.346861118763584
+integral params Etot, sigma_factor, k factor 0.004485415470208213 0.09126412563228017 0.02954498249929047
+S_break getting big -1.8882927240115897
+S_break getting big -2.1582947415164364
+S_break getting big -1.340975623546358
+S_break getting big -3.368212108862505
+S_break getting big -3.0008597182145924
+S_break getting big -1.2106652338413706
+S_break getting big -1.3278704241971901
+S_break getting big -1.1126488076187675
+S_break getting big -1.0355608269255205
+S_break getting big -1.141602198553884
+S_break getting big -1.1046307330363971
+S_break getting big -1.0228370399387803
+S_break getting big -1.341323180709786
+S_break getting big -1.6937089828113583
+S_break getting big -1.050932456121514
+S_break getting big -1.1116870066170585
+S_break getting big -1.8383761282154898
+S_break getting big -1.5543047611269079
+S_break getting big -1.0246579273539191
+S_break getting big -1.026128790285215
+S_break getting big -1.489820224986538
+S_break getting big -3.570014395105486
+S_break getting big -1.9906333514786447
+S_break getting big -3.684919298777485
+S_break getting big -2.376370076930154
+S_break getting big -2.8448084251197656
+S_break getting big -2.142478797877692
+S_break getting big -2.0478141010428113
+S_break getting big -1.2106016360552536
+S_break getting big -1.022909883043702
+S_break getting big -1.0121986564709708
+S_break getting big -1.0601569423222255
+S_break getting big -1.0577883644517745
+S_break getting big -1.050847099859108
+S_break getting big -3.4978768495933616
+S_break getting big -5.249462696005315
+S_break getting big -3.472873631669654
+S_break getting big -2.463878341836449
+S_break getting big -1.1073899142078545
+S_break getting big -1.1885456694292607
+S_break getting big -1.7121405145773767
+S_break getting big -1.84463655255482
+S_break getting big -1.4858893197205414
+TACC:  MPI job exited with code: 1 
+TACC:  Shutdown complete. Exiting. 

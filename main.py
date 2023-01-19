@@ -160,12 +160,12 @@ else:
     raise Exception("Bathymetry not defined")
 
 
-xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
-xdmf.write_mesh(domain1)
-xdmf.write_function(depth_func)
-xdmf.close()
+#xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
+#xdmf.write_mesh(domain1)
+#xdmf.write_function(depth_func)
+#xdmf.close()
 
-'''
+
 
 #here are some presets for u,v
 #setting none will default to 0
@@ -287,8 +287,8 @@ tol= 1e-9
 #now only want subset that is the inflow, need to automate later
 #this is assuming a rectangular shaped mesh with waves coming in from bottom side
 if Model_Params["Mesh Type"]=="L11":
-    x_max = 150
-    y_min = 0
+    x_max = 113
+    y_min = 7.4
 else:
     x_max = 20000
     y_min =0
@@ -377,7 +377,7 @@ elif Model_Params["Boundary Type"] == "JONSWAP":
         CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,1e-10)
         tol =1e-11
         #return (1-np.exp(-0.02*t))*(y<tol)*CDIR*N
-        return np.exp(-0.002*133*(y))*CDIR*N
+        return np.exp(-0.002*133*(y-7.4))*CDIR*N
         #return np.exp(-0.002*y*(np.exp(-0.02*t)))*CDIR*N
         #return CDIR*N
 
@@ -597,4 +597,4 @@ if rank ==0:
                 vals_out[:,a] = Dir_vals[:,0]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
-'''
+
