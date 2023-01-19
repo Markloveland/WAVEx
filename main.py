@@ -586,15 +586,9 @@ if rank ==0:
     a=0
     for QOI in Model_Params["QoI"]:
         if QOI == "HS":
-            if Model_Params["Mesh Type"] == "Unstructured" or Model_Params["Mesh Type"] == "L11":
-                vals_out[:,a] = HS_vals[:]
-            else:
-                vals_out[:,a] = HS_vals[:,0]
+            vals_out[:,a] = HS_vals.flatten()[:]
         if QOI == "Mean Dir":
-            if Model_Params["Mesh Type"] == "Unstructured" or Model_Params["Mesh Type"] == "L11":
-                vals_out[:,a] = Dir_vals[:]
-            else:
-                vals_out[:,a] = Dir_vals[:,0]
+            vals_out[:,a] = Dir_vals.flatten()[:]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
 

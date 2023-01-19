@@ -92,4 +92,10 @@ seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1],local_dof_coords1[:,
 print(local_dof_coords1)
 print(local_dof_coords1[seg,1])
 
-print(np.linspace(7.4,30,114))
+
+dum = np.ones((5,1))
+dum2 = 5*np.ones(5)
+
+dum[:,0] = dum2.flatten()[:]
+
+print(dum)
