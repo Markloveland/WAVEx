@@ -85,7 +85,8 @@ elif Model_Params["Mesh Type"] == "L11":
     encoding= io.XDMFFile.Encoding.HDF5
     with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
         domain1 = file.read_mesh()
-    domain1.geometry.x[:,:] = domain1.geometry.x[:,:]*((30-7.4)/4000) + 7.4
+    domain1.geometry.x[:,:] = domain1.geometry.x[:,:]*((30-7.4)/4000)
+    domain1.geometry.x[:,1] = domain1.geometry.x[:,1]+7.4
 
 else:
     raise Exception("Mesh not properly defined")
