@@ -50,8 +50,9 @@ if np.any(limit_idx):
 
 
 
-local_dof_cooords = np.zeros((31,2))
-local_dof_coords[:,1] = np.arange(0,30,31)
+local_dof_coords1 = np.zeros((31,2))
+local_dof_coords1[:,1] = np.arange(0,30,31)
+depth = np.zeros(31)
 print('bathymetry locations')
 bath_locs = np.linspace(0,4.4*7,8)
 bath_vals = np.array([0.7,0.7,0.64,0.424,0.208,0.315,0.124,-0.06])
@@ -91,3 +92,4 @@ seg = np.logical_and(local_dof_coords1[:,1]>=bath_locs[a-1],local_dof_coords1[:,
 print(local_dof_coords1)
 print(local_dof_coords1[seg,1])
 
+print(np.linspace(7.4,30,114))

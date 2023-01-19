@@ -24,4 +24,4 @@ Boundary Type=JONSWAP                            ! Boundary condition type: Righ
 JONSWAP Params=0.147,2.012,90,500
 Gaussian Params=1,0.04,0.1,90                      ! Gaussian boundary condition specifiers: HS, F_std(hz), F_pk(hz), theta_pk (degree), (ignored if not Gaussian)       
 QoI=HS,Mean Dir                        ! Parameters to record (HS,Mean Dir) (No spaces!!!)
-Station Params=31,0,30,75                        ! station locations in geographic space, currently only supports a line in y direction. Nstat, stat0, statfinal, x location
+Station Params=114,7.4,30,75                        ! station locations in geographic space, currently only supports a line in y direction. Nstat, stat0, statfinal, x location

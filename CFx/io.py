@@ -65,7 +65,7 @@ def read_input_file(filename):
     string_convert(Model_Parameters,"Plot Every","int") 
     string_convert(Model_Parameters,"Gaussian Params","float list") 
     string_convert(Model_Parameters,"JONSWAP Params","float list") 
-    string_convert(Model_Parameters,"Station Params","int list") 
+    string_convert(Model_Parameters,"Station Params","float list") 
     string_convert(Model_Parameters,"QoI","str list") 
     string_convert(Model_Parameters,"U10","float")
     string_convert(Model_Parameters,"Wind Direction","float")

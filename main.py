@@ -85,7 +85,7 @@ elif Model_Params["Mesh Type"] == "L11":
     encoding= io.XDMFFile.Encoding.HDF5
     with io.XDMFFile(MPI.COMM_WORLD, filename, "r", encoding=encoding) as file:
         domain1 = file.read_mesh()
-    domain1.geometry.x[:,:] = domain1.geometry.x[:,:]*0.0075
+    domain1.geometry.x[:,:] = domain1.geometry.x[:,:]*((30-7.4)/40000)
 
 else:
     raise Exception("Mesh not properly defined")
@@ -159,12 +159,12 @@ else:
     raise Exception("Bathymetry not defined")
 
 
-#xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
-#xdmf.write_mesh(domain1)
-#xdmf.write_function(depth_func)
-#xdmf.close()
+xdmf = io.XDMFFile(domain1.comm, out_dir+'Paraview/Bath/'+fname+"/solution.xdmf", "w")
+xdmf.write_mesh(domain1)
+xdmf.write_function(depth_func)
+xdmf.close()
 
-
+'''
 
 #here are some presets for u,v
 #setting none will default to 0
@@ -285,11 +285,13 @@ tol= 1e-9
 ##############################################################################################################
 #now only want subset that is the inflow, need to automate later
 #this is assuming a rectangular shaped mesh with waves coming in from bottom side
-y_min =0
 if Model_Params["Mesh Type"]=="L11":
     x_max = 150
+    y_min = 0
 else:
     x_max = 20000
+    y_min =0
+
 x_min = 0
 dum1 = local_boundary_dofs[y[local_boundary_dofs]<=(y_min+tol)]
 dum2 = local_boundary_dofs[np.logical_and(x[local_boundary_dofs]>=(x_max-tol),theta[local_boundary_dofs]>=(np.pi/2+tol))]
@@ -374,7 +376,7 @@ elif Model_Params["Boundary Type"] == "JONSWAP":
         CDIR[A_COS>0.0] = CTOT*np.maximum(A_COS[A_COS>0.0]**MSINPUT,1e-10)
         tol =1e-11
         #return (1-np.exp(-0.02*t))*(y<tol)*CDIR*N
-        return np.exp(-0.002*133*y)*CDIR*N
+        return np.exp(-0.002*133*(y))*CDIR*N
         #return np.exp(-0.002*y*(np.exp(-0.02*t)))*CDIR*N
         #return CDIR*N
 
@@ -552,7 +554,7 @@ PETSc.Sys.Print('Final solution on boundary')
 
 #try to extract HS at stations
 #for now just assuming stations are a line in the y direction
-numpoints = Model_Params["Station Params"][0]
+numpoints = int(Model_Params["Station Params"][0])
 y_stats = np.linspace(Model_Params["Station Params"][1],Model_Params["Station Params"][2],numpoints)
 
 #also assuming its at this point
@@ -594,3 +596,4 @@ if rank ==0:
                 vals_out[:,a] = Dir_vals[:,0]
         a+=1
     np.savetxt(out_dir+'Stations/'+fname+".csv", np.append(stats, vals_out, axis=1), delimiter=",")
+'''
