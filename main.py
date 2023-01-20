@@ -286,7 +286,7 @@ tol= 1e-9
 ##############################################################################################################
 #now only want subset that is the inflow, need to automate later
 #this is assuming a rectangular shaped mesh with waves coming in from bottom side
-if Model_Params["Mesh Type"]=="L11":
+if Model_Params["Bathymetry"]=="L11":
     x_max = 113
     y_min = 7.4
 else:
