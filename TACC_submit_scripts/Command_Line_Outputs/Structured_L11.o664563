@@ -1,0 +1,308 @@
+no change     /home1/04637/mdl2665/anaconda3/condabin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda
+no change     /home1/04637/mdl2665/anaconda3/bin/conda-env
+no change     /home1/04637/mdl2665/anaconda3/bin/activate
+no change     /home1/04637/mdl2665/anaconda3/bin/deactivate
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.sh
+no change     /home1/04637/mdl2665/anaconda3/etc/fish/conf.d/conda.fish
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/Conda.psm1
+no change     /home1/04637/mdl2665/anaconda3/shell/condabin/conda-hook.ps1
+no change     /home1/04637/mdl2665/anaconda3/lib/python3.9/site-packages/xontrib/conda.xsh
+no change     /home1/04637/mdl2665/anaconda3/etc/profile.d/conda.csh
+no change     /home1/04637/mdl2665/.bashrc
+No action taken.
+
+     active environment : fenicsx-env
+    active env location : /home1/04637/mdl2665/anaconda3/envs/fenicsx-env
+            shell level : 2
+       user config file : /home1/04637/mdl2665/.condarc
+ populated config files : 
+          conda version : 4.12.0
+    conda-build version : 3.21.8
+         python version : 3.9.12.final.0
+       virtual packages : __linux=4.18.0=0
+                          __glibc=2.28=0
+                          __unix=0=0
+                          __archspec=1=x86_64
+       base environment : /home1/04637/mdl2665/anaconda3  (writable)
+      conda av data dir : /home1/04637/mdl2665/anaconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home1/04637/mdl2665/anaconda3/pkgs
+                          /home1/04637/mdl2665/.conda/pkgs
+       envs directories : /home1/04637/mdl2665/anaconda3/envs
+                          /home1/04637/mdl2665/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.12.0 requests/2.27.1 CPython/3.9.12 Linux/4.18.0-372.26.1.el8_6.x86_64 rocky/8.6 glibc/2.28
+                UID:GID : 839365:819760
+             netrc file : None
+           offline mode : False
+
+TACC:  Starting up job 664563 
+TACC:  Starting parallel tasks... 
+Switching to logarithmic spacing in frequency
+KSP Object: 250 MPI processes
+  type: gmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=10000, nonzero initial guess
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using PRECONDITIONED norm type for convergence test
+PC Object: 250 MPI processes
+  type: bjacobi
+    number of blocks = 250
+    Local solver information for first block is in the following KSP and PC objects on rank 0:
+    Use -ksp_view ::ascii_info_detail to display information for all blocks
+  KSP Object: (sub_) 1 MPI processes
+    type: preonly
+    maximum iterations=10000, initial guess is zero
+    tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+    left preconditioning
+    using NONE norm type for convergence test
+  PC Object: (sub_) 1 MPI processes
+    type: ilu
+      out-of-place factorization
+      0 levels of fill
+      tolerance for zero pivot 2.22045e-14
+      matrix ordering: natural
+      factor fill ratio given 1., needed 1.
+        Factored matrix follows:
+          Mat Object: 1 MPI processes
+            type: seqaij
+            rows=19475, cols=19475
+            package used to perform factorization: petsc
+            total: nonzeros=587605, allocated nonzeros=587605
+              not using I-node routines
+    linear system matrix = precond matrix:
+    Mat Object: (sub_) 1 MPI processes
+      type: seqaij
+      rows=19475, cols=19475
+      total: nonzeros=587605, allocated nonzeros=587605
+      total number of mallocs used during MatSetValues calls=0
+        not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: 250 MPI processes
+    type: mpiaij
+    rows=4798025, cols=4798025
+    total: nonzeros=221499433, allocated nonzeros=221499433
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node (on process 0) routines
+Niter 27
+convergence code 2
+dof 4798025
+The build time is 370.29899525642395 seconds
+The solve time is 1046.0620341300964 seconds
+Final solution on boundary
+S_break getting big -1.5407828178471923
+S_break getting big -1.3610649343506966
+S_break getting big -1.7608641052611285
+S_break getting big -1.045652563954682
+S_break getting big -1.6424323309771263
+S_break getting big -1.0045907080052274
+S_break getting big -1.5952787574572542
+S_break getting big -1.1085567303316115
+S_break getting big -1.1867440743883118
+S_break getting big -1.4455015331643202
+S_break getting big -1.1430866625284357
+S_break getting big -1.01142656825607
+S_break getting big -1.0146045776831139
+S_break getting big -1.007744536206339
+S_break getting big -1.0947902839364096
+S_break getting big -1.0500461601227418
+S_break getting big -1.4538686957960627
+S_break getting big -1.1028746107515328
+S_break getting big -1.255164774446033
+S_break getting big -2.5169020972440186
+S_break getting big -2.4403093698989213
+S_break getting big -3.0422834069603253
+S_break getting big -1.646917099481308
+S_break getting big -1.4929039043815724
+S_break getting big -1.836466536137683
+S_break getting big -1.278966108857585
+S_break getting big -1.187677480618169
+gamma may be blowing up 2.453360888617431 0.0
+index and value of gamma blowing up 9226 9 2.453360888617431
+Etot 6.70E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0067003699659695555 43.97970782240961 3.5999936228533977 20.746736680762023
+integral params Etot, sigma_factor, k factor 0.0067003699659695555 0.13901081134765678 0.044434976330633605
+S_break getting big -1.5745931841406844
+S_break getting big -3.1193908461642823
+S_break getting big -2.4138613998829572
+S_break getting big -1.1502734999722755
+S_break getting big -2.93031082779559
+S_break getting big -3.7674953402456763
+S_break getting big -1.767156731773472
+S_break getting big -2.8928319090887293
+S_break getting big -2.606861401294954
+S_break getting big -3.1280267432723896
+S_break getting big -1.3412580850091103
+S_break getting big -1.9003739302275413
+S_break getting big -3.1592393387596336
+gamma may be blowing up 4.817579719145443 0.0
+index and value of gamma blowing up 11276 11 4.817579719145443
+Etot 9.29E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.009291343015724153 55.22775933209182 5.323492792645572 23.34808414104137
+integral params Etot, sigma_factor, k factor 0.009291343015724153 0.2169350585144046 0.06904897012183898
+S_break getting big -1.1019294922858214
+S_break getting big -1.67260826963936
+S_break getting big -1.250447764612611
+S_break getting big -1.3918273170171476
+S_break getting big -2.64094730513732
+S_break getting big -1.2956304155602894
+S_break getting big -1.3106105930819196
+S_break getting big -1.2206669934935677
+S_break getting big -1.5085167184639423
+S_break getting big -1.5453586223711708
+S_break getting big -1.0170567663135206
+S_break getting big -1.0448234115683646
+S_break getting big -1.4267178898155342
+S_break getting big -2.2384735518398142
+S_break getting big -1.2596031627562965
+S_break getting big -1.4815126737374893
+S_break getting big -1.3599962872955609
+S_break getting big -2.647617321202213
+S_break getting big -1.8785481931928012
+S_break getting big -1.1252215203279516
+S_break getting big -1.091823601511468
+S_break getting big -2.9975575029935797
+S_break getting big -1.0356165901458694
+S_break getting big -1.8844038345147425
+S_break getting big -1.1077747076462763
+S_break getting big -1.0865430582623061
+S_break getting big -1.0635991124773507
+S_break getting big -1.0645530017835745
+S_break getting big -1.3025643613709783
+S_break getting big -1.4768180483017637
+S_break getting big -1.19678289797035
+S_break getting big -1.222574624743209
+S_break getting big -1.0389149083450402
+S_break getting big -1.2066995754794418
+S_break getting big -1.0668143589759338
+S_break getting big -1.0736015661437803
+S_break getting big -1.0280106269044824
+S_break getting big -1.0220729819923886
+S_break getting big -1.7098893360085554
+S_break getting big -1.0755599923551344
+S_break getting big -3.0510610811355443
+S_break getting big -3.547080734074732
+S_break getting big -1.4704158477930347
+S_break getting big -1.4404519365864699
+S_break getting big -1.9278633320366647
+S_break getting big -2.0944207482036634
+S_break getting big -2.2458554951404075
+S_break getting big -2.0181454374504915
+S_break getting big -1.9950330051821967
+S_break getting big -2.129497201936407
+S_break getting big -2.762470137888719
+S_break getting big -1.68313755061766
+S_break getting big -1.2715577231199733
+S_break getting big -1.240908229039405
+S_break getting big -1.1971150725933268
+S_break getting big -1.061224340748116
+S_break getting big -1.0328167730960252
+S_break getting big -1.1779100562266955
+S_break getting big -1.400696660181966
+gamma may be blowing up 1.596187359175156 0.0
+index and value of gamma blowing up 16401 16 1.596187359175156
+Etot 2.98E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.002976524437923522 56.74355789229847 3.095788548303803 23.560530962854312
+integral params Etot, sigma_factor, k factor 0.002976524437923522 0.07012849618138967 0.02242165852530367
+S_break getting big -6.6208277263277235
+S_break getting big -1.2978049601884984
+gamma may be blowing up 3.3385138077147167 2.6912958265664494e-05
+index and value of gamma blowing up 4101 4 3.3385138077147167
+Etot 9.81E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.00980561351392284 42.01280179679223 4.160246185164943 20.203377653005244
+integral params Etot, sigma_factor, k factor 0.00980561351392284 0.19810651294119494 0.06355732264365213
+S_break getting big -1.1109541038286448
+S_break getting big -1.8058020635477028
+S_break getting big -2.0463153258401885
+S_break getting big -1.1616916472422445
+S_break getting big -1.655722150811467
+S_break getting big -2.01317188692846
+S_break getting big -1.1070103804038147
+S_break getting big -1.1357269538506578
+S_break getting big -1.4050574465014838
+S_break getting big -1.0431900875512397
+S_break getting big -1.2713783408314692
+S_break getting big -1.5896091270202777
+S_break getting big -1.9011967925219482
+S_break getting big -1.0783289835649628
+S_break getting big -1.0683840007933918
+S_break getting big -1.0956572614532791
+S_break getting big -1.0098599946430165
+S_break getting big -2.605938435252315
+S_break getting big -1.220913564850924
+S_break getting big -1.5754473411757821
+S_break getting big -1.1291380955064552
+S_break getting big -1.0475180344969721
+S_break getting big -3.1524025335267134
+S_break getting big -1.042491451828285
+S_break getting big -1.7702729366716796
+S_break getting big -1.0179074565511392
+S_break getting big -2.762054251351027
+S_break getting big -1.2556951566281769
+S_break getting big -1.6039538113979375
+S_break getting big -2.7986937456887047
+S_break getting big -1.0237629380973654
+S_break getting big -1.665456252959285
+gamma may be blowing up 1.3346730890321052 0.0
+index and value of gamma blowing up 8201 8 1.3346730890321052
+Etot 2.60E-03
+some values, Etot, k_tilde, s_tilde,sigma_tilde 0.0025967634895841525 55.18430701568285 2.812106675761147 23.219568051753413
+integral params Etot, sigma_factor, k factor 0.0025967634895841525 0.0602957265607079 0.019290353797753075
+S_break getting big -7.091650840496551
+S_break getting big -5.48199844696772
+S_break getting big -1.892985389402329
+S_break getting big -1.0919862747864388
+S_break getting big -2.4607903948542793
+S_break getting big -1.0658726509864989
+S_break getting big -1.0486925366501045
+S_break getting big -1.1322426677784514
+S_break getting big -1.762454595553774
+S_break getting big -1.2421604310486245
+S_break getting big -1.2823964148514022
+S_break getting big -1.3160859130640485
+S_break getting big -1.1648417712327785
+S_break getting big -1.3128389570992245
+S_break getting big -1.4798477083638828
+S_break getting big -3.528995248340519
+S_break getting big -2.147005819555468
+S_break getting big -2.422467103608963
+S_break getting big -2.316738133547633
+S_break getting big -1.788217023063784
+S_break getting big -1.418811639550336
+S_break getting big -1.1606069507438914
+S_break getting big -1.4485985440110247
+S_break getting big -4.847864704677376
+S_break getting big -4.697112824692859
+S_break getting big -4.525575039260562
+S_break getting big -4.404110339757373
+S_break getting big -3.1714050771448976
+S_break getting big -1.2439046586750773
+S_break getting big -1.91309763150341
+S_break getting big -1.0143188479676082
+S_break getting big -2.1853370888021075
+S_break getting big -1.2714179004892874
+S_break getting big -1.061825934428102
+S_break getting big -5.198137783533983
+S_break getting big -1.3696338276043698
+S_break getting big -1.4435087088299303
+S_break getting big -1.16043829332017
+S_break getting big -1.140948828491511
+S_break getting big -1.0717847854381652
+S_break getting big -1.302837073812776
+S_break getting big -1.003553462104813
+S_break getting big -2.657814211676622
+S_break getting big -1.252100443552051
+S_break getting big -4.9545636377091204
+S_break getting big -1.0718556871569747
+S_break getting big -3.2309686831106315
+S_break getting big -1.1934891579403482
+S_break getting big -1.1526500322915014
+S_break getting big -1.091519915659574
+TACC:  Shutdown complete. Exiting. 
