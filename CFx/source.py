@@ -469,7 +469,8 @@ def Gen3(S,sigmas,thetas,N,U_mag,theta_wind,c,k,depth,rows,V2,local_size1,local_
     Swc[local_boundary_dofs] = 0.0
 
 
-    S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    #S.setValues(rows,Sin+Swc+Sbfr+Sbrk+Snl)
+    S.setValues(rows,Sin+Swc+Sbfr+Sbrk)
     
     #S.setValues(rows,Sin+Snl)
     #S.setValues(rows,Snl*0)
