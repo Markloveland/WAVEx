@@ -289,7 +289,7 @@ tol= 1e-9
 if Model_Params["Bathymetry"]=="L11":
     x_max = 113
     y_min = 7.4
-elif Model_Params["Currents"]=="A34":
+elif Model_Params["Currents"]=="A34" or Model_Params["Currents"]=="A31" or Model_Params["Currents"]=="A32"or  Model_Params["Currents"]=="A33":
     x_max = 10000
     y_min = 0.0
 else:

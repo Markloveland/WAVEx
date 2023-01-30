@@ -21,4 +21,4 @@ Output Folder=Outputs/A34/                        ! Output directory (can be abs
 Boundary Type=Gaussian                            ! Boundary condition type: Right now only "Gaussian" is supported
 Gaussian Params=1,0.04,0.1,60                      ! Gaussian boundary condition specifiers: HS, F_std(hz), F_pk(hz), theta_pk (degree), (ignored if not Gaussian)       
 QoI=HS,Mean Dir                        ! Parameters to record (HS,Mean Dir) (No spaces!!!)
-Station Params=150, 0, 4000,5000                        ! station locations in geographic space, currently only supports a line in y direction. Nstat, stat0, statfinal, x location
+Station Params=100, 0, 4000,5000                        ! station locations in geographic space, currently only supports a line in y direction. Nstat, stat0, statfinal, x location
