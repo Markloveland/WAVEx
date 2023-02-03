@@ -109,9 +109,13 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
     #need check to see if any nonzeros, if valid_idx is all False then np.kron throws an error
     if np.any(valid_idx):
         #corresponding mask that lives in knronecker product space
-        big_idx = np.kron(valid_idx,np.ones(local_size2))
-        big_idx=np.array(big_idx, dtype=bool)
+        #big_idx = np.kron(valid_idx,np.ones(local_size2))
+        #big_idx=np.array(big_idx, dtype=bool)
 
+
+        big_idx = np.repeat(valid_idx,local_size2)
+        big_idx=np.array(big_idx, dtype=bool)
+        
         sigma_tilde = np.zeros(Etot.shape)
         
         s_tilde = np.zeros(Etot.shape)
@@ -127,9 +131,13 @@ def S_wc(sigmas,thetas,k,N,local_size2,Etot,sigma_factor,k_factor,opt=1):
 
         s_tilde = k_tilde*np.sqrt(Etot)
 
-        gamma = C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))) )*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc)
+        #gamma = C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.kron(k_tilde[valid_idx],np.ones(local_size2))) )*((np.kron(s_tilde[valid_idx],np.ones(local_size2))/mean_spm)**p_wc)
 
-        gamma_factor[big_idx] = gamma*(np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
+
+        gamma = C_ds*((1-n_wc) + n_wc*k[big_idx]/(np.repeat(k_tilde[valid_idx],local_size2)) )*((np.repeat(s_tilde[valid_idx],local_size2)/mean_spm)**p_wc)
+
+        #gamma_factor[big_idx] = gamma*(np.kron(sigma_tilde[valid_idx]/k_tilde[valid_idx],np.ones(local_size2)))*k[big_idx] 
+        gamma_factor[big_idx] = gamma*(np.repeat(sigma_tilde[valid_idx]/k_tilde[valid_idx],local_size2))*k[big_idx] 
 
 
     if np.any(np.absolute(gamma_factor)>1):
@@ -163,7 +171,7 @@ def calc_S_bfr(sigmas,k,E,depth,local_size2,g=9.81):
     #print('Shape of local size2 kronecker depth', local_size2,np.kron(depth,np.ones(local_size2)).shape )
     #surpress over flow for deep water
     denom_min = 710
-    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh( np.minimum( 710, k*np.kron(depth,np.ones(local_size2)) ) ) )**2*np.maximum(0.0,E.getArray())
+    S_bfr=-C_bfr/(g**2)*(sigmas/np.sinh( np.minimum( 710, k*np.repeat(depth,local_size2) ) ) )**2*np.maximum(0.0,E.getArray())
     
     return S_bfr
 
@@ -204,7 +212,7 @@ def S_brk(E,depth,local_size2,m0,sigma_factor):
         print("Minimum and maximum Qb value", np.amax(Qb),np.amin(Qb))
     if np.any(factor1<-1):
         print('S_break getting big',np.amin(factor1))
-    S_brk = np.kron(factor1,np.ones(local_size2))*np.maximum(0.0,E.getArray())
+    S_brk = np.repeat(factor1,local_size2)*np.maximum(0.0,E.getArray())
     return S_brk
 
 
@@ -389,8 +397,9 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
     if np.any(valid_idx):
         #corresponding mask that lives in knronecker product space
-        big_idx = np.kron(valid_idx,np.ones(local_size2))
-        big_idx=np.array(big_idx, dtype=bool)
+        #big_idx = np.kron(valid_idx,np.ones(local_size2))
+        big_idx = np.repeat(valid_idx,local_size2)
+        big_idx = np.array(big_idx, dtype=bool)
         S_nl[big_idx] = S_nl_vals[big_idx]
     #if np.amax(S_nl)>1:
     #    print("warning,max Snl is blowing up",np.amax(S_nl))
@@ -403,9 +412,11 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
     limit_idx = np.where(S_nl>tol)[0]
     if np.any(limit_idx):
         temp = np.unique( np.floor(limit_idx/local_size2) )
-        locs = np.kron(temp,np.ones(local_size2))
-        dum = np.kron(np.ones(temp.shape),np.arange(local_size2))
+        #locs = np.kron(temp,np.ones(local_size2))
+        #dum = np.kron(np.ones(temp.shape),np.arange(local_size2))
 
+        locs = np.repeat(temp,local_size2)
+        dum = np.tile(np.arange(local_size2),temp.shape)
 
         idx2 = np.array(dum + locs*local_size2,dtype=np.int32)
         S_nl[idx2] = 0.0
@@ -424,8 +435,8 @@ def Snl_DIA(WWINT,WWAWG,WWSWG,NG,DIA_PARAMS,sigmas,thetas,N,all_sigmas,map_to_ma
 
     R[valid_idx] = 1 + Csh1/(kp[valid_idx]*depth[valid_idx])*(1-Csh2*kp[valid_idx]*depth[valid_idx])*np.exp(Csh3*kp[valid_idx]*depth[valid_idx])
 
-    S_nl = np.kron(R,np.ones(local_size2))*S_nl
-    
+    #S_nl = np.kron(R,np.ones(local_size2))*S_nl
+    S_nl = np.repeat(R,local_size2)*S_nl
 
 
     #print('SFNL',SFNL.shape)

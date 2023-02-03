@@ -50,9 +50,12 @@ def compute_tau(domain1,domain2,c,N_dof_1,N_dof_2):
     #using the 2 vectors of h, generate an estimate for h in global domain
     #get N_dof some how
 
-    h_1 = np.kron(h_p1.vector.getArray(),np.ones(N_dof_2))
-    h_2 = np.kron(np.ones(N_dof_1),h_p2.vector.getArray())
+    #h_1 = np.kron(h_p1.vector.getArray(),np.ones(N_dof_2))
+    #h_2 = np.kron(np.ones(N_dof_1),h_p2.vector.getArray())
 
+    h_1 = np.repeat(h_p1.vector.getArray(),N_dof_2)
+    h_2 = np.tile(h_p2.vector.getArray(),N_dof_1)
+    
     h = np.sqrt(h_1**2+h_2**2)
 
     #now using pointwise c get a pointwise tau =h / |/c|/
@@ -185,16 +188,27 @@ def compute_wave_speeds(x,y,sigma,theta,depth_func,u_func,v_func,N_dof_2,g=9.81,
     #dHdx_func,dHdy_func = interpolate_gradients(depth_func)    
 
     #compute depth at all dof
-    depth = np.kron(depth_func.vector.getArray(),np.ones(N_dof_2))
-    u = np.kron(u_func.vector.getArray(),np.ones(N_dof_2))
-    v = np.kron(v_func.vector.getArray(),np.ones(N_dof_2))
-    dHdx = np.kron(dHdx_func.vector.getArray(),np.ones(N_dof_2))
-    dHdy = np.kron(dHdy_func.vector.getArray(),np.ones(N_dof_2))
-    dudx = np.kron(dudx_func.vector.getArray(),np.ones(N_dof_2))
-    dudy = np.kron(dudy_func.vector.getArray(),np.ones(N_dof_2))
-    dvdx = np.kron(dvdx_func.vector.getArray(),np.ones(N_dof_2))
-    dvdy = np.kron(dvdy_func.vector.getArray(),np.ones(N_dof_2))
+    #depth = np.kron(depth_func.vector.getArray(),np.ones(N_dof_2))
+    #u = np.kron(u_func.vector.getArray(),np.ones(N_dof_2))
+    #v = np.kron(v_func.vector.getArray(),np.ones(N_dof_2))
+    #dHdx = np.kron(dHdx_func.vector.getArray(),np.ones(N_dof_2))
+    #dHdy = np.kron(dHdy_func.vector.getArray(),np.ones(N_dof_2))
+    #dudx = np.kron(dudx_func.vector.getArray(),np.ones(N_dof_2))
+    #dudy = np.kron(dudy_func.vector.getArray(),np.ones(N_dof_2))
+    #dvdx = np.kron(dvdx_func.vector.getArray(),np.ones(N_dof_2))
+    #dvdy = np.kron(dvdy_func.vector.getArray(),np.ones(N_dof_2))
 
+
+
+    depth = np.repeat(depth_func.vector.getArray(),N_dof_2)
+    u = np.repeat(u_func.vector.getArray(),N_dof_2)
+    v = np.repeat(v_func.vector.getArray(),N_dof_2)
+    dHdx = np.repeat(dHdx_func.vector.getArray(),N_dof_2)
+    dHdy = np.repeat(dHdy_func.vector.getArray(),N_dof_2)
+    dudx = np.repeat(dudx_func.vector.getArray(),N_dof_2)
+    dudy = np.repeat(dudy_func.vector.getArray(),N_dof_2)
+    dvdx = np.repeat(dvdx_func.vector.getArray(),N_dof_2)
+    dvdy = np.repeat(dvdy_func.vector.getArray(),N_dof_2)
     #need a function to calculate wave speed (phase and group) and wavenumber
     #takes in degrees of freedom and computes wave speeds pointwise
     N_dof = len(sigma)

@@ -514,9 +514,11 @@ elif Model_Params["Source Terms"]=="Wind":
     thets_unique,inverse_thets = np.unique(domain2.geometry.x[:,1],return_inverse=True)
     #the map is side by side, append this
     map_to_matrix= np.array([inverted,inverse_thets])
-    map_to_matrix = np.kron(np.ones(N_dof_1),map_to_matrix)
+    #map_to_matrix = np.kron(np.ones(N_dof_1),map_to_matrix)
+    map_to_matrix = np.tile(map_to_matrix,N_dof_1)
     map_to_matrix = map_to_matrix.T
-    map_to_matrix = np.column_stack((map_to_matrix, np.kron(np.arange(N_dof_1),np.ones(N_dof_2)) ) )
+    #map_to_matrix = np.column_stack((map_to_matrix, np.kron(np.arange(N_dof_1),np.ones(N_dof_2)) ) )
+    map_to_matrix = np.column_stack((map_to_matrix, np.repeat(np.arange(N_dof_1),N_dof_2) ) )
     #need to flatten the map
     flat_map = np.array(map_to_matrix[:,0]*((n_theta+1)*N_dof_1) + map_to_matrix[:,1]*(N_dof_1) + map_to_matrix[:,2],dtype=np.int32)
     #need the inverse
